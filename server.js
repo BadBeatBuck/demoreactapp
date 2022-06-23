@@ -15,16 +15,13 @@ const fetchCrypto = async (res) => {
   const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
   const series = ohlcv.slice(-80).map((x) => x[index]); // closing price
 
-  console.log({ lastPrice });
-  res.send({ express: lastPrice }); //Line 10
-  // res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" }); //Line 10
+  // console.log({ lastPrice });
+  res.send({ express: series }); //Line 10
+  // res.send({ express: lastPrice }); //Line 10
   return lastPrice;
 };
 
 // create a GET route
 app.get("/express_backend", (req, res) => {
-  const test = fetchCrypto(res);
-  console.log({ test });
-
-  // res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" }); //Line 10
-}); //Line 11
+  fetchCrypto(res);
+});
