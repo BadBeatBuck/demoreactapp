@@ -1,12 +1,12 @@
 var ccxt = require("ccxt");
 // console.log(ccxt.exchanges); // print all available exchanges
 
-const express = require("express"); //Line 1
-const app = express(); //Line 2
-const port = process.env.PORT || 5001; //Line 3
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 5001;
 
 // This displays message that the server running and listening to specified port
-app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 const fetchCrypto = async (res) => {
   const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "1h");
@@ -16,8 +16,8 @@ const fetchCrypto = async (res) => {
   const series = ohlcv.slice(-80).map((x) => x[index]); // closing price
 
   // console.log({ lastPrice });
-  res.send({ express: series }); //Line 10
-  // res.send({ express: lastPrice }); //Line 10
+  res.send({ express: series });
+  // res.send({ express: lastPrice });
   return lastPrice;
 };
 

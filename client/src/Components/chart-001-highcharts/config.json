@@ -1,0 +1,21 @@
+{
+  "title": { "text": "OS Usage Stats" },
+  "subtitle": { "text": "" },
+  "exporting": {},
+  "chart": { "type": "line" },
+  "series": [
+    {
+      "name": "Windows",
+      "allAreas": true,
+      "color": "#f50057",
+      "fillColor": "#293592",
+      "grouping": true
+    }
+  ],
+  "data": {},
+  "legend": { "enabled": false },
+  "tooltip": { "shared": false },
+  "credits": { "enabled": false },
+  "pane": { "background": [] },
+  "responsive": { "rules": [] }
+}

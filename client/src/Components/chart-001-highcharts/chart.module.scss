@@ -1,0 +1,50 @@
+body {
+    // Colors
+    --CS-margin-01: 1vh;
+    --CS-margin-02: 2vh;
+    --CS-margin-04: 4vh;
+
+    --white-000: rgb(255, 255, 255);
+    --white-100: rgb(238, 238, 238);
+    --white-200: rgb(206, 206, 206);
+    --white-400: rgb(241, 241, 241);
+    --white-500: rgb(250, 249, 250);
+    --white-550: #f3f2ef;
+    --white-600: rgb(196, 196, 196);
+    --white-800: rgb(34, 34, 34);
+
+    --red-400: rgb(250, 134, 134);
+    --red-500: rgb(247, 89, 89);
+
+    --green-100: rgb(156, 169, 147);
+    --green-500: rgb(96, 117, 81);
+
+    --yellow-400: rgb(222, 227, 169);
+    --yellow-500: rgb(170, 177, 92);
+
+    --blue-050: rgb(212, 220, 228);
+    --blue-100: rgb(112, 152, 196);
+
+    --purple-200: #cacfe3;
+    --purple-500: rgb(77, 52, 113);
+
+    // Artifacts
+    --border-color: var(--purple-500);
+
+    --topNavHeight: 50px;
+    --leftNavWidth: 0vh;
+
+    // Grid
+    --rdg-bk-color: var(--white-100);
+    --rdg-cell-bk-color: var(--white-100);
+    --rdg-header-bk-color: var(--white-600);
+
+    --rdg-button-true: var(--green-100);
+    --rdg-button-true-hover: var(--green-500);
+
+    --rdg-button-false: var(--yellow-400);
+    --rdg-button-false-hover: var(--yellow-500);
+
+    --border-color: #e3e2de;
+    --nav-border-color: var(--border-color);
+}
