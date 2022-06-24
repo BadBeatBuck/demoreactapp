@@ -13,7 +13,7 @@ function App() {
   const params = {
     priceLow: 100,
     priceHigh: 200,
-    numSlices: 5,
+    numSlices: 12,
   };
 
   let defaultSeries = [
@@ -28,7 +28,6 @@ function App() {
   const [priceLow, setPriceLow] = useState(params.priceLow);
   const [priceHigh, setPriceHigh] = useState(params.priceHigh);
   const [numSlices, setNumSlices] = useState(params.numSlices);
-  // const [series, setSeries] = useState(defaultSeries);
   const [cryptoFeed, setCryptoFeed] = useState([]);
 
   const callBackendAPI = async () => {
@@ -39,12 +38,13 @@ function App() {
     const body = await response.json();
     const cryptoFeed = body.express;
 
-    // console.log({ body });
     const dataMin = Math.min(...cryptoFeed);
     const dataMax = Math.max(...cryptoFeed);
-    setPriceLow(dataMin);
-    setPriceHigh(dataMax);
-    console.log({ dataMin });
+    const roundedMin = Math.round(dataMin / 100) * 100;
+    const roundedMax = Math.round(dataMax / 100) * 100;
+
+    setPriceLow(roundedMin);
+    setPriceHigh(roundedMax);
     setCryptoFeed(cryptoFeed);
   };
 
