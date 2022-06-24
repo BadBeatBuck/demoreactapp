@@ -46,6 +46,12 @@ function App() {
     return body;
   };
 
+  // TODO:
+
+  // calcSeries should call the api
+  // calcSeries should call the api
+  // calcSeries should call the api
+
   useEffect(() => {
     callBackendAPI();
     // calcSeries();
