@@ -3,7 +3,24 @@
   direction: column;
   flex-direction: column;
   border: 10px solid green;
-  .header {
-    // color: red;
+
+  .form {
+    border: 10px solid red;
+  }
+
+  :global {
+    form {
+      flex-direction: row;
+      display: flex;
+      padding: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+    .mb-3 {
+      border: 2px solid blue;
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+    }
   }
 }

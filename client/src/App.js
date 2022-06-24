@@ -116,35 +116,37 @@ function App() {
   const renderForm = () => {
     // const form = []
     const form = (
-      <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3">
-          <Form.Label>Low Price</Form.Label>
-          <Form.Control
-            onChange={onPriceLow}
-            // onBlur={createGridLines}
-            value={priceLow}
-            type="number"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>High Price</Form.Label>
-          <Form.Control
-            onChange={onPriceHigh}
-            // onBlur={createGridLines}
-            value={priceHigh}
-            type="number"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Num Slices</Form.Label>
-          <Form.Control
-            onChange={onNumSlices}
-            // onBlur={createGridLines}
-            value={numSlices}
-            type="number"
-          />
-        </Form.Group>
-      </Form>
+      <div className={css.form}>
+        <Form onSubmit={submitHandler}>
+          <Form.Group className="mb-3">
+            <Form.Label>Low Price</Form.Label>
+            <Form.Control
+              onChange={onPriceLow}
+              // onBlur={createGridLines}
+              value={priceLow}
+              type="number"
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>High Price</Form.Label>
+            <Form.Control
+              onChange={onPriceHigh}
+              // onBlur={createGridLines}
+              value={priceHigh}
+              type="number"
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Num Slices</Form.Label>
+            <Form.Control
+              onChange={onNumSlices}
+              // onBlur={createGridLines}
+              value={numSlices}
+              type="number"
+            />
+          </Form.Group>
+        </Form>
+      </div>
     );
 
     return form;
