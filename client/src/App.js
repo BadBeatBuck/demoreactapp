@@ -28,22 +28,24 @@ function App() {
   const [priceLow, setPriceLow] = useState(params.priceLow);
   const [priceHigh, setPriceHigh] = useState(params.priceHigh);
   const [numSlices, setNumSlices] = useState(params.numSlices);
-  const [series, setSeries] = useState(defaultSeries);
-  const [cryptoFeed, setCryptoFeed] = useState(null);
+  // const [series, setSeries] = useState(defaultSeries);
+  const [cryptoFeed, setCryptoFeed] = useState([]);
 
   const callBackendAPI = async () => {
     const response = await fetch("/express_backend");
-    const body = await response.json();
-    const cryptoFeed = body.express;
-
-    setCryptoFeed(cryptoFeed);
-    console.log({ body });
-
     if (response.status !== 200) {
       throw Error(body.message);
     }
-    calcSeries(cryptoFeed);
-    return body;
+    const body = await response.json();
+    const cryptoFeed = body.express;
+
+    // console.log({ body });
+    const dataMin = Math.min(...cryptoFeed);
+    const dataMax = Math.max(...cryptoFeed);
+    setPriceLow(dataMin);
+    setPriceHigh(dataMax);
+    console.log({ dataMin });
+    setCryptoFeed(cryptoFeed);
   };
 
   useEffect(() => {
@@ -52,7 +54,7 @@ function App() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    calcSeries();
+    // need to refresh here
   };
 
   const onPriceLow = (event) => {
@@ -65,12 +67,11 @@ function App() {
 
   const onNumSlices = (event) => {
     setNumSlices(event.target.value);
-    calcSeries();
   };
 
-  const calcSeries = (passedCryptoFeed) => {
+  const createGridLines = (cryptoFeed) => {
     console.log(
-      "calcSeries---------------------------------------------------->>"
+      "createGridLines---------------------------------------------------->>"
     );
     const series = [];
     const priceLow2 = parseInt(priceLow);
@@ -89,26 +90,26 @@ function App() {
       series.push(singleSeries);
     }
 
-    // const tokenData = data01;
-    const test = passedCryptoFeed || cryptoFeed;
-    // const test = [1, 2, 3, 4];
-    // const test = tokenData.map((item) => {
+    // const cryptoFeed = tokenData.map((item) => {
     //   return item[0];
     // });
-    console.log({ test });
+    // console.log({ cryptoFeed });
+    // const dataMin = Math.min(...cryptoFeed);
+    // const dataMax = Math.max(...cryptoFeed);
+    // console.log({ dataMin });
 
-    const dataMin = Math.min(...test);
-    const dataMax = Math.max(...test);
-    console.log({ test });
-    console.log({ dataMin });
+    console.log({ cryptoFeed });
 
-    setPriceLow(dataMin);
-    setPriceHigh(dataMax);
+    // setPriceLow(dataMin);
+    // setPriceHigh(dataMax);
 
-    series.unshift({ data: test });
-    setSeries(series);
+    series.unshift({ data: cryptoFeed });
+    return series;
+    // setSeries(series);
   };
 
+  // const series = [1, 2, 3];
+  const series = createGridLines(cryptoFeed);
   console.log({ cryptoFeed, priceLow });
 
   return (
@@ -123,7 +124,7 @@ function App() {
           <Form.Label>Low Price</Form.Label>
           <Form.Control
             onChange={onPriceLow}
-            // onBlur={calcSeries}
+            // onBlur={createGridLines}
             value={priceLow}
             type="number"
           />
@@ -132,7 +133,7 @@ function App() {
           <Form.Label>High Price</Form.Label>
           <Form.Control
             onChange={onPriceHigh}
-            // onBlur={calcSeries}
+            // onBlur={createGridLines}
             value={priceHigh}
             type="number"
           />
@@ -141,15 +142,15 @@ function App() {
           <Form.Label>Num Slices</Form.Label>
           <Form.Control
             onChange={onNumSlices}
-            // onBlur={calcSeries}
+            // onBlur={createGridLines}
             value={numSlices}
             type="number"
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        {/* <Button variant="primary" type="submit">
           Submit
-        </Button>
+        </Button> */}
       </Form>
 
       <Chart001 series={series} />

@@ -74,7 +74,7 @@ function Chart001(props) {
 
   console.log("render chart ++++++++++++++++++++++++++++++++++++++++++++++");
 
-  console.log({ options });
+  // console.log({ options });
   return (
     <div>
       <HighchartsReact
