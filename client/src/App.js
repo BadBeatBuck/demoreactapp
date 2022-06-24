@@ -91,25 +91,10 @@ function App() {
       series.push(singleSeries);
     }
 
-    // const cryptoFeed = tokenData.map((item) => {
-    //   return item[0];
-    // });
-    // console.log({ cryptoFeed });
-    // const dataMin = Math.min(...cryptoFeed);
-    // const dataMax = Math.max(...cryptoFeed);
-    // console.log({ dataMin });
-
-    console.log({ cryptoFeed });
-
-    // setPriceLow(dataMin);
-    // setPriceHigh(dataMax);
-
     series.unshift({ data: cryptoFeed });
     return series;
-    // setSeries(series);
   };
 
-  // const series = [1, 2, 3];
   const series = createGridLines(cryptoFeed);
   console.log({ cryptoFeed, priceLow });
 
@@ -156,18 +141,20 @@ function App() {
 
   return (
     <div className={css.main}>
-      <Chart001 series={series} />
-      {renderForm()}
-      {/* <div className={css.header}>Bots</div> */}
-      {/* <Table002 /> */}
-      {/* <Table003 /> */}
-      {/* <Table004 /> */}
+      <div className={css.container}>
+        {renderForm()}
+        <Chart001 series={series} />
+        {/* <div className={css.header}>Bots</div> */}
+        {/* <Table002 /> */}
+        {/* <Table003 /> */}
+        {/* <Table004 /> */}
 
-      {/* <Button variant="primary" type="submit">
+        {/* <Button variant="primary" type="submit">
           Submit
         </Button> */}
 
-      {/* <Table001 /> */}
+        {/* <Table001 /> */}
+      </div>
     </div>
   );
 }

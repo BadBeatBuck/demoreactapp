@@ -3,29 +3,50 @@
   direction: column;
   flex-direction: column;
   border: 1px solid green;
+  width: 90%;
 
-  .form {
-    border: 1px solid red;
-  }
+  .container {
+    display: flex;
+    // direction: column;
 
-  :global {
-    form {
-      border: 1px solid purple;
-      flex-direction: row;
-      display: flex;
+    .form {
+      border: 1px solid red;
+      background: #d3d3fa;
       // padding: 10px;
-      align-items: center;
-      justify-content: center;
+    }
 
-      label {
-        margin-bottom: 0px;
-      }
-      .mb-3 {
-        border: 1px solid blue;
-        display: flex;
+    :global {
+      form {
+        // border: 1px solid purple;
         flex-direction: column;
-        margin-left: 20px;
-        margin-bottom: 0px !important;
+        display: flex;
+        margin-top: 100%;
+        margin-right: 20px;
+
+        .mb-3 {
+          // border: 1px solid blue;
+          display: flex;
+          flex-direction: row;
+          // margin-bottom: 0px !important;
+          margin-bottom: 4px !important;
+
+          input {
+            display: flex;
+            // margin-bottom: 0px;
+            min-width: 80px;
+            max-width: 120px;
+            justify-content: flex-end;
+          }
+
+          label {
+            display: flex;
+            margin-bottom: 0px;
+            background: #c6c6c6;
+            white-space: nowrap;
+            min-width: 120px;
+            justify-content: flex-end;
+          }
+        }
       }
     }
   }
