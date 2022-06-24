@@ -1,7 +1,8 @@
 .main {
   display: flex;
   direction: column;
-
+  flex-direction: column;
+  border: 10px solid green;
   .header {
     // color: red;
   }

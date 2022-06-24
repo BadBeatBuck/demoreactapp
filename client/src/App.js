@@ -7,6 +7,7 @@ import css from "./App.module.scss";
 // import Table004 from "./Components/table-004-react-data-table/table";
 import Chart001 from "./Components/chart-001-highcharts/chart";
 import { Button, Form } from "react-bootstrap";
+import { render } from "@testing-library/react";
 // import data01 from "./data/data-001";
 
 function App() {
@@ -112,13 +113,9 @@ function App() {
   const series = createGridLines(cryptoFeed);
   console.log({ cryptoFeed, priceLow });
 
-  return (
-    <div className={css.main}>
-      {/* <div className={css.header}>Bots</div> */}
-      {/* <Table002 /> */}
-      {/* <Table003 /> */}
-      {/* <Table004 /> */}
-
+  const renderForm = () => {
+    // const form = []
+    const form = (
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3">
           <Form.Label>Low Price</Form.Label>
@@ -147,11 +144,23 @@ function App() {
             type="number"
           />
         </Form.Group>
+      </Form>
+    );
 
-        {/* <Button variant="primary" type="submit">
+    return form;
+  };
+
+  return (
+    <div className={css.main}>
+      {renderForm()}
+      {/* <div className={css.header}>Bots</div> */}
+      {/* <Table002 /> */}
+      {/* <Table003 /> */}
+      {/* <Table004 /> */}
+
+      {/* <Button variant="primary" type="submit">
           Submit
         </Button> */}
-      </Form>
 
       <Chart001 series={series} />
       {/* <Table001 /> */}
