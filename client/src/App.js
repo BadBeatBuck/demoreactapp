@@ -48,7 +48,6 @@ function App() {
 
   useEffect(() => {
     callBackendAPI();
-    // calcSeries();
   }, []);
 
   const submitHandler = (event) => {
