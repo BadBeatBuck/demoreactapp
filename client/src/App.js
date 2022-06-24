@@ -125,6 +125,7 @@ function App() {
               // onBlur={createGridLines}
               value={priceLow}
               type="number"
+              step="100"
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -134,6 +135,7 @@ function App() {
               // onBlur={createGridLines}
               value={priceHigh}
               type="number"
+              step="100"
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -154,6 +156,7 @@ function App() {
 
   return (
     <div className={css.main}>
+      <Chart001 series={series} />
       {renderForm()}
       {/* <div className={css.header}>Bots</div> */}
       {/* <Table002 /> */}
@@ -164,7 +167,6 @@ function App() {
           Submit
         </Button> */}
 
-      <Chart001 series={series} />
       {/* <Table001 /> */}
     </div>
   );
