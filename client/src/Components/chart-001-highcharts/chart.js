@@ -72,12 +72,15 @@ function Chart001(props) {
     }
   });
 
+  console.log("render chart ++++++++++++++++++++++++++++++++++++++++++++++");
+
+  console.log({ options });
   return (
     <div>
       <HighchartsReact
         highcharts={Highcharts}
         options={options}
-        updateArgs={[true, true, true]}
+        updateArgs={[true, true, true, true, true, true, true]}
       />
     </div>
   );

@@ -46,12 +46,6 @@ function App() {
     return body;
   };
 
-  // TODO:
-
-  // calcSeries should call the api
-  // calcSeries should call the api
-  // calcSeries should call the api
-
   useEffect(() => {
     callBackendAPI();
     // calcSeries();
@@ -75,7 +69,10 @@ function App() {
     calcSeries();
   };
 
-  const calcSeries = (cryptoFeed2) => {
+  const calcSeries = (passedCryptoFeed) => {
+    console.log(
+      "calcSeries---------------------------------------------------->>"
+    );
     const series = [];
     const priceLow2 = parseInt(priceLow);
     const priceHigh2 = parseInt(priceHigh);
@@ -85,16 +82,21 @@ function App() {
 
     for (let i = 0; i < numSlices2 + 1; i++) {
       const value = priceLow2 + i * stepSize;
-      const singleSeries = { data: [value, value, value] };
+
+      const numPoints = 100;
+      const dummyData = [...Array(numPoints).keys()];
+      dummyData.fill(value, 0, numPoints);
+      const singleSeries = { data: dummyData };
       series.push(singleSeries);
     }
 
     // const tokenData = data01;
-    const test = cryptoFeed2 || cryptoFeed;
+    const test = passedCryptoFeed || cryptoFeed;
     // const test = [1, 2, 3, 4];
     // const test = tokenData.map((item) => {
     //   return item[0];
     // });
+    console.log({ test });
 
     const dataMin = Math.min(...test);
     const dataMax = Math.max(...test);
@@ -108,7 +110,7 @@ function App() {
     setSeries(series);
   };
 
-  console.log({ cryptoFeed });
+  console.log({ cryptoFeed, priceLow });
 
   return (
     <div className={css.main}>
@@ -122,7 +124,7 @@ function App() {
           <Form.Label>Low Price</Form.Label>
           <Form.Control
             onChange={onPriceLow}
-            onBlur={calcSeries}
+            // onBlur={calcSeries}
             value={priceLow}
             type="number"
           />
@@ -131,7 +133,7 @@ function App() {
           <Form.Label>High Price</Form.Label>
           <Form.Control
             onChange={onPriceHigh}
-            onBlur={calcSeries}
+            // onBlur={calcSeries}
             value={priceHigh}
             type="number"
           />
@@ -140,7 +142,7 @@ function App() {
           <Form.Label>Num Slices</Form.Label>
           <Form.Control
             onChange={onNumSlices}
-            onBlur={calcSeries}
+            // onBlur={calcSeries}
             value={numSlices}
             type="number"
           />
