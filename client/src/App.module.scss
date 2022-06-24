@@ -2,10 +2,10 @@
   display: flex;
   direction: column;
   flex-direction: column;
-  border: 10px solid green;
+  border: 1px solid green;
 
   .form {
-    border: 10px solid red;
+    border: 1px solid red;
   }
 
   :global {
