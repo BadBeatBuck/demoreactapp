@@ -6,8 +6,7 @@ import css from "./App.module.scss";
 // import Table003 from "./Components/table-003-mui-rctable/table";
 // import Table004 from "./Components/table-004-react-data-table/table";
 import Chart001 from "./Components/chart-001-highcharts/chart";
-import { Button, Form } from "react-bootstrap";
-import { render } from "@testing-library/react";
+import { Form } from "react-bootstrap";
 // import data01 from "./data/data-001";
 
 function App() {
@@ -84,7 +83,7 @@ function App() {
     for (let i = 0; i < numSlices2 + 1; i++) {
       const value = priceLow2 + i * stepSize;
 
-      const numPoints = 100;
+      const numPoints = cryptoFeed.length;
       const dummyData = [...Array(numPoints).keys()];
       dummyData.fill(value, 0, numPoints);
       const singleSeries = { data: dummyData };
@@ -96,10 +95,10 @@ function App() {
   };
 
   const series = createGridLines(cryptoFeed);
-  console.log({ cryptoFeed, priceLow });
+  console.log({ cryptoFeed });
+  console.log(cryptoFeed.length);
 
   const renderForm = () => {
-    // const form = []
     const form = (
       <div className={css.form}>
         <Form onSubmit={submitHandler}>
@@ -132,6 +131,15 @@ function App() {
               type="number"
             />
           </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Num Slices</Form.Label>
+            <Form.Control
+              onChange={onNumSlices}
+              // onBlur={createGridLines}
+              value={numSlices}
+              type="number"
+            />
+          </Form.Group>
         </Form>
       </div>
     );
@@ -139,11 +147,22 @@ function App() {
     return form;
   };
 
+  const options = {
+    yAxis: {
+      min: priceLow * 1,
+      max: priceHigh * 1,
+      // min: priceLow * 0.95,
+      // max: priceHigh * 1.05,
+      startOnTick: false,
+      endOnTick: false,
+    },
+  };
+
   return (
     <div className={css.main}>
       <div className={css.container}>
         {renderForm()}
-        <Chart001 series={series} />
+        <Chart001 series={series} options={options} />
         {/* <div className={css.header}>Bots</div> */}
         {/* <Table002 /> */}
         {/* <Table003 /> */}

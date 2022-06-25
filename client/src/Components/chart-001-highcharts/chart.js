@@ -72,6 +72,9 @@ function Chart001(props) {
     }
   });
 
+  const combinedOptions = { ...options, ...props.options };
+  console.log({ combinedOptions });
+
   console.log("render chart ++++++++++++++++++++++++++++++++++++++++++++++");
 
   // console.log({ options });
@@ -79,7 +82,8 @@ function Chart001(props) {
     <div>
       <HighchartsReact
         highcharts={Highcharts}
-        options={options}
+        options={combinedOptions}
+        // options={options}
         updateArgs={[true, true, true, true, true, true, true]}
       />
     </div>

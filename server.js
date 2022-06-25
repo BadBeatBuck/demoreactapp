@@ -9,11 +9,14 @@ const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 const fetchCrypto = async (res) => {
-  const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "1h");
+  const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "1m");
+
+  const numPoints = 200;
 
   const index = 4;
   const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
-  const series = ohlcv.slice(-80).map((x) => x[index]); // closing price
+  // const series = ohlcv.map((x) => x[index]); // closing price
+  const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
 
   res.send({ express: series });
   return lastPrice;
