@@ -15,9 +15,7 @@ const fetchCrypto = async (res) => {
   const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
   const series = ohlcv.slice(-80).map((x) => x[index]); // closing price
 
-  // console.log({ lastPrice });
   res.send({ express: series });
-  // res.send({ express: lastPrice });
   return lastPrice;
 };
 

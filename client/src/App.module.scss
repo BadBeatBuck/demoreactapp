@@ -3,11 +3,13 @@
   direction: column;
   flex-direction: column;
   border: 1px solid green;
-  width: 90%;
+  margin: auto;
+  margin-top: 25%;
 
   .container {
     display: flex;
-    // direction: column;
+    margin: auto;
+    border: 5px solid blue;
 
     .form {
       border: 1px solid red;

@@ -104,21 +104,21 @@ function App() {
       <div className={css.form}>
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3">
-            <Form.Label>Low Price</Form.Label>
-            <Form.Control
-              onChange={onPriceLow}
-              // onBlur={createGridLines}
-              value={priceLow}
-              type="number"
-              step="100"
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
             <Form.Label>High Price</Form.Label>
             <Form.Control
               onChange={onPriceHigh}
               // onBlur={createGridLines}
               value={priceHigh}
+              type="number"
+              step="100"
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Low Price</Form.Label>
+            <Form.Control
+              onChange={onPriceLow}
+              // onBlur={createGridLines}
+              value={priceLow}
               type="number"
               step="100"
             />

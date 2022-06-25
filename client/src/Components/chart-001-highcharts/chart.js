@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const options = {
   title: {
-    text: "Crypto Predicto 2000",
+    text: "",
   },
   legend: { enabled: false },
   series: [],
