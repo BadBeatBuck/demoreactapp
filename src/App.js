@@ -10,6 +10,9 @@ import { Form } from "react-bootstrap";
 // import data01 from "./data/data-001";
 import ccxt from "ccxt";
 
+import { DataStore } from "@aws-amplify/datastore";
+import { Todo, Bot } from "./models";
+
 function App() {
   const params = {
     priceLow: 100,
@@ -58,7 +61,22 @@ function App() {
     const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
     const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
 
-    console.log({ series });
+    // console.log({ series });
+
+    // await DataStore.save(
+    //   new Todo({
+    //     priceLow: 111,
+    //   })
+    // );
+
+    await DataStore.save(
+      new Bot({
+        priceLow: 123.45,
+      })
+    );
+
+    const models = await DataStore.query(Bot);
+    console.log(models);
     return series;
   };
 
@@ -105,8 +123,8 @@ function App() {
   };
 
   const series = createGridLines(cryptoFeed);
-  console.log({ cryptoFeed });
-  console.log(cryptoFeed.length);
+  // console.log({ cryptoFeed });
+  // console.log(cryptoFeed.length);
 
   const renderForm = () => {
     const form = (
@@ -168,7 +186,7 @@ function App() {
     },
   };
 
-  console.log(ccxt.exchanges); // print all available exchanges
+  // console.log(ccxt.exchanges); // print all available exchanges
 
   return (
     <div className={css.main}>

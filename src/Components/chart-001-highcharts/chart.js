@@ -73,7 +73,7 @@ function Chart001(props) {
   });
 
   const combinedOptions = { ...options, ...props.options };
-  console.log({ combinedOptions });
+  // console.log({ combinedOptions });
 
   console.log("render chart ++++++++++++++++++++++++++++++++++++++++++++++");
 
