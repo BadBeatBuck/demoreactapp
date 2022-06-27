@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "roboto002",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/matthewhill/Documents/GitHub/demoreactapp/client/amplify/backend/api/roboto002/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}

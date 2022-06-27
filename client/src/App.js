@@ -56,11 +56,9 @@ function App() {
 
     const index = 4;
     const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
-    // const series = ohlcv.map((x) => x[index]); // closing price
     const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
 
     console.log({ series });
-    // res.send({ express: series });
     return series;
   };
 
