@@ -33,12 +33,6 @@ function App() {
 
   const callBackendAPI = async () => {
     const cryptoFeed = await fetchCrypto();
-    // // const response = await fetch("/express_backend");
-    // if (response.status !== 200) {
-    //   throw Error(body.message);
-    // }
-    // const body = await response.json();
-    // const cryptoFeed = body.express;
 
     const dataMin = Math.min(...cryptoFeed);
     const dataMax = Math.max(...cryptoFeed);
