@@ -163,6 +163,7 @@ function App() {
       <div className={css.container}>
         {renderForm()}
         <Chart001 series={series} options={options} />
+        <Chart001 series={series} options={options} />
         {/* <div className={css.header}>Bots</div> */}
         {/* <Table002 /> */}
         {/* <Table003 /> */}

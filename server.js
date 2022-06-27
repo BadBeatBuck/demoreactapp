@@ -9,9 +9,10 @@ const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 const fetchCrypto = async (res) => {
-  const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "1m");
+  const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "5m");
+  // const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "1m");
 
-  const numPoints = 200;
+  const numPoints = 500;
 
   const index = 4;
   const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
