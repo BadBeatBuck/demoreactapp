@@ -15,6 +15,10 @@ type TodoMetaData = {
 export declare class Bot {
   readonly id: string;
   readonly priceLow?: number | null;
+  readonly priceHigh?: number | null;
+  readonly numSlices?: number | null;
+  readonly active?: boolean | null;
+  readonly priceEntry?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Bot, BotMetaData>);

@@ -17,6 +17,34 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "priceHigh": {
+                    "name": "priceHigh",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "numSlices": {
+                    "name": "numSlices",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "active": {
+                    "name": "active",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "priceEntry": {
+                    "name": "priceEntry",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -128,5 +156,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "c514295e012f676787e2402f8f808855"
+    "version": "7fb2aa8c5776f4c17ca8746d99185088"
 };
