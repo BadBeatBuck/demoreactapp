@@ -3,10 +3,21 @@
   "serviceConfiguration": {
     "apiName": "roboto004",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/Users/matthewhill/Documents/GitHub/demoreactapp/amplify/backend/api/roboto004/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-857dd99e-1dd5-4f80-889c-a00d5e3c9161/amplify/backend/api/roboto004/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "keyDescription": "api key description",
+      "expirationTime": 30
+    },
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "AUTOMERGE"
+      }
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
   }
 }
