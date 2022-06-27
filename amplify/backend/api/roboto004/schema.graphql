@@ -1,5 +1,11 @@
+type Bot @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  priceLow: Float
+}
+
 type Todo @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   description: String
-} 
+}
+ 

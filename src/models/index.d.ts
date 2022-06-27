@@ -4,8 +4,21 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+type BotMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type TodoMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+export declare class Bot {
+  readonly id: string;
+  readonly priceLow?: number | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<Bot, BotMetaData>);
+  static copyOf(source: Bot, mutator: (draft: MutableModel<Bot, BotMetaData>) => MutableModel<Bot, BotMetaData> | void): Bot;
 }
 
 export declare class Todo {
