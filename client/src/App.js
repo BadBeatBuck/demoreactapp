@@ -8,6 +8,7 @@ import css from "./App.module.scss";
 import Chart001 from "./Components/chart-001-highcharts/chart";
 import { Form } from "react-bootstrap";
 // import data01 from "./data/data-001";
+import ccxt from "ccxt";
 
 function App() {
   const params = {
@@ -31,12 +32,13 @@ function App() {
   const [cryptoFeed, setCryptoFeed] = useState([]);
 
   const callBackendAPI = async () => {
-    const response = await fetch("/express_backend");
-    if (response.status !== 200) {
-      throw Error(body.message);
-    }
-    const body = await response.json();
-    const cryptoFeed = body.express;
+    const cryptoFeed = await fetchCrypto();
+    // // const response = await fetch("/express_backend");
+    // if (response.status !== 200) {
+    //   throw Error(body.message);
+    // }
+    // const body = await response.json();
+    // const cryptoFeed = body.express;
 
     const dataMin = Math.min(...cryptoFeed);
     const dataMax = Math.max(...cryptoFeed);
@@ -51,6 +53,22 @@ function App() {
   useEffect(() => {
     callBackendAPI();
   }, []);
+
+  const fetchCrypto = async () => {
+    const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "5m");
+    // const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "1m");
+
+    const numPoints = 500;
+
+    const index = 4;
+    const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
+    // const series = ohlcv.map((x) => x[index]); // closing price
+    const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
+
+    console.log({ series });
+    // res.send({ express: series });
+    return series;
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -157,6 +175,8 @@ function App() {
       endOnTick: false,
     },
   };
+
+  console.log(ccxt.exchanges); // print all available exchanges
 
   return (
     <div className={css.main}>
