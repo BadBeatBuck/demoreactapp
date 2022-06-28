@@ -21,7 +21,9 @@
         .chartRow {
             // flex-direction: column;
             display: flex;
+            width: auto;
             border: 1px solid purple;
+            background-color: rgb(130, 152, 166);
         }
 
         .chart {
@@ -29,7 +31,9 @@
             width: 50%;
             display: flex;
             border: 1px solid orange;
-            margin-right: 20px;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgb(130, 166, 130);
         }
 
         .tableRow {

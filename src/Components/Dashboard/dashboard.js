@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
+import ccxt from "ccxt";
+import { Button, Form } from "react-bootstrap";
+import { DataStore } from "@aws-amplify/datastore";
+import { Todo, Bot } from "../../models";
 
 import Table003 from "../table-003-mui-rctable/table";
 import Chart001 from "../chart-001-highcharts/chart";
-import { Button, Form } from "react-bootstrap";
-import ccxt from "ccxt";
 
 import css from "./dashboard.module.scss";
-
-import { DataStore } from "@aws-amplify/datastore";
-import { Todo, Bot } from "../../models";
 
 function Dashboard() {
   const params = {

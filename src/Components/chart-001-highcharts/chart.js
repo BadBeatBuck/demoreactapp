@@ -6,6 +6,13 @@ const options = {
   title: {
     text: "",
   },
+  chart: {
+    type: "line",
+    // width: "100%",
+    // width: null,
+    height: null,
+    width: 500,
+  },
   legend: { enabled: false },
   series: [],
   rangeSelector: {
@@ -22,7 +29,8 @@ const options = {
     line: {
       marker: {
         symbol: "circle",
-        enabled: false,
+        // enabled: true,
+        // enabled: false,
       },
       lineWidth: 1,
     },
@@ -73,17 +81,14 @@ function Chart001(props) {
   });
 
   const combinedOptions = { ...options, ...props.options };
-  // console.log({ combinedOptions });
 
   console.log("render chart ++++++++++++++++++++++++++++++++++++++++++++++");
 
-  // console.log({ options });
   return (
     <div className={props.className}>
       <HighchartsReact
         highcharts={Highcharts}
         options={combinedOptions}
-        // options={options}
         updateArgs={[true, true, true, true, true, true, true]}
       />
     </div>
