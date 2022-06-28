@@ -33,7 +33,50 @@ function Chart003(props) {
         rangeSelector: {
           selected: 1,
           // x: 20,
-          x: 200,
+          x: 50,
+          // x: 200,
+
+          buttons: [
+            {
+              type: "day",
+              count: 1,
+              text: "1d",
+              // events: {
+              //   click: function () {
+              //     alert("Clicked button");
+              //   },
+              // },
+            },
+            {
+              type: "day",
+              count: 2,
+              text: "2d",
+              },
+            },
+            // {
+            //   type: "month",
+            //   count: 3,
+            //   text: "3m",
+            // },
+            // {
+            //   type: "month",
+            //   count: 6,
+            //   text: "6m",
+            // },
+            {
+              type: "ytd",
+              text: "YTD",
+            },
+            // {
+            //   type: "year",
+            //   count: 1,
+            //   text: "1y",
+            // },
+            {
+              type: "all",
+              text: "All",
+            },
+          ],
         },
         yAxis: [
           {
@@ -58,6 +101,8 @@ function Chart003(props) {
         series: [
           {
             type: "candlestick",
+            showInNavigator: true,
+            navigatorOptions: {},
             id: "-stock-price",
             name: " Stock Price",
             // data: data,
@@ -67,7 +112,7 @@ function Chart003(props) {
               units: [
                 // ["minute", [15]],
                 ["minute", [1, 5, 15]],
-                // ["hour", [1]],
+                ["hour", [1]],
                 // ["day", [1]],
                 // ["week", [1]],
                 // ["month", [1, 3, 6]],
