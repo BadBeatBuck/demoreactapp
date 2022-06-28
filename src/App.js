@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import css from "./App.module.scss";
-import Dashboard from "./Components/Dashboard/dashboard";
+import Dashboard from "./Components/Dashboard/Dashboard";
 
 function App() {
   return (
