@@ -183,43 +183,10 @@ function Dashboard() {
     },
   };
 
-  // console.log(ccxt.exchanges); // print all available exchanges
-
   const tableData = [
     { name: "Jack", age: 28, address: "some where", key: "1" },
     { name: "Rose", age: 36, address: "some where", key: "2" },
   ];
-
-  const options2 = {
-    title: {
-      text: "",
-    },
-    chart: {
-      type: "line",
-      width: null,
-      height: null,
-    },
-    legend: { enabled: false },
-    series: [],
-    rangeSelector: {
-      selected: 1,
-    },
-
-    yAxis: {
-      // min: 20500,
-      // max: 21500,
-      startOnTick: false,
-      endOnTick: false,
-    },
-    series: [
-      {
-        data: [
-          29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
-          95.6, 54.4,
-        ],
-      },
-    ],
-  };
 
   return (
     <div className={css.main}>
@@ -231,13 +198,13 @@ function Dashboard() {
       {/* <Chart001 className={css.chart} series={series} options={options} /> */}
       <div className={css.container}>
         <div className={css.chartRow}>
-          {/* <div className={css.form}>{renderForm()}</div> */}
+          <div className={css.form}>{renderForm()}</div>
           <Chart001 className={css.chart} series={series} options={options} />
           <Chart001 className={css.chart} series={series} options={options} />
         </div>
-        {/* <div className={css.tableRow}>
+        <div className={css.tableRow}>
           <Table003 data={tableData} />
-        </div> */}
+        </div>
       </div>
     </div>
   );

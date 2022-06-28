@@ -1,4 +1,5 @@
-import Highcharts, { objectEach } from "highcharts";
+import Highcharts from "highcharts/highstock";
+// import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useEffect, useState } from "react";
 
@@ -7,6 +8,7 @@ const options = {
     text: "",
   },
   chart: {
+    // type: "candlestick",
     type: "line",
   },
   legend: { enabled: false },
@@ -19,21 +21,20 @@ const options = {
   },
 
   yAxis: {
-    // min: 20500,
-    // max: 21500,
     startOnTick: false,
     endOnTick: false,
   },
   plotOptions: {
     series: {
-      states: {
-        hover: {
-          enabled: false,
-        },
-        inactive: {
-          opacity: 1,
-        },
-      },
+      enableMouseTracking: false,
+      // states: {
+      //   hover: {
+      //     enabled: false,
+      //   },
+      //   inactive: {
+      //     opacity: 1,
+      //   },
+      // },
     },
     line: {
       marker: {
