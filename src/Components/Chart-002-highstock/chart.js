@@ -3,50 +3,6 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import { useEffect, useState } from "react";
 
-const options = {
-  title: {
-    text: "",
-  },
-  chart: {
-    // type: "candlestick",
-    type: "line",
-  },
-  legend: { enabled: false },
-  series: [],
-  tooltip: {
-    enabled: false,
-  },
-  rangeSelector: {
-    selected: 1,
-  },
-
-  yAxis: {
-    startOnTick: false,
-    endOnTick: false,
-  },
-  plotOptions: {
-    series: {
-      enableMouseTracking: false,
-      // states: {
-      //   hover: {
-      //     enabled: false,
-      //   },
-      //   inactive: {
-      //     opacity: 1,
-      //   },
-      // },
-    },
-    line: {
-      marker: {
-        symbol: "circle",
-        // enabled: true,
-        // enabled: false,
-      },
-      lineWidth: 1,
-    },
-  },
-};
-
 const data = [];
 
 const options2 = {
@@ -83,7 +39,7 @@ function Chart002(props) {
     setSeries(props.series);
   }, [props.series]);
 
-  options.series = series;
+  options2.series[0].data = series;
 
   const innerLineOptions = {
     color: "#f50057",
@@ -109,26 +65,27 @@ function Chart002(props) {
     lineWidth: 3,
   };
 
-  options.series.forEach((item, index) => {
-    if (index === 1 || index === options.series.length - 1) {
-      Object.assign(item, outerLineOptions);
-    } else if (index === 0) {
-      Object.assign(item, tokenLineOptions);
-    } else {
-      Object.assign(item, innerLineOptions);
-    }
-  });
+  // options2.series.forEach((item, index) => {
+  //   if (index === 1 || index === options.series.length - 1) {
+  //     Object.assign(item, outerLineOptions);
+  //   } else if (index === 0) {
+  //     Object.assign(item, tokenLineOptions);
+  //   } else {
+  //     Object.assign(item, innerLineOptions);
+  //   }
+  // });
 
-  const combinedOptions = { ...options, ...props.options };
+  // const combinedOptions = { ...options, ...props.options };
 
   console.log("render chart ++++++++++++++++++++++++++++++++++++++++++++++");
+
+  console.log({ series });
 
   return (
     <div className={props.className}>
       <HighchartsReact
         highcharts={Highcharts}
         options={options2}
-        // options={combinedOptions}
         updateArgs={[true, true, true, true, true, true, true]}
       />
     </div>

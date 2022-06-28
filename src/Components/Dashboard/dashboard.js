@@ -6,12 +6,9 @@ import { Todo, Bot } from "../../models";
 
 import Table003 from "../table-003-mui-rctable/table";
 import Chart001 from "../Chart-001-highcharts/chart";
-
-import Highcharts, { objectEach } from "highcharts";
-import HighchartsReact from "highcharts-react-official";
+import Chart002 from "../Chart-002-highstock/chart";
 
 import css from "./dashboard.module.scss";
-import Chart002 from "../Chart-002-highstock/chart";
 
 function Dashboard() {
   const params = {
@@ -24,10 +21,11 @@ function Dashboard() {
   const [priceHigh, setPriceHigh] = useState(params.priceHigh);
   const [numSlices, setNumSlices] = useState(params.numSlices);
   const [cryptoFeed, setCryptoFeed] = useState([]);
+  const [candleData, setCandleData] = useState([]);
 
-  const callBackendAPI = async () => {
-    const { series: cryptoFeed } = await fetchCrypto();
-    console.log({ cryptoFeed });
+  const fetchData = async () => {
+    const { series: cryptoFeed, candleData } = await fetchCrypto();
+    console.log({ cryptoFeed, candleData });
 
     const dataMin = Math.min(...cryptoFeed);
     const dataMax = Math.max(...cryptoFeed);
@@ -37,10 +35,12 @@ function Dashboard() {
     setPriceLow(roundedMin);
     setPriceHigh(roundedMax);
     setCryptoFeed(cryptoFeed);
+    setCandleData(candleData);
+    console.log({ candleData });
   };
 
   useEffect(() => {
-    callBackendAPI();
+    fetchData();
   }, []);
 
   const fetchCrypto = async () => {
@@ -159,8 +159,6 @@ function Dashboard() {
 
   const options = {
     yAxis: {
-      // min: priceLow * 1,
-      // max: priceHigh * 1,
       min: priceLow * 0.98,
       max: priceHigh * 1.02,
       startOnTick: false,
@@ -175,17 +173,15 @@ function Dashboard() {
 
   return (
     <div className={css.main}>
-      {/* <HighchartsReact
-        highcharts={Highcharts}
-        options={options2}
-        updateArgs={[true, true, true, true, true, true, true]}
-      /> */}
-      {/* <Chart001 className={css.chart} series={series} options={options} /> */}
       <div className={css.container}>
         <div className={css.chartRow}>
           <div className={css.form}>{renderForm()}</div>
           <Chart001 className={css.chart} series={series} options={options} />
-          <Chart002 className={css.chart} series={series} options={options} />
+          <Chart002
+            className={css.chart}
+            series={candleData}
+            // options={options}
+          />
         </div>
         <div className={css.tableRow}>
           <Table003 data={tableData} />
