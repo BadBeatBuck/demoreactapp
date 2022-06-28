@@ -7,6 +7,9 @@ import { Todo, Bot } from "../../models";
 import Table003 from "../table-003-mui-rctable/table";
 import Chart001 from "../chart-001-highcharts/chart";
 
+import Highcharts, { objectEach } from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+
 import css from "./dashboard.module.scss";
 
 function Dashboard() {
@@ -60,15 +63,15 @@ function Dashboard() {
     const numPoints = 500;
 
     const index = 4;
-    const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
+    // const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
     const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
 
-    await DataStore.save(
-      new Bot({
-        priceLow: 123.45,
-        name: "test-001",
-      })
-    );
+    // await DataStore.save(
+    //   new Bot({
+    //     priceLow: 123.45,
+    //     name: "test-001",
+    //   })
+    // );
 
     const models = await DataStore.query(Bot);
     console.log(models);
@@ -118,8 +121,6 @@ function Dashboard() {
   };
 
   const series = createGridLines(cryptoFeed);
-  // console.log({ cryptoFeed });
-  // console.log(cryptoFeed.length);
 
   const renderForm = () => {
     const form = (
@@ -189,17 +190,54 @@ function Dashboard() {
     { name: "Rose", age: 36, address: "some where", key: "2" },
   ];
 
+  const options2 = {
+    title: {
+      text: "",
+    },
+    chart: {
+      type: "line",
+      width: null,
+      height: null,
+    },
+    legend: { enabled: false },
+    series: [],
+    rangeSelector: {
+      selected: 1,
+    },
+
+    yAxis: {
+      // min: 20500,
+      // max: 21500,
+      startOnTick: false,
+      endOnTick: false,
+    },
+    series: [
+      {
+        data: [
+          29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
+          95.6, 54.4,
+        ],
+      },
+    ],
+  };
+
   return (
     <div className={css.main}>
+      {/* <HighchartsReact
+        highcharts={Highcharts}
+        options={options2}
+        updateArgs={[true, true, true, true, true, true, true]}
+      /> */}
+      {/* <Chart001 className={css.chart} series={series} options={options} /> */}
       <div className={css.container}>
         <div className={css.chartRow}>
-          <div className={css.form}>{renderForm()}</div>
+          {/* <div className={css.form}>{renderForm()}</div> */}
           <Chart001 className={css.chart} series={series} options={options} />
           <Chart001 className={css.chart} series={series} options={options} />
         </div>
-        <div className={css.tableRow}>
+        {/* <div className={css.tableRow}>
           <Table003 data={tableData} />
-        </div>
+        </div> */}
       </div>
     </div>
   );

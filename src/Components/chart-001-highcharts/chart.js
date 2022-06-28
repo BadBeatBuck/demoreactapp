@@ -8,10 +8,11 @@ const options = {
   },
   chart: {
     type: "line",
+    // reflow: true,
     // width: "100%",
+    // display: "block",
     // width: null,
-    height: null,
-    width: 500,
+    // height: null,
   },
   legend: { enabled: false },
   series: [],
@@ -83,6 +84,12 @@ function Chart001(props) {
   const combinedOptions = { ...options, ...props.options };
 
   console.log("render chart ++++++++++++++++++++++++++++++++++++++++++++++");
+
+  // for (var i = 0; i < Highcharts.charts.length; i++) {
+  //   if (Highcharts.charts[i] !== undefined) {
+  //     Highcharts.charts[i].reflow();
+  //   }
+  // }
 
   return (
     <div className={props.className}>

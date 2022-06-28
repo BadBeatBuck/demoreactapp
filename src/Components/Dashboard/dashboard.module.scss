@@ -20,16 +20,18 @@
 
         .chartRow {
             // flex-direction: column;
+            flex-direction: row;
             display: flex;
-            width: auto;
+            // width: auto;
             border: 1px solid purple;
             background-color: rgb(130, 152, 166);
         }
 
         .chart {
             // flex-direction: column;
-            width: 50%;
-            display: flex;
+            // width: 50%;
+            // display: flex;
+            flex: 1;
             border: 1px solid orange;
             margin: 20px;
             padding: 20px;
