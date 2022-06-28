@@ -25,17 +25,14 @@ function Chart003(props) {
     <HighchartsReact
       highcharts={HighStock}
       constructorType="stockChart"
-      containerProps={{ style: { height: "600px" } }}
+      // containerProps={{ style: { height: "600px" } }}
       options={{
         chart: {
           renderTo: "container",
         },
         rangeSelector: {
           selected: 1,
-          // x: 20,
-          x: 50,
-          // x: 200,
-
+          x: 20, // indent x
           buttons: [
             {
               type: "day",
@@ -52,25 +49,6 @@ function Chart003(props) {
               count: 2,
               text: "2d",
             },
-            // {
-            //   type: "month",
-            //   count: 3,
-            //   text: "3m",
-            // },
-            // {
-            //   type: "month",
-            //   count: 6,
-            //   text: "6m",
-            // },
-            {
-              type: "ytd",
-              text: "YTD",
-            },
-            // {
-            //   type: "year",
-            //   count: 1,
-            //   text: "1y",
-            // },
             {
               type: "all",
               text: "All",
@@ -107,7 +85,7 @@ function Chart003(props) {
             // data: data,
             data: props.data,
             dataGrouping: {
-              // forced: true,
+              forced: true,
               units: [
                 // ["minute", [15]],
                 ["minute", [1, 5, 15]],

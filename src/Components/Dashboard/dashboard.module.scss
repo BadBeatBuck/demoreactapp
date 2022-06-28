@@ -21,8 +21,13 @@
             flex-direction: column;
             // flex-direction: row;
             display: flex;
-            border: 1px solid purple;
+            border: 5px solid purple;
             background-color: rgb(130, 152, 166);
+
+            // width: 50%;
+            // height: 20%;
+            overflow: hidden;
+            margin-left: 20%;
         }
 
         .chart {
