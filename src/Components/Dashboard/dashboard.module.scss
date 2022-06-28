@@ -9,25 +9,26 @@
         display: flex;
         // margin: auto;
         border: 5px solid blue;
-        flex-direction: column;
+        // flex-direction: column;
 
         .form {
+            display: flex;
             border: 1px solid red;
             background: #d3d3fa;
             // padding: 10px;
         }
 
         .chartRow {
-            flex-direction: column;
-            // flex-direction: row;
             display: flex;
+            flex-direction: column;
             border: 5px solid purple;
             background-color: rgb(130, 152, 166);
+            flex: 1;
 
             // width: 50%;
             // height: 20%;
-            overflow: hidden;
-            margin-left: 20%;
+            // overflow: hidden;
+            // margin-left: 2%;
         }
 
         .chart {
