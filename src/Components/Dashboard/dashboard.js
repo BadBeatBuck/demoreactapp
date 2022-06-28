@@ -11,6 +11,7 @@ import Highcharts, { objectEach } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 import css from "./dashboard.module.scss";
+import Chart002 from "../Chart-002-highstock/chart";
 
 function Dashboard() {
   const params = {
@@ -55,7 +56,6 @@ function Dashboard() {
     const numPoints = 500;
 
     const index = 4;
-    // const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
     const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
 
     // await DataStore.save(
@@ -88,9 +88,6 @@ function Dashboard() {
   };
 
   const createGridLines = (cryptoFeed) => {
-    console.log(
-      "createGridLines---------------------------------------------------->>"
-    );
     const series = [];
     const priceLow2 = parseInt(priceLow);
     const priceHigh2 = parseInt(priceHigh);
@@ -109,10 +106,10 @@ function Dashboard() {
     }
 
     series.unshift({ data: cryptoFeed });
-    return series;
+    return { series };
   };
 
-  const series = createGridLines(cryptoFeed);
+  const { series } = createGridLines(cryptoFeed);
 
   const renderForm = () => {
     const form = (
@@ -121,7 +118,6 @@ function Dashboard() {
           <Form.Label>High Price</Form.Label>
           <Form.Control
             onChange={onPriceHigh}
-            // onBlur={createGridLines}
             value={priceHigh}
             type="number"
             step="100"
@@ -131,7 +127,6 @@ function Dashboard() {
           <Form.Label>Low Price</Form.Label>
           <Form.Control
             onChange={onPriceLow}
-            // onBlur={createGridLines}
             value={priceLow}
             type="number"
             step="100"
@@ -141,7 +136,6 @@ function Dashboard() {
           <Form.Label>Num Slices</Form.Label>
           <Form.Control
             onChange={onNumSlices}
-            // onBlur={createGridLines}
             value={numSlices}
             type="number"
           />
@@ -150,7 +144,6 @@ function Dashboard() {
           <Form.Label>Num Slices</Form.Label>
           <Form.Control
             onChange={onNumSlices}
-            // onBlur={createGridLines}
             value={numSlices}
             type="number"
           />
@@ -192,7 +185,7 @@ function Dashboard() {
         <div className={css.chartRow}>
           <div className={css.form}>{renderForm()}</div>
           <Chart001 className={css.chart} series={series} options={options} />
-          <Chart001 className={css.chart} series={series} options={options} />
+          <Chart002 className={css.chart} series={series} options={options} />
         </div>
         <div className={css.tableRow}>
           <Table003 data={tableData} />
