@@ -10,7 +10,7 @@ import StockTools from "highcharts/modules/stock-tools.js";
 import Boost from "highcharts/modules/boost";
 import "./style.css";
 
-import data from "./data";
+// import data from "./data";
 
 function Chart003(props) {
   Indicators(HighStock);
@@ -32,6 +32,7 @@ function Chart003(props) {
         },
         rangeSelector: {
           x: 20,
+          // x: 200,
         },
         yAxis: [
           {
@@ -58,8 +59,8 @@ function Chart003(props) {
             type: "candlestick",
             id: "-stock-price",
             name: " Stock Price",
-            data: data,
-            // data: props.ohlc,
+            // data: data,
+            data: props.data,
             dataGrouping: {
               forced: true,
               units: [

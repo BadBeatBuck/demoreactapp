@@ -46,7 +46,9 @@ function Dashboard() {
 
   const fetchCrypto = async () => {
     // const candleInterval = "1m";
-    const candleInterval = "5m";
+    // const candleInterval = "5m";
+    // const candleInterval = "15m";
+    const candleInterval = "1d";
     const tokenPair = "BTC/USDT";
 
     const ohlcv = await new ccxt.binance().fetchOHLCV(
@@ -177,13 +179,13 @@ function Dashboard() {
       <div className={css.container}>
         <div className={css.chartRow}>
           <div className={css.form}>{renderForm()}</div>
-          <Chart001 className={css.chart} series={series} options={options} />
+          {/* <Chart001 className={css.chart} series={series} options={options} /> */}
           <Chart002
             className={css.chart}
             series={candleData}
             // options={options}
           />
-          <Chart003 ohlc={candleData} />
+          <Chart003 data={candleData} />
         </div>
         <div className={css.tableRow}>
           <Table003 data={tableData} />
