@@ -19,6 +19,7 @@ export declare class Bot {
   readonly numSlices?: number | null;
   readonly active?: boolean | null;
   readonly priceEntry?: number | null;
+  readonly name?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Bot, BotMetaData>);

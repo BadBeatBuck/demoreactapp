@@ -6,7 +6,7 @@ import css from "./App.module.scss";
 // import Table003 from "./Components/table-003-mui-rctable/table";
 // import Table004 from "./Components/table-004-react-data-table/table";
 import Chart001 from "./Components/chart-001-highcharts/chart";
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 // import data01 from "./data/data-001";
 import ccxt from "ccxt";
 
@@ -52,8 +52,14 @@ function App() {
   }, []);
 
   const fetchCrypto = async () => {
-    const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "5m");
-    // const ohlcv = await new ccxt.binance().fetchOHLCV("BTC/USDT", "1m");
+    // const candleInterval = "1m";
+    const candleInterval = "5m";
+    const tokenPair = "BTC/USDT";
+
+    const ohlcv = await new ccxt.binance().fetchOHLCV(
+      tokenPair,
+      candleInterval
+    );
 
     const numPoints = 500;
 
@@ -72,6 +78,7 @@ function App() {
     await DataStore.save(
       new Bot({
         priceLow: 123.45,
+        name: "test-001",
       })
     );
 
@@ -168,6 +175,9 @@ function App() {
               type="number"
             />
           </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
         </Form>
       </div>
     );
@@ -198,10 +208,6 @@ function App() {
         {/* <Table002 /> */}
         {/* <Table003 /> */}
         {/* <Table004 /> */}
-
-        {/* <Button variant="primary" type="submit">
-          Submit
-        </Button> */}
 
         {/* <Table001 /> */}
       </div>

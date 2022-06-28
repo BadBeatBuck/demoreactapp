@@ -5,6 +5,7 @@ type Bot @model @auth(rules: [{allow: public}]) {
   numSlices: Int
   active: Boolean
   priceEntry: Float
+  name: String
 }
 
 type Todo @model @auth(rules: [{allow: public}]) {
