@@ -79,7 +79,7 @@ function Chart001(props) {
 
   // console.log({ options });
   return (
-    <div>
+    <div className={props.className}>
       <HighchartsReact
         highcharts={Highcharts}
         options={combinedOptions}

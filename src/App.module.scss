@@ -3,18 +3,39 @@
   direction: column;
   flex-direction: column;
   border: 1px solid green;
-  margin: auto;
-  margin-top: 25%;
+  // margin: auto;
+  margin-top: 2%;
 
   .container {
     display: flex;
-    margin: auto;
+    // margin: auto;
     border: 5px solid blue;
+    flex-direction: column;
 
     .form {
       border: 1px solid red;
       background: #d3d3fa;
       // padding: 10px;
+    }
+
+    .chartRow {
+      // flex-direction: column;
+      display: flex;
+      border: 1px solid purple;
+    }
+
+    .chart {
+      // flex-direction: column;
+      width: 50%;
+      display: flex;
+      border: 1px solid orange;
+      margin-right: 20px;
+    }
+
+    .tableRow {
+      flex-direction: column;
+      display: flex;
+      border: 4px solid purple;
     }
 
     :global {

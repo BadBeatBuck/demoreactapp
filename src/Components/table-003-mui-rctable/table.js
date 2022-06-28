@@ -4,7 +4,7 @@ import Table from "rc-table";
 
 import css from "./table.module.scss";
 
-function Table003() {
+function Table003(props) {
   const columns = [
     {
       title: "Name",
@@ -32,11 +32,7 @@ function Table003() {
     },
   ];
 
-  const data = [
-    { name: "Jack", age: 28, address: "some where", key: "1" },
-    { name: "Rose", age: 36, address: "some where", key: "2" },
-  ];
-  return <Table columns={columns} data={data} />;
+  return <Table columns={columns} data={props.data} />;
 }
 
 export default Table003;

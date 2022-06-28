@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 // import Table002 from "./Components/table-002-mui-data-tables/table";
 
 import css from "./App.module.scss";
-// import Table003 from "./Components/table-003-mui-rctable/table";
+import Table003 from "./Components/table-003-mui-rctable/table";
 // import Table004 from "./Components/table-004-react-data-table/table";
 import Chart001 from "./Components/chart-001-highcharts/chart";
 import { Button, Form } from "react-bootstrap";
@@ -135,51 +135,49 @@ function App() {
 
   const renderForm = () => {
     const form = (
-      <div className={css.form}>
-        <Form onSubmit={submitHandler}>
-          <Form.Group className="mb-3">
-            <Form.Label>High Price</Form.Label>
-            <Form.Control
-              onChange={onPriceHigh}
-              // onBlur={createGridLines}
-              value={priceHigh}
-              type="number"
-              step="100"
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Low Price</Form.Label>
-            <Form.Control
-              onChange={onPriceLow}
-              // onBlur={createGridLines}
-              value={priceLow}
-              type="number"
-              step="100"
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Num Slices</Form.Label>
-            <Form.Control
-              onChange={onNumSlices}
-              // onBlur={createGridLines}
-              value={numSlices}
-              type="number"
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Num Slices</Form.Label>
-            <Form.Control
-              onChange={onNumSlices}
-              // onBlur={createGridLines}
-              value={numSlices}
-              type="number"
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </div>
+      <Form onSubmit={submitHandler}>
+        <Form.Group className="mb-3">
+          <Form.Label>High Price</Form.Label>
+          <Form.Control
+            onChange={onPriceHigh}
+            // onBlur={createGridLines}
+            value={priceHigh}
+            type="number"
+            step="100"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Low Price</Form.Label>
+          <Form.Control
+            onChange={onPriceLow}
+            // onBlur={createGridLines}
+            value={priceLow}
+            type="number"
+            step="100"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Num Slices</Form.Label>
+          <Form.Control
+            onChange={onNumSlices}
+            // onBlur={createGridLines}
+            value={numSlices}
+            type="number"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Num Slices</Form.Label>
+          <Form.Control
+            onChange={onNumSlices}
+            // onBlur={createGridLines}
+            value={numSlices}
+            type="number"
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     );
 
     return form;
@@ -187,10 +185,10 @@ function App() {
 
   const options = {
     yAxis: {
-      min: priceLow * 1,
-      max: priceHigh * 1,
-      // min: priceLow * 0.95,
-      // max: priceHigh * 1.05,
+      // min: priceLow * 1,
+      // max: priceHigh * 1,
+      min: priceLow * 0.98,
+      max: priceHigh * 1.02,
       startOnTick: false,
       endOnTick: false,
     },
@@ -198,18 +196,22 @@ function App() {
 
   // console.log(ccxt.exchanges); // print all available exchanges
 
+  const tableData = [
+    { name: "Jack", age: 28, address: "some where", key: "1" },
+    { name: "Rose", age: 36, address: "some where", key: "2" },
+  ];
+
   return (
     <div className={css.main}>
       <div className={css.container}>
-        {renderForm()}
-        <Chart001 series={series} options={options} />
-        <Chart001 series={series} options={options} />
-        {/* <div className={css.header}>Bots</div> */}
-        {/* <Table002 /> */}
-        {/* <Table003 /> */}
-        {/* <Table004 /> */}
-
-        {/* <Table001 /> */}
+        <div className={css.chartRow}>
+          <div className={css.form}>{renderForm()}</div>
+          <Chart001 className={css.chart} series={series} options={options} />
+          <Chart001 className={css.chart} series={series} options={options} />
+        </div>
+        <div className={css.tableRow}>
+          <Table003 data={tableData} />
+        </div>
       </div>
     </div>
   );
