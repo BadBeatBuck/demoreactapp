@@ -31,8 +31,9 @@ function Chart003(props) {
           renderTo: "container",
         },
         rangeSelector: {
-          x: 20,
-          // x: 200,
+          selected: 1,
+          // x: 20,
+          x: 200,
         },
         yAxis: [
           {
@@ -62,11 +63,14 @@ function Chart003(props) {
             // data: data,
             data: props.data,
             dataGrouping: {
-              forced: true,
+              // forced: true,
               units: [
-                ["day", [1]],
-                ["week", [1]],
-                ["month", [1, 3, 6]],
+                // ["minute", [15]],
+                ["minute", [1, 5, 15]],
+                // ["hour", [1]],
+                // ["day", [1]],
+                // ["week", [1]],
+                // ["month", [1, 3, 6]],
               ],
             },
           },
@@ -96,7 +100,7 @@ function Chart003(props) {
           gui: {
             buttons: [
               "indicators",
-              "typeChange",
+              // "typeChange",
               "currentPriceIndicator",
               "fullScreen",
             ],
