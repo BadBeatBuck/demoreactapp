@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-import css from "./dashboard.module.scss";
 import Table003 from "../table-003-mui-rctable/table";
 import Chart001 from "../chart-001-highcharts/chart";
 import { Button, Form } from "react-bootstrap";
 import ccxt from "ccxt";
 
-// import { DataStore } from "@aws-amplify/datastore";
+import css from "./dashboard.module.scss";
+
+import { DataStore } from "@aws-amplify/datastore";
 import { Todo, Bot } from "../../models";
 
 function Dashboard() {
@@ -63,15 +64,15 @@ function Dashboard() {
     const lastPrice = ohlcv[ohlcv.length - 1][index]; // closing price
     const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
 
-    // await DataStore.save(
-    //   new Bot({
-    //     priceLow: 123.45,
-    //     name: "test-001",
-    //   })
-    // );
+    await DataStore.save(
+      new Bot({
+        priceLow: 123.45,
+        name: "test-001",
+      })
+    );
 
-    // const models = await DataStore.query(Bot);
-    // console.log(models);
+    const models = await DataStore.query(Bot);
+    console.log(models);
     return series;
   };
 
