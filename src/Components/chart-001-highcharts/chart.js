@@ -8,14 +8,12 @@ const options = {
   },
   chart: {
     type: "line",
-    // reflow: true,
-    // width: "100%",
-    // display: "block",
-    // width: null,
-    // height: null,
   },
   legend: { enabled: false },
   series: [],
+  tooltip: {
+    enabled: false,
+  },
   rangeSelector: {
     selected: 1,
   },
@@ -27,6 +25,16 @@ const options = {
     endOnTick: false,
   },
   plotOptions: {
+    series: {
+      states: {
+        hover: {
+          enabled: false,
+        },
+        inactive: {
+          opacity: 1,
+        },
+      },
+    },
     line: {
       marker: {
         symbol: "circle",
