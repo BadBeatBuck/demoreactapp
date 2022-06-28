@@ -25,7 +25,7 @@ function Chart003(props) {
     <HighchartsReact
       highcharts={HighStock}
       constructorType="stockChart"
-      containerProps={{ style: { height: "400px" } }}
+      containerProps={{ style: { height: "600px" } }}
       options={{
         chart: {
           renderTo: "container",

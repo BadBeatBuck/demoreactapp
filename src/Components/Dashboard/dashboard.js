@@ -178,7 +178,7 @@ function Dashboard() {
     <div className={css.main}>
       <div className={css.container}>
         <div className={css.chartRow}>
-          <div className={css.form}>{renderForm()}</div>
+          {/* <div className={css.form}>{renderForm()}</div> */}
           {/* <Chart001 className={css.chart} series={series} options={options} /> */}
           <Chart002
             className={css.chart}
