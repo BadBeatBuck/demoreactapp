@@ -10,6 +10,8 @@ import StockTools from "highcharts/modules/stock-tools.js";
 import Boost from "highcharts/modules/boost";
 import "./style.css";
 
+import data from "./data";
+
 function Chart003(props) {
   Indicators(HighStock);
   DragPanes(HighStock);
@@ -56,7 +58,8 @@ function Chart003(props) {
             type: "candlestick",
             id: "-stock-price",
             name: " Stock Price",
-            data: props.ohlc,
+            data: data,
+            // data: props.ohlc,
             dataGrouping: {
               forced: true,
               units: [
@@ -66,13 +69,13 @@ function Chart003(props) {
               ],
             },
           },
-          {
-            type: "column",
-            id: "-volume",
-            name: " Volume",
-            data: props.volume,
-            yAxis: 1,
-          },
+          // {
+          //   type: "column",
+          //   id: "-volume",
+          //   name: " Volume",
+          //   data: props.volume,
+          //   yAxis: 1,
+          // },
         ],
         responsive: {
           rules: [
