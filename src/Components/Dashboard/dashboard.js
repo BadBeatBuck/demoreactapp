@@ -5,7 +5,7 @@ import { DataStore } from "@aws-amplify/datastore";
 import { Todo, Bot } from "../../models";
 
 import Table003 from "../table-003-mui-rctable/table";
-import Chart001 from "../chart-001-highcharts/chart";
+import Chart001 from "../Chart-001-highcharts/chart";
 
 import Highcharts, { objectEach } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
