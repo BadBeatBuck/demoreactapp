@@ -51,7 +51,6 @@ function Chart003(props) {
               type: "day",
               count: 2,
               text: "2d",
-              },
             },
             // {
             //   type: "month",
