@@ -3,7 +3,6 @@
     direction: column;
     flex-direction: column;
     border: 1px solid green;
-    // margin: auto;
     margin-top: 2%;
 
     .container {
@@ -19,18 +18,15 @@
         }
 
         .chartRow {
-            // flex-direction: column;
-            flex-direction: row;
+            flex-direction: column;
+            // flex-direction: row;
             display: flex;
-            // width: auto;
             border: 1px solid purple;
             background-color: rgb(130, 152, 166);
         }
 
         .chart {
             // flex-direction: column;
-            // width: 50%;
-            // display: flex;
             flex: 1;
             border: 1px solid orange;
             margin: 20px;

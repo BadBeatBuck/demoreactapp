@@ -26,15 +26,15 @@ const options = {
       name: "AAPL Stock Price",
       data: data,
       showInNavigator: true,
-      // dataGrouping: {
-      //   units: [
-      //     [
-      //       "week", // unit name
-      //       [1], // allowed multiples
-      //     ],
-      //     ["month", [1, 2, 3, 4, 6]],
-      //   ],
-      // },
+      dataGrouping: {
+        units: [
+          [
+            "week", // unit name
+            [1], // allowed multiples
+          ],
+          ["month", [1, 2, 3, 4, 6]],
+        ],
+      },
     },
   ],
 };

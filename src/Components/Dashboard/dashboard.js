@@ -177,12 +177,12 @@ function Dashboard() {
       <div className={css.container}>
         <div className={css.chartRow}>
           <div className={css.form}>{renderForm()}</div>
-          {/* <Chart001 className={css.chart} series={series} options={options} /> */}
-          {/* <Chart002
+          <Chart001 className={css.chart} series={series} options={options} />
+          <Chart002
             className={css.chart}
             series={candleData}
             // options={options}
-          /> */}
+          />
           <Chart003 ohlc={candleData} />
         </div>
         <div className={css.tableRow}>
