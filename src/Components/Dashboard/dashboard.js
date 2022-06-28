@@ -19,22 +19,14 @@ function Dashboard() {
     numSlices: 12,
   };
 
-  let defaultSeries = [
-    {
-      data: [1, 200, 100],
-    },
-    {
-      data: [1, 2, 600],
-    },
-  ];
-
   const [priceLow, setPriceLow] = useState(params.priceLow);
   const [priceHigh, setPriceHigh] = useState(params.priceHigh);
   const [numSlices, setNumSlices] = useState(params.numSlices);
   const [cryptoFeed, setCryptoFeed] = useState([]);
 
   const callBackendAPI = async () => {
-    const cryptoFeed = await fetchCrypto();
+    const { series: cryptoFeed } = await fetchCrypto();
+    console.log({ cryptoFeed });
 
     const dataMin = Math.min(...cryptoFeed);
     const dataMax = Math.max(...cryptoFeed);
@@ -75,7 +67,7 @@ function Dashboard() {
 
     const models = await DataStore.query(Bot);
     console.log(models);
-    return series;
+    return { series, candleData: ohlcv };
   };
 
   const submitHandler = (event) => {

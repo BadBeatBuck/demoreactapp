@@ -47,6 +47,35 @@ const options = {
   },
 };
 
+const data = [];
+
+const options2 = {
+  rangeSelector: {
+    selected: 1,
+  },
+
+  title: {
+    text: "AAPL Stock Price",
+  },
+
+  series: [
+    {
+      type: "candlestick",
+      name: "AAPL Stock Price",
+      data: data,
+      dataGrouping: {
+        units: [
+          [
+            "week", // unit name
+            [1], // allowed multiples
+          ],
+          ["month", [1, 2, 3, 4, 6]],
+        ],
+      },
+    },
+  ],
+};
+
 function Chart001(props) {
   const [series, setSeries] = useState([]);
 
@@ -94,16 +123,11 @@ function Chart001(props) {
 
   console.log("render chart ++++++++++++++++++++++++++++++++++++++++++++++");
 
-  // for (var i = 0; i < Highcharts.charts.length; i++) {
-  //   if (Highcharts.charts[i] !== undefined) {
-  //     Highcharts.charts[i].reflow();
-  //   }
-  // }
-
   return (
     <div className={props.className}>
       <HighchartsReact
         highcharts={Highcharts}
+        // options={options2}
         options={combinedOptions}
         updateArgs={[true, true, true, true, true, true, true]}
       />
