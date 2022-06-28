@@ -2,11 +2,18 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import { useEffect, useState } from "react";
 
-const data = [];
+import data from "./data";
+
+// const data = [];
 
 const options = {
   rangeSelector: {
     selected: 1,
+  },
+
+  rangeSelector: {
+    allButtonsEnabled: true,
+    selected: 2,
   },
 
   title: {
@@ -18,15 +25,16 @@ const options = {
       type: "candlestick",
       name: "AAPL Stock Price",
       data: data,
-      dataGrouping: {
-        units: [
-          [
-            "week", // unit name
-            [1], // allowed multiples
-          ],
-          ["month", [1, 2, 3, 4, 6]],
-        ],
-      },
+      showInNavigator: true,
+      // dataGrouping: {
+      //   units: [
+      //     [
+      //       "week", // unit name
+      //       [1], // allowed multiples
+      //     ],
+      //     ["month", [1, 2, 3, 4, 6]],
+      //   ],
+      // },
     },
   ],
 };
@@ -38,7 +46,7 @@ function Chart002(props) {
     setSeries(props.series);
   }, [props.series]);
 
-  options.series[0].data = series;
+  // options.series[0].data = series;
 
   console.log({ series });
 

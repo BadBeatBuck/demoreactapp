@@ -9,6 +9,7 @@ import Chart001 from "../Chart-001-highcharts/chart";
 import Chart002 from "../Chart-002-highstock/chart";
 
 import css from "./dashboard.module.scss";
+import Chart003 from "../Chart-003-highstock/chart";
 
 function Dashboard() {
   const params = {
@@ -176,12 +177,13 @@ function Dashboard() {
       <div className={css.container}>
         <div className={css.chartRow}>
           <div className={css.form}>{renderForm()}</div>
-          <Chart001 className={css.chart} series={series} options={options} />
+          {/* <Chart001 className={css.chart} series={series} options={options} /> */}
           <Chart002
             className={css.chart}
             series={candleData}
             // options={options}
           />
+          <Chart003 />
         </div>
         <div className={css.tableRow}>
           <Table003 data={tableData} />
