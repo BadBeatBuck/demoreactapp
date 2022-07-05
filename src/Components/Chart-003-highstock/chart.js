@@ -28,7 +28,12 @@ function Chart003(props = {}) {
     [props.className]: !!props.className,
   });
 
-  const combinedOptions = { ...getOptions(props.data || []), ...options2 };
+  console.log("gl", props.gridLines);
+
+  const combinedOptions = {
+    ...getOptions({ data: props.data || [], gridLines: props.gridLines }),
+    ...options2,
+  };
 
   return (
     <div className={className}>

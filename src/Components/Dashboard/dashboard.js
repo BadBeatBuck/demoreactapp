@@ -106,7 +106,7 @@ function Dashboard() {
       series.push(singleSeries);
     }
 
-    series.unshift({ data: cryptoFeed });
+    // series.unshift({ data: cryptoFeed });
     return { series };
   };
 
@@ -172,20 +172,26 @@ function Dashboard() {
     { name: "Rose", age: 36, address: "some where", key: "2" },
   ];
 
+  const gridLines = series;
+
+  console.log({ gridLines });
   return (
     <div className={css.main}>
       <div className={css.container}>
         <div className={css.chartRows}>
-          <div className={css.chartRow}>
+          {/* <div className={css.chartRow}>
             <div className={css.form}>{renderForm()}</div>
             <Chart003 data={candleData} className={css.chart} />
             <Chart003 data={candleData} className={css.chart} />
+          </div> */}
+          <div className={css.chartRow}>
+            <div className={css.form}>{renderForm()}</div>
             {/* <Chart003 data={candleData} className={css.chart} /> */}
-          </div>
-          <div className={css.chartRow}>
-            <div className={css.form}>{renderForm()}</div>
-            <Chart003 data={candleData} className={css.chart} />
-            <Chart003 data={candleData} className={css.chart} />
+            <Chart003
+              data={candleData}
+              className={css.chart}
+              gridLines={series || []}
+            />
             {/* <Chart003 data={candleData} className={css.chart} /> */}
           </div>
         </div>
