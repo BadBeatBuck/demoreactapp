@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ccxt from "ccxt";
 import { Button, Form } from "react-bootstrap";
 import { DataStore } from "@aws-amplify/datastore";
-import { Todo, Bot } from "../../models";
+import { Bot } from "../../models";
 
 import Table003 from "../table-003-mui-rctable/table";
 import Chart003 from "../Chart-003-highstock/chart";
@@ -118,7 +118,6 @@ function Dashboard() {
         type: "line",
         name: " Volume",
       };
-      // const singleSeries = { data: dummyData };
       series.push(singleSeries);
     }
 
