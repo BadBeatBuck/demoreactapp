@@ -36,7 +36,6 @@ function Chart003(props = {}) {
         highcharts={HighStock}
         constructorType="stockChart"
         options={combinedOptions}
-        // options={options}
       />
     </div>
   );

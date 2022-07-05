@@ -180,13 +180,13 @@ function Dashboard() {
             <div className={css.form}>{renderForm()}</div>
             <Chart003 data={candleData} className={css.chart} />
             <Chart003 data={candleData} className={css.chart} />
-            <Chart003 data={candleData} className={css.chart} />
+            {/* <Chart003 data={candleData} className={css.chart} /> */}
           </div>
           <div className={css.chartRow}>
             <div className={css.form}>{renderForm()}</div>
             <Chart003 data={candleData} className={css.chart} />
             <Chart003 data={candleData} className={css.chart} />
-            <Chart003 data={candleData} className={css.chart} />
+            {/* <Chart003 data={candleData} className={css.chart} /> */}
           </div>
         </div>
       </div>
