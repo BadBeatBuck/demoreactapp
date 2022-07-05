@@ -8,6 +8,7 @@ import PriceIndicator from "highcharts/modules/price-indicator.js";
 import FullScreen from "highcharts/modules/full-screen.js";
 import StockTools from "highcharts/modules/stock-tools.js";
 import Boost from "highcharts/modules/boost";
+import cx from "classnames";
 
 import css from "./chart.module.scss";
 
@@ -20,24 +21,22 @@ function Chart003(props) {
   StockTools(HighStock);
   Boost(HighStock);
 
-  console.log("asdf", css.main);
+  const className = cx(css.main, {
+    [props.className]: !!props.className,
+  });
+
   return (
-    <div className={css.main}>
+    <div className={className}>
       <HighchartsReact
         highcharts={HighStock}
         constructorType="stockChart"
-        // containerProps={{ style: css.main }}
-        // containerProps={{ style: { height: "600px" } }}
-        className={css.main}
         options={{
           chart: {
-            // style: css.main,
             style: {
               fontFamily: "serif",
             },
             renderTo: "container",
             animation: false,
-            // styledMode: true,
           },
           rangeSelector: {
             selected: 1,
