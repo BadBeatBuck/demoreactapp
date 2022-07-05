@@ -148,16 +148,16 @@ const getOptions = ({ data, gridLines }) => {
 
   const series = {
     type: "line",
-    // id: "-volume",
     name: " Volume",
-    data: volume,
+    data: data,
+    // data: volume,
     // yAxis: 1,
     dataGrouping: { enabled: false },
     tooltip: { valueDecimals: 2 },
   };
 
-  // const serieses = gridLines || [];
-  const serieses = [series, series];
+  const serieses = gridLines || [];
+  // const serieses = [series, series];
 
   console.log({ gridLines, data });
   const options = {

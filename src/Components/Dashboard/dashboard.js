@@ -88,7 +88,7 @@ function Dashboard() {
     setNumSlices(event.target.value);
   };
 
-  const createGridLines = (cryptoFeed) => {
+  const createGridLines = ({ cryptoFeed, candleData }) => {
     const series = [];
     const priceLow2 = parseInt(priceLow);
     const priceHigh2 = parseInt(priceHigh);
@@ -100,9 +100,25 @@ function Dashboard() {
       const value = priceLow2 + i * stepSize;
 
       const numPoints = cryptoFeed.length;
+
+      const data2 = [];
+      for (let i = 0; i < numPoints; i++) {
+        if (candleData?.[i]) {
+          const newData = [candleData[i][0], value];
+          data2.push(newData);
+        }
+      }
+
       const dummyData = [...Array(numPoints).keys()];
       dummyData.fill(value, 0, numPoints);
-      const singleSeries = { data: dummyData };
+      const singleSeries = {
+        data: data2,
+        dataGrouping: { enabled: false },
+        tooltip: { valueDecimals: 2 },
+        type: "line",
+        name: " Volume",
+      };
+      // const singleSeries = { data: dummyData };
       series.push(singleSeries);
     }
 
@@ -110,7 +126,7 @@ function Dashboard() {
     return { series };
   };
 
-  const { series } = createGridLines(cryptoFeed);
+  const { series } = createGridLines({ cryptoFeed, candleData });
 
   const renderForm = () => {
     const form = (
