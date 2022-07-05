@@ -178,26 +178,14 @@ function Dashboard() {
         <div className={css.form}>{renderForm()}</div>
         <div className={css.chartRows}>
           <div className={css.chartRow}>
-            <div className={css.chart}>
-              <Chart003 data={candleData} />
-            </div>
-            <div className={css.chart}>
-              <Chart003 data={candleData} />
-            </div>
-            <div className={css.chart}>
-              <Chart003 data={candleData} />
-            </div>
+            <Chart003 data={candleData} />
+            <Chart003 data={candleData} />
+            <Chart003 data={candleData} />
           </div>
           <div className={css.chartRow}>
-            <div className={css.chart}>
-              <Chart003 data={candleData} />
-            </div>
-            <div className={css.chart}>
-              <Chart003 data={candleData} />
-            </div>
-            <div className={css.chart}>
-              <Chart003 data={candleData} />
-            </div>
+            <Chart003 data={candleData} />
+            <Chart003 data={candleData} />
+            <Chart003 data={candleData} />
           </div>
         </div>
       </div>
