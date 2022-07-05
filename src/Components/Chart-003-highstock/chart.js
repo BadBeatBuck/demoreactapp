@@ -8,9 +8,8 @@ import PriceIndicator from "highcharts/modules/price-indicator.js";
 import FullScreen from "highcharts/modules/full-screen.js";
 import StockTools from "highcharts/modules/stock-tools.js";
 import Boost from "highcharts/modules/boost";
-import "./style.css";
 
-// import data from "./data";
+import css from "./chart.module.scss";
 
 function Chart003(props) {
   Indicators(HighStock);

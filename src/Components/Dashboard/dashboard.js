@@ -5,11 +5,9 @@ import { DataStore } from "@aws-amplify/datastore";
 import { Todo, Bot } from "../../models";
 
 import Table003 from "../table-003-mui-rctable/table";
-import Chart001 from "../Chart-001-highcharts/chart";
-import Chart002 from "../Chart-002-highstock/chart";
+import Chart003 from "../Chart-003-highstock/chart";
 
 import css from "./dashboard.module.scss";
-import Chart003 from "../Chart-003-highstock/chart";
 
 function Dashboard() {
   const params = {
