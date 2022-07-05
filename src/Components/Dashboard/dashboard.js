@@ -178,17 +178,33 @@ function Dashboard() {
     <div className={css.main}>
       <div className={css.container}>
         <div className={css.form}>{renderForm()}</div>
-        <div className={css.chartRow}>
-          <div className={css.chart}>
-            <Chart003 data={candleData} />
+        <div className={css.chartRows}>
+          <div className={css.chartRow}>
+            <div className={css.chart}>
+              <Chart003 data={candleData} />
+            </div>
+            <div className={css.chart}>
+              <Chart003 data={candleData} />
+            </div>
+            <div className={css.chart}>
+              <Chart003 data={candleData} />
+            </div>
           </div>
-          <div className={css.chart}>
-            <Chart003 data={candleData} />
+          <div className={css.chartRow}>
+            <div className={css.chart}>
+              <Chart003 data={candleData} />
+            </div>
+            <div className={css.chart}>
+              <Chart003 data={candleData} />
+            </div>
+            <div className={css.chart}>
+              <Chart003 data={candleData} />
+            </div>
           </div>
         </div>
       </div>
       <div className={css.tableRow}>
-        <Table003 data={tableData} />
+        <Table003 data={tableData} series={series} />
       </div>
     </div>
   );

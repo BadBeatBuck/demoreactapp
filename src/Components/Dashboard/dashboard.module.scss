@@ -18,17 +18,20 @@
             // padding: 10px;
         }
 
-        .chartRow {
+        .chartRows {
             display: flex;
             flex-direction: column;
             border: 5px solid purple;
             background-color: rgb(130, 152, 166);
             flex: 1;
 
-            // width: 50%;
-            // height: 20%;
-            // overflow: hidden;
-            // margin-left: 2%;
+            .chartRow {
+                display: flex;
+                // flex-direction: column;
+                border: 5px solid purple;
+                background-color: rgb(130, 152, 166);
+                flex: 1;
+            }
         }
 
         .chart {
