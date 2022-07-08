@@ -10,6 +10,8 @@ import PriceIndicator from "highcharts/modules/price-indicator.js";
 import FullScreen from "highcharts/modules/full-screen.js";
 import StockTools from "highcharts/modules/stock-tools.js";
 import Boost from "highcharts/modules/boost";
+import More from "highcharts/highcharts-more";
+
 import cx from "classnames";
 
 import css from "./chart.module.scss";
@@ -27,11 +29,22 @@ function Chart003(props = {}) {
   FullScreen(HighStock);
   StockTools(HighStock);
   Boost(HighStock);
+  More(HighStock);
 
   const chartComponent = useRef(null);
 
   useEffect(() => {
     const chart = chartComponent.current.chart;
+    console.log("====================>>>>>render chart");
+    chart?.renderer
+      .rect(100, 100, 30, 50, 5)
+      .attr({
+        "stroke-width": 2,
+        stroke: "red",
+        fill: "yellow",
+        zIndex: 3,
+      })
+      .add();
   }, []);
 
   const options2 = props.options || {};
