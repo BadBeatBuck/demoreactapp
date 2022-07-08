@@ -98,7 +98,6 @@ function Dashboard() {
 
     for (let i = 0; i < numSlices2 + 1; i++) {
       const value = priceLow2 + i * stepSize;
-
       const numPoints = cryptoFeed.length;
 
       const data2 = [];
@@ -117,6 +116,7 @@ function Dashboard() {
         tooltip: { valueDecimals: 2 },
         type: "line",
         name: " Volume",
+        enableMouseTracking: false,
       };
       series.push(singleSeries);
     }

@@ -20,11 +20,23 @@ const getOptions = ({ data, gridLines }) => {
   serieses.forEach((item, index) => {
     if (index === 0 || index === serieses.length - 1) {
       Object.assign(item, outerLineOptions);
-    } else if (index === 0) {
-      // Object.assign(item, tokenLineOptions);
     } else {
       Object.assign(item, innerLineOptions);
     }
+    // const hoverOptions = {
+    //   plotOptions: {
+    //     states: {
+    //       hover: {
+    //         enabled: false,
+    //       },
+    //       inactive: {
+    //         opacity: 1,
+    //       },
+    //     },
+    //   },
+    // };
+
+    // Object.assign(item, hoverOptions);
   });
 
   // console.log({ gridLines, data });
@@ -84,6 +96,14 @@ const getOptions = ({ data, gridLines }) => {
 
     series: [
       {
+        // states: {
+        //   hover: {
+        //     enabled: false,
+        //   },
+        //   inactive: {
+        //     opacity: 1,
+        //   },
+        // },
         type: "candlestick",
         showInNavigator: true,
         // navigatorOptions: {},
