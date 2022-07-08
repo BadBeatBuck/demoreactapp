@@ -102,9 +102,15 @@ const addColumnChart = ({ gridLines }) => {
   return newChart;
 };
 
-const ranges = [
+const ranges1 = [
   [1657116600000, 20_000, 21_100],
-  [1657245000000, 20_100, 21_000],
+  [1657200000000, 20_100, 21_200],
+  // [1657245000000, 20_200, 21_300],
+];
+const ranges2 = [
+  // [1657116600000, 20_000, 21_100],
+  [1657200000000, 20_100, 21_200],
+  [1657245000000, 20_200, 21_300],
 ];
 
 const getOptions = ({ data, gridLines }) => {
@@ -194,11 +200,24 @@ const getOptions = ({ data, gridLines }) => {
       ...addGridlines({ gridLines }),
       {
         name: "Range",
-        data: ranges,
+        data: ranges1,
+        type: "arearange",
+        lineWidth: 2,
+        // linkedTo: ":previous",
+        color: HighStock.getOptions().colors[0],
+        fillOpacity: 0.3,
+        zIndex: 0,
+        // marker: {
+        //   enabled: false,
+        // },
+      },
+      {
+        name: "Range",
+        data: ranges2,
         type: "arearange",
         lineWidth: 0,
-        linkedTo: ":previous",
-        color: HighStock.getOptions().colors[0],
+        // linkedTo: ":previous",
+        color: HighStock.getOptions().colors[1],
         fillOpacity: 0.3,
         zIndex: 0,
         marker: {
