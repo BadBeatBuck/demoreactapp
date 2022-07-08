@@ -42,6 +42,7 @@ const getOptions = ({ data, gridLines }) => {
   // console.log({ gridLines, data });
   const options = {
     chart: {
+      height: (9 / 16) * 100 + "%", // 16:9 ratio
       style: {
         // fontFamily: "serif",
         // height: null,
