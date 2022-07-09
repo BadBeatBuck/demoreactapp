@@ -9,6 +9,9 @@ import Chart003 from "../Chart-003-highstock/chart";
 
 import css from "./dashboard.module.scss";
 
+const numPoints = 500;
+const index = 4;
+
 function Dashboard() {
   const params = {
     priceLow: 100,
@@ -23,7 +26,9 @@ function Dashboard() {
   const [candleData, setCandleData] = useState([]);
 
   const fetchData = async () => {
-    const { series: cryptoFeed, candleData } = await fetchCrypto();
+    const { candleData } = await fetchCrypto();
+
+    const cryptoFeed = candleData.slice(-numPoints).map((x) => x[index]); // closing price
     console.log({ cryptoFeed, candleData });
 
     const dataMin = Math.min(...cryptoFeed);
@@ -54,10 +59,7 @@ function Dashboard() {
       candleInterval
     );
 
-    const numPoints = 500;
-
-    const index = 4;
-    const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
+    // const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
 
     // await DataStore.save(
     //   new Bot({
@@ -68,7 +70,7 @@ function Dashboard() {
 
     const models = await DataStore.query(Bot);
     console.log(models);
-    return { series, candleData: ohlcv };
+    return { candleData: ohlcv };
   };
 
   const submitHandler = (event) => {
