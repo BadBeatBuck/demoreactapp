@@ -1,7 +1,46 @@
 import HighStock from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 
-const addGridlines = ({ gridLines }) => {
+const createGridLines = ({ candleData, priceLow, priceHigh }) => {
+  const numSlices = 10;
+  const gridLines = [];
+  const priceLow2 = parseInt(priceLow);
+  const priceHigh2 = parseInt(priceHigh);
+  const numSlices2 = parseInt(numSlices);
+
+  const stepSize = (priceHigh2 - priceLow2) / numSlices2;
+
+  for (let i = 0; i < numSlices2 + 1; i++) {
+    const value = priceLow2 + i * stepSize;
+    const numPoints = candleData.length;
+
+    const data2 = [];
+    for (let i = 0; i < numPoints; i++) {
+      if (candleData?.[i]) {
+        const newData = [candleData[i][0], value];
+        data2.push(newData);
+      }
+    }
+
+    const dummyData = [...Array(numPoints).keys()];
+    dummyData.fill(value, 0, numPoints);
+    const singleSeries = {
+      data: data2,
+      dataGrouping: { enabled: false },
+      tooltip: { valueDecimals: 2 },
+      type: "line",
+      name: " Volume",
+      enableMouseTracking: false,
+    };
+    gridLines.push(singleSeries);
+  }
+
+  return { gridLines };
+};
+
+const addGridlines = ({ candleData, priceLow, priceHigh }) => {
+  const { gridLines } = createGridLines({ candleData, priceLow, priceHigh });
+  console.log({ gridLines });
   const serieses = gridLines || [];
 
   const innerLineOptions = {
@@ -113,7 +152,7 @@ const ranges2 = [
   [1657245000000, 20_200, 21_300],
 ];
 
-const getOptions = ({ data, gridLines }) => {
+const getOptions = ({ data, priceLow, priceHigh }) => {
   const options = {
     // plotOptions: {
     //   column: {
@@ -198,7 +237,8 @@ const getOptions = ({ data, gridLines }) => {
           ],
         },
       },
-      ...addGridlines({ gridLines }),
+      ...addGridlines({ candleData: data, priceLow, priceHigh }),
+      // ...addGridlines({ gridLines }),
       {
         name: "Range",
         enableMouseTracking: false,

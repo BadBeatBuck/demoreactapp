@@ -47,6 +47,8 @@ function Chart003(props = {}) {
       .add();
   }, []);
 
+  const { priceLow, priceHigh } = props;
+
   const options2 = props.options || {};
 
   const className = cx(css.main, {
@@ -54,7 +56,8 @@ function Chart003(props = {}) {
   });
 
   const combinedOptions = {
-    ...getOptions({ data: props.data || [], gridLines: props.gridLines }),
+    ...getOptions({ data: props.data || [], priceLow, priceHigh }),
+    // ...getOptions({ data: props.data || [], gridLines: props.gridLines }),
     ...options2,
   };
 

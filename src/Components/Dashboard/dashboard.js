@@ -22,12 +22,10 @@ function Dashboard() {
   const [priceLow, setPriceLow] = useState(params.priceLow);
   const [priceHigh, setPriceHigh] = useState(params.priceHigh);
   const [numSlices, setNumSlices] = useState(params.numSlices);
-  // const [cryptoFeed, setCryptoFeed] = useState([]);
   const [candleData, setCandleData] = useState([]);
 
   const fetchData = async () => {
     const { candleData } = await fetchCrypto();
-
     const cryptoFeed = candleData.slice(-numPoints).map((x) => x[index]); // closing price
     console.log({ cryptoFeed, candleData });
 
@@ -38,9 +36,8 @@ function Dashboard() {
 
     setPriceLow(roundedMin);
     setPriceHigh(roundedMax);
-    // setCryptoFeed(cryptoFeed);
     setCandleData(candleData);
-    console.log({ candleData });
+    // console.log({ candleData });
   };
 
   useEffect(() => {
@@ -58,8 +55,6 @@ function Dashboard() {
       tokenPair,
       candleInterval
     );
-
-    // const series = ohlcv.slice(-numPoints).map((x) => x[index]); // closing price
 
     // await DataStore.save(
     //   new Bot({
@@ -190,7 +185,7 @@ function Dashboard() {
 
   // const gridLines = gridLines;
 
-  console.log({ gridLines });
+  // console.log({ gridLines });
   return (
     <div className={css.main}>
       <div className={css.container}>
@@ -205,6 +200,8 @@ function Dashboard() {
             {/* <Chart003 data={candleData} className={css.chart} /> */}
             <Chart003
               data={candleData}
+              priceLow={priceLow}
+              priceHigh={priceHigh}
               className={css.chart}
               gridLines={gridLines || []}
             />
