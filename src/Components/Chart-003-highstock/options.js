@@ -1,4 +1,3 @@
-import HighStock from "highcharts/highstock";
 import Constants from "../../Constants";
 
 const addColumnChart = ({ candleData }) => {
@@ -13,16 +12,6 @@ const addColumnChart = ({ candleData }) => {
     zIndex: 0,
   };
 
-  const buyBar = {
-    ...bar,
-    color: "green",
-  };
-
-  const sellBar = {
-    ...bar,
-    color: "red",
-  };
-
   candleData.forEach((item, index) => {
     if (index % 10 === 0 && candleData[index + 10]) {
       const color = index % 20 === 0 ? "red" : "green";
@@ -30,18 +19,19 @@ const addColumnChart = ({ candleData }) => {
       const point1 = candleData[index];
       const point2 = candleData[index + 10];
 
+      const areaMin = 20_000;
+      const areaMax = 22_500;
+
       const data = [
-        [point1[Constants.ohlvDefs.time], 20_000, 21_100],
-        [point2[Constants.ohlvDefs.time], 20_100, 21_200],
+        [point1[Constants.ohlvDefs.time], areaMin, areaMax],
+        [point2[Constants.ohlvDefs.time], areaMin, areaMax],
       ];
-      const newBar = { ...sellBar, data, color };
+      const newBar = { ...bar, data, color };
       columnBars.push(newBar);
     }
   });
 
-  const columnData = [buyBar, sellBar];
   return columnBars;
-  // return columnData;
 };
 
 const getOptions = ({ candleData, gridLines }) => {

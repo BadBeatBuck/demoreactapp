@@ -8,6 +8,7 @@ import Table003 from "../table-003-mui-rctable/table";
 import Chart003 from "../Chart-003-highstock/chart";
 
 import css from "./dashboard.module.scss";
+import Constants from "../../Constants";
 
 const numPoints = 500;
 const index = 4;
@@ -26,7 +27,9 @@ function Dashboard() {
 
   const fetchData = async () => {
     const { candleData } = await fetchCrypto();
-    const cryptoFeed = candleData.slice(-numPoints).map((x) => x[index]); // closing price
+    const cryptoFeed = candleData
+      .slice(-numPoints)
+      .map((x) => x[Constants.ohlvDefs.close]); // closing price
     console.log({ cryptoFeed, candleData });
 
     const dataMin = Math.min(...cryptoFeed);
@@ -37,7 +40,6 @@ function Dashboard() {
     setPriceLow(roundedMin);
     setPriceHigh(roundedMax);
     setCandleData(candleData);
-    // console.log({ candleData });
   };
 
   useEffect(() => {

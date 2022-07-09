@@ -1,5 +1,4 @@
 const Constants = {
-  test: 666,
   ohlvDefs: {
     time: 0,
     open: 1,
