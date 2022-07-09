@@ -65,7 +65,17 @@ const getOptions = ({ candleData, gridLines, columnBars }) => {
 
     series: [
       {
+        // marker: {
+        //   symbol: "url(https://www.highcharts.com/samples/graphics/sun.png)",
+        //   width: 16,
+        //   height: 16,
+        // },
+        // color: ["green", "red"],
+        color: "black",
+        // lineColor: "red",
+        fillColor: "yellow",
         type: "candlestick",
+        // type: "hollowcandlestick",
         enableMouseTracking: false,
         showInNavigator: true,
         id: "-stock-price",

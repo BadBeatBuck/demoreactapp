@@ -9,6 +9,7 @@ import AnnotationsAdvanced from "highcharts/modules/annotations-advanced.js";
 import PriceIndicator from "highcharts/modules/price-indicator.js";
 import FullScreen from "highcharts/modules/full-screen.js";
 import StockTools from "highcharts/modules/stock-tools.js";
+import Hollowcandlestick from "highcharts/modules/hollowcandlestick.js";
 import Boost from "highcharts/modules/boost";
 import More from "highcharts/highcharts-more";
 
@@ -68,18 +69,18 @@ const createGridLines = ({ candleData, priceLow, priceHigh }) => {
     const value = priceLow2 + i * stepSize;
     const numPoints = candleData.length;
 
-    const data2 = [];
+    const data = [];
     for (let i = 0; i < numPoints; i++) {
       if (candleData?.[i]) {
-        const newData = [candleData[i][0], value];
-        data2.push(newData);
+        const newData = [candleData[i][Constants.ohlvDefs.time], value];
+        data.push(newData);
       }
     }
 
     const dummyData = [...Array(numPoints).keys()];
     dummyData.fill(value, 0, numPoints);
     const singleSeries = {
-      data: data2,
+      data: data,
       dataGrouping: { enabled: false },
       tooltip: { valueDecimals: 2 },
       type: "line",
@@ -132,6 +133,7 @@ function Chart003(props = {}) {
   StockTools(HighStock);
   Boost(HighStock);
   More(HighStock);
+  Hollowcandlestick(HighStock);
 
   const chartComponent = useRef(null);
 

@@ -6,12 +6,11 @@ import { Bot } from "../../models";
 
 import Table003 from "../table-003-mui-rctable/table";
 import Chart003 from "../Chart-003-highstock/chart";
-
-import css from "./dashboard.module.scss";
 import Constants from "../../Constants";
 
+import css from "./dashboard.module.scss";
+
 const numPoints = 500;
-const index = 4;
 
 function Dashboard() {
   const params = {
