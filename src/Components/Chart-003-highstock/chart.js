@@ -124,7 +124,7 @@ function Chart003(props = {}) {
   const gridLines = addGridlines({ candleData, priceLow, priceHigh });
 
   const combinedOptions = {
-    ...getOptions({ candleData, priceLow, priceHigh, gridLines }),
+    ...getOptions({ candleData, gridLines }),
     ...options2,
   };
 

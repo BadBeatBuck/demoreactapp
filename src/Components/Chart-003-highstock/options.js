@@ -1,74 +1,6 @@
 import HighStock from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 
-// const createGridLines = ({ candleData, priceLow, priceHigh }) => {
-//   const numSlices = 10;
-//   const gridLines = [];
-//   const priceLow2 = parseInt(priceLow);
-//   const priceHigh2 = parseInt(priceHigh);
-//   const numSlices2 = parseInt(numSlices);
-
-//   const stepSize = (priceHigh2 - priceLow2) / numSlices2;
-
-//   for (let i = 0; i < numSlices2 + 1; i++) {
-//     const value = priceLow2 + i * stepSize;
-//     const numPoints = candleData.length;
-
-//     const data2 = [];
-//     for (let i = 0; i < numPoints; i++) {
-//       if (candleData?.[i]) {
-//         const newData = [candleData[i][0], value];
-//         data2.push(newData);
-//       }
-//     }
-
-//     const dummyData = [...Array(numPoints).keys()];
-//     dummyData.fill(value, 0, numPoints);
-//     const singleSeries = {
-//       data: data2,
-//       dataGrouping: { enabled: false },
-//       tooltip: { valueDecimals: 2 },
-//       type: "line",
-//       name: " Volume",
-//       enableMouseTracking: false,
-//     };
-//     gridLines.push(singleSeries);
-//   }
-
-//   return { gridLines };
-// };
-
-// const addGridlines = ({ candleData, priceLow, priceHigh }) => {
-//   const { gridLines } = createGridLines({ candleData, priceLow, priceHigh });
-//   console.log({ gridLines });
-//   const serieses = gridLines || [];
-
-//   const innerLineOptions = {
-//     color: "#f50057",
-//     lineWidth: 1,
-//     marker: {
-//       enabled: false,
-//     },
-//   };
-
-//   const outerLineOptions = {
-//     color: "#293592",
-//     lineWidth: 3,
-//     marker: {
-//       enabled: false,
-//     },
-//   };
-
-//   serieses.forEach((item, index) => {
-//     if (index === 0 || index === serieses.length - 1) {
-//       Object.assign(item, outerLineOptions);
-//     } else {
-//       Object.assign(item, innerLineOptions);
-//     }
-//   });
-//   return serieses;
-// };
-
 const addColumnChart = ({ gridLines }) => {
   const newChart = {
     chart: {
@@ -238,8 +170,6 @@ const getOptions = ({ candleData, gridLines }) => {
         },
       },
       ...gridLines,
-      // ...addGridlines({ candleData, priceLow, priceHigh }),
-      // ...addGridlines({ gridLines }),
       {
         name: "Range",
         enableMouseTracking: false,
