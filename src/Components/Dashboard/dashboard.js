@@ -19,7 +19,7 @@ function Dashboard() {
   const [priceLow, setPriceLow] = useState(params.priceLow);
   const [priceHigh, setPriceHigh] = useState(params.priceHigh);
   const [numSlices, setNumSlices] = useState(params.numSlices);
-  const [cryptoFeed, setCryptoFeed] = useState([]);
+  // const [cryptoFeed, setCryptoFeed] = useState([]);
   const [candleData, setCandleData] = useState([]);
 
   const fetchData = async () => {
@@ -121,11 +121,10 @@ function Dashboard() {
       gridLines.push(singleSeries);
     }
 
-    // gridLines.unshift({ data: cryptoFeed });
     return { gridLines };
   };
 
-  const { gridLines } = createGridLines({ cryptoFeed, candleData });
+  const { gridLines } = createGridLines({ candleData });
 
   const renderForm = () => {
     const form = (
