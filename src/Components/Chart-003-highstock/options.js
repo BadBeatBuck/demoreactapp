@@ -1,36 +1,36 @@
 import HighStock from "highcharts/highstock";
 
 const addColumnChart = ({ candleData }) => {
-  const columnData = [
-    {
-      name: "Range",
-      enableMouseTracking: false,
-      data: ranges1,
-      type: "arearange",
-      lineWidth: 2,
-      // linkedTo: ":previous",
-      color: HighStock.getOptions().colors[0],
-      fillOpacity: 0.3,
-      zIndex: 0,
-      // marker: {
-      //   enabled: false,
-      // },
+  const buyBar = {
+    name: "Range",
+    enableMouseTracking: false,
+    data: ranges1,
+    type: "arearange",
+    lineWidth: 2,
+    // linkedTo: ":previous",
+    color: HighStock.getOptions().colors[0],
+    fillOpacity: 0.3,
+    zIndex: 0,
+    // marker: {
+    //   enabled: false,
+    // },
+  };
+  const sellBar = {
+    name: "Range",
+    enableMouseTracking: false,
+    data: ranges2,
+    type: "arearange",
+    lineWidth: 0,
+    // linkedTo: ":previous",
+    color: HighStock.getOptions().colors[1],
+    fillOpacity: 0.3,
+    zIndex: 0,
+    marker: {
+      enabled: false,
     },
-    {
-      name: "Range",
-      enableMouseTracking: false,
-      data: ranges2,
-      type: "arearange",
-      lineWidth: 0,
-      // linkedTo: ":previous",
-      color: HighStock.getOptions().colors[1],
-      fillOpacity: 0.3,
-      zIndex: 0,
-      marker: {
-        enabled: false,
-      },
-    },
-  ];
+  };
+
+  const columnData = [buyBar, sellBar];
   return columnData;
 };
 
