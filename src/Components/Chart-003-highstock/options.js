@@ -1,39 +1,3 @@
-import Constants from "../../Constants";
-
-// const addColumnChart = ({ candleData }) => {
-//   const columnBars = [];
-
-//   const bar = {
-//     name: "Range",
-//     enableMouseTracking: false,
-//     type: "arearange",
-//     lineWidth: 1,
-//     fillOpacity: 0.1,
-//     zIndex: 0,
-//   };
-
-//   candleData.forEach((item, index) => {
-//     if (index % 10 === 0 && candleData[index + 10]) {
-//       const color = index % 20 === 0 ? "red" : "green";
-
-//       const point1 = candleData[index];
-//       const point2 = candleData[index + 10];
-
-//       const areaMin = 20_000;
-//       const areaMax = 22_500;
-
-//       const data = [
-//         [point1[Constants.ohlvDefs.time], areaMin, areaMax],
-//         [point2[Constants.ohlvDefs.time], areaMin, areaMax],
-//       ];
-//       const newBar = { ...bar, data, color };
-//       columnBars.push(newBar);
-//     }
-//   });
-
-//   return columnBars;
-// };
-
 const getOptions = ({ candleData, gridLines, columnBars }) => {
   const options = {
     // plotOptions: {
@@ -121,31 +85,7 @@ const getOptions = ({ candleData, gridLines, columnBars }) => {
       },
       ...gridLines,
       ...columnBars,
-
-      // ...addColumnChart({ candleData }),
-      // {
-      //   name: "John",
-      //   data: [5, 3, 4, 7, 2],
-      // },
-      // {
-      //   name: "Jane",
-      //   data: [2, 2, 3, 2, 1],
-      // },
-      // {
-      //   name: "Joe",
-      //   data: [3, 4, 4, 2, 5],
-      // },
-      // {
-      //   data: [
-      //     [Date.UTC(2022, 6, 6), 21_100],
-      //     // [Date.UTC(2022, 7, 7), 20_000],
-      //     // [Date.UTC(2022, 7, 7), 20_000],
-      //   ],
-      //   type: "column",
-      // },
     ],
-
-    // ],
     responsive: {
       rules: [
         {

@@ -138,15 +138,15 @@ function Chart003(props = {}) {
   useEffect(() => {
     const chart = chartComponent.current.chart;
     console.log("====================>>>>>render chart");
-    chart?.renderer
-      .rect(100, 100, 30, 50, 5)
-      .attr({
-        "stroke-width": 2,
-        stroke: "red",
-        fill: "yellow",
-        zIndex: 3,
-      })
-      .add();
+    // chart?.renderer
+    //   .rect(100, 100, 30, 50, 5)
+    //   .attr({
+    //     "stroke-width": 2,
+    //     stroke: "red",
+    //     fill: "yellow",
+    //     zIndex: 3,
+    //   })
+    //   .add();
   }, []);
 
   const { priceLow, priceHigh, candleData = [] } = props;
