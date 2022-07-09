@@ -1,40 +1,40 @@
 import Constants from "../../Constants";
 
-const addColumnChart = ({ candleData }) => {
-  const columnBars = [];
+// const addColumnChart = ({ candleData }) => {
+//   const columnBars = [];
 
-  const bar = {
-    name: "Range",
-    enableMouseTracking: false,
-    type: "arearange",
-    lineWidth: 1,
-    fillOpacity: 0.1,
-    zIndex: 0,
-  };
+//   const bar = {
+//     name: "Range",
+//     enableMouseTracking: false,
+//     type: "arearange",
+//     lineWidth: 1,
+//     fillOpacity: 0.1,
+//     zIndex: 0,
+//   };
 
-  candleData.forEach((item, index) => {
-    if (index % 10 === 0 && candleData[index + 10]) {
-      const color = index % 20 === 0 ? "red" : "green";
+//   candleData.forEach((item, index) => {
+//     if (index % 10 === 0 && candleData[index + 10]) {
+//       const color = index % 20 === 0 ? "red" : "green";
 
-      const point1 = candleData[index];
-      const point2 = candleData[index + 10];
+//       const point1 = candleData[index];
+//       const point2 = candleData[index + 10];
 
-      const areaMin = 20_000;
-      const areaMax = 22_500;
+//       const areaMin = 20_000;
+//       const areaMax = 22_500;
 
-      const data = [
-        [point1[Constants.ohlvDefs.time], areaMin, areaMax],
-        [point2[Constants.ohlvDefs.time], areaMin, areaMax],
-      ];
-      const newBar = { ...bar, data, color };
-      columnBars.push(newBar);
-    }
-  });
+//       const data = [
+//         [point1[Constants.ohlvDefs.time], areaMin, areaMax],
+//         [point2[Constants.ohlvDefs.time], areaMin, areaMax],
+//       ];
+//       const newBar = { ...bar, data, color };
+//       columnBars.push(newBar);
+//     }
+//   });
 
-  return columnBars;
-};
+//   return columnBars;
+// };
 
-const getOptions = ({ candleData, gridLines }) => {
+const getOptions = ({ candleData, gridLines, columnBars }) => {
   const options = {
     // plotOptions: {
     //   column: {
@@ -120,8 +120,9 @@ const getOptions = ({ candleData, gridLines }) => {
         },
       },
       ...gridLines,
+      ...columnBars,
 
-      ...addColumnChart({ candleData }),
+      // ...addColumnChart({ candleData }),
       // {
       //   name: "John",
       //   data: [5, 3, 4, 7, 2],

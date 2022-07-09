@@ -14,10 +14,46 @@ import More from "highcharts/highcharts-more";
 
 import cx from "classnames";
 
-import css from "./chart.module.scss";
 import getOptions from "./options";
+import Constants from "../../Constants";
+
+import css from "./chart.module.scss";
 
 // const [options] = useState({...});
+
+const addColumnChart = ({ candleData }) => {
+  const columnBars = [];
+
+  const bar = {
+    name: "Range",
+    enableMouseTracking: false,
+    type: "arearange",
+    lineWidth: 1,
+    fillOpacity: 0.1,
+    zIndex: 0,
+  };
+
+  candleData.forEach((item, index) => {
+    if (index % 10 === 0 && candleData[index + 10]) {
+      const color = index % 20 === 0 ? "red" : "green";
+
+      const point1 = candleData[index];
+      const point2 = candleData[index + 10];
+
+      const areaMin = 20_000;
+      const areaMax = 22_500;
+
+      const data = [
+        [point1[Constants.ohlvDefs.time], areaMin, areaMax],
+        [point2[Constants.ohlvDefs.time], areaMin, areaMax],
+      ];
+      const newBar = { ...bar, data, color };
+      columnBars.push(newBar);
+    }
+  });
+
+  return columnBars;
+};
 
 const createGridLines = ({ candleData, priceLow, priceHigh }) => {
   const numSlices = 10;
@@ -122,9 +158,10 @@ function Chart003(props = {}) {
   });
 
   const gridLines = addGridlines({ candleData, priceLow, priceHigh });
+  const columnBars = addColumnChart({ candleData });
 
   const combinedOptions = {
-    ...getOptions({ candleData, gridLines }),
+    ...getOptions({ candleData, gridLines, columnBars }),
     ...options2,
   };
 
