@@ -1,76 +1,38 @@
 import HighStock from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 
-const addColumnChart = ({ gridLines }) => {
-  const newChart = {
-    chart: {
-      type: "column",
+const addColumnChart = ({ candleData }) => {
+  const columnData = [
+    {
+      name: "Range",
+      enableMouseTracking: false,
+      data: ranges1,
+      type: "arearange",
+      lineWidth: 2,
+      // linkedTo: ":previous",
+      color: HighStock.getOptions().colors[0],
+      fillOpacity: 0.3,
+      zIndex: 0,
+      // marker: {
+      //   enabled: false,
+      // },
     },
-    title: {
-      text: "Stacked column chart",
-    },
-    xAxis: {
-      categories: ["Apples", "Oranges", "Pears", "Grapes", "Bananas"],
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: "Total fruit consumption",
-      },
-      stackLabels: {
-        enabled: true,
-        style: {
-          fontWeight: "bold",
-          // color:
-          //   // theme
-          //   (HighStock.defaultOptions.title.style &&
-          //     HighStock.defaultOptions.title.style.color) ||
-          //   "gray",
-          textOutline: "none",
-        },
-      },
-    },
-    legend: {
-      align: "right",
-      x: -30,
-      verticalAlign: "top",
-      y: 25,
-      floating: true,
-      // backgroundColor:
-      //   HighStock.defaultOptions.legend.backgroundColor || "white",
-      borderColor: "#CCC",
-      borderWidth: 1,
-      shadow: false,
-    },
-    tooltip: {
-      headerFormat: "<b>{point.x}</b><br/>",
-      pointFormat: "{series.name}: {point.y}<br/>Total: {point.stackTotal}",
-    },
-    plotOptions: {
-      column: {
-        stacking: "normal",
-        dataLabels: {
-          enabled: true,
-        },
+    {
+      name: "Range",
+      enableMouseTracking: false,
+      data: ranges2,
+      type: "arearange",
+      lineWidth: 0,
+      // linkedTo: ":previous",
+      color: HighStock.getOptions().colors[1],
+      fillOpacity: 0.3,
+      zIndex: 0,
+      marker: {
+        enabled: false,
       },
     },
-    series: [
-      {
-        name: "John",
-        data: [5, 3, 4, 7, 2],
-      },
-      {
-        name: "Jane",
-        data: [2, 2, 3, 2, 1],
-      },
-      {
-        name: "Joe",
-        data: [3, 4, 4, 2, 5],
-      },
-    ],
-  };
-
-  return newChart;
+  ];
+  return columnData;
 };
 
 const ranges1 = [
@@ -170,36 +132,8 @@ const getOptions = ({ candleData, gridLines }) => {
         },
       },
       ...gridLines,
-      {
-        name: "Range",
-        enableMouseTracking: false,
-        data: ranges1,
-        type: "arearange",
-        lineWidth: 2,
-        // linkedTo: ":previous",
-        color: HighStock.getOptions().colors[0],
-        fillOpacity: 0.3,
-        zIndex: 0,
-        // marker: {
-        //   enabled: false,
-        // },
-      },
-      {
-        name: "Range",
-        enableMouseTracking: false,
-        data: ranges2,
-        type: "arearange",
-        lineWidth: 0,
-        // linkedTo: ":previous",
-        color: HighStock.getOptions().colors[1],
-        fillOpacity: 0.3,
-        zIndex: 0,
-        marker: {
-          enabled: false,
-        },
-      },
 
-      // ...addColumnChart({ gridLines }),
+      ...addColumnChart({ candleData }),
       // {
       //   name: "John",
       //   data: [5, 3, 4, 7, 2],
