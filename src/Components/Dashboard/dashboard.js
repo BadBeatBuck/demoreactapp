@@ -85,44 +85,6 @@ function Dashboard() {
     setNumSlices(event.target.value);
   };
 
-  const createGridLines = ({ candleData }) => {
-    const gridLines = [];
-    const priceLow2 = parseInt(priceLow);
-    const priceHigh2 = parseInt(priceHigh);
-    const numSlices2 = parseInt(numSlices);
-
-    const stepSize = (priceHigh2 - priceLow2) / numSlices2;
-
-    for (let i = 0; i < numSlices2 + 1; i++) {
-      const value = priceLow2 + i * stepSize;
-      const numPoints = candleData.length;
-
-      const data2 = [];
-      for (let i = 0; i < numPoints; i++) {
-        if (candleData?.[i]) {
-          const newData = [candleData[i][0], value];
-          data2.push(newData);
-        }
-      }
-
-      const dummyData = [...Array(numPoints).keys()];
-      dummyData.fill(value, 0, numPoints);
-      const singleSeries = {
-        data: data2,
-        dataGrouping: { enabled: false },
-        tooltip: { valueDecimals: 2 },
-        type: "line",
-        name: " Volume",
-        enableMouseTracking: false,
-      };
-      gridLines.push(singleSeries);
-    }
-
-    return { gridLines };
-  };
-
-  const { gridLines } = createGridLines({ candleData });
-
   const renderForm = () => {
     const form = (
       <Form onSubmit={submitHandler}>
@@ -203,14 +165,14 @@ function Dashboard() {
               priceLow={priceLow}
               priceHigh={priceHigh}
               className={css.chart}
-              gridLines={gridLines || []}
+              // gridLines={gridLines || []}
             />
             {/* <Chart003 data={candleData} className={css.chart} /> */}
           </div>
         </div>
       </div>
       <div className={css.tableRow}>
-        <Table003 data={tableData} series={gridLines} />
+        <Table003 data={tableData} />
       </div>
     </div>
   );
