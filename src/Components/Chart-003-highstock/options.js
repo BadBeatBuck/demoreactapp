@@ -1,13 +1,14 @@
 import HighStock from "highcharts/highstock";
+import Constants from "../../Constants";
 
 const addColumnChart = ({ candleData }) => {
+  const columnBars = [];
+
   const bar = {
     name: "Range",
     enableMouseTracking: false,
     type: "arearange",
     lineWidth: 1,
-    // linkedTo: ":previous",
-    color: "green",
     fillOpacity: 0.1,
     zIndex: 0,
   };
@@ -15,29 +16,33 @@ const addColumnChart = ({ candleData }) => {
   const buyBar = {
     ...bar,
     color: "green",
-    data: ranges1,
   };
 
   const sellBar = {
     ...bar,
     color: "red",
-    data: ranges2,
   };
 
-  const columnData = [buyBar, sellBar];
-  return columnData;
-};
+  candleData.forEach((item, index) => {
+    if (index % 10 === 0 && candleData[index + 10]) {
+      const color = index % 20 === 0 ? "red" : "green";
 
-const ranges1 = [
-  [1657116600000, 20_000, 21_100],
-  [1657200000000, 20_100, 21_200],
-  // [1657245000000, 20_200, 21_300],
-];
-const ranges2 = [
-  // [1657116600000, 20_000, 21_100],
-  [1657200000000, 20_100, 21_200],
-  [1657245000000, 20_200, 21_300],
-];
+      const point1 = candleData[index];
+      const point2 = candleData[index + 10];
+
+      const data = [
+        [point1[Constants.ohlvDefs.time], 20_000, 21_100],
+        [point2[Constants.ohlvDefs.time], 20_100, 21_200],
+      ];
+      const newBar = { ...sellBar, data, color };
+      columnBars.push(newBar);
+    }
+  });
+
+  const columnData = [buyBar, sellBar];
+  return columnBars;
+  // return columnData;
+};
 
 const getOptions = ({ candleData, gridLines }) => {
   const options = {
