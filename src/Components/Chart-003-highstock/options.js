@@ -181,6 +181,7 @@ const getOptions = ({ data, gridLines }) => {
     series: [
       {
         type: "candlestick",
+        enableMouseTracking: false,
         showInNavigator: true,
         id: "-stock-price",
         name: " Stock Price",
@@ -200,6 +201,7 @@ const getOptions = ({ data, gridLines }) => {
       ...addGridlines({ gridLines }),
       {
         name: "Range",
+        enableMouseTracking: false,
         data: ranges1,
         type: "arearange",
         lineWidth: 2,
@@ -213,6 +215,7 @@ const getOptions = ({ data, gridLines }) => {
       },
       {
         name: "Range",
+        enableMouseTracking: false,
         data: ranges2,
         type: "arearange",
         lineWidth: 0,
