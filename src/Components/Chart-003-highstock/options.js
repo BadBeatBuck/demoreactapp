@@ -1,5 +1,4 @@
 import HighStock from "highcharts/highstock";
-import HighchartsReact from "highcharts-react-official";
 
 const addColumnChart = ({ candleData }) => {
   const columnData = [
