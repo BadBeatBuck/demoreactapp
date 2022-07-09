@@ -152,7 +152,7 @@ const ranges2 = [
   [1657245000000, 20_200, 21_300],
 ];
 
-const getOptions = ({ data, priceLow, priceHigh }) => {
+const getOptions = ({ candleData, priceLow, priceHigh }) => {
   const options = {
     // plotOptions: {
     //   column: {
@@ -224,7 +224,7 @@ const getOptions = ({ data, priceLow, priceHigh }) => {
         showInNavigator: true,
         id: "-stock-price",
         name: " Stock Price",
-        data: data,
+        data: candleData,
         dataGrouping: {
           forced: true,
           units: [
@@ -237,7 +237,7 @@ const getOptions = ({ data, priceLow, priceHigh }) => {
           ],
         },
       },
-      ...addGridlines({ candleData: data, priceLow, priceHigh }),
+      ...addGridlines({ candleData, priceLow, priceHigh }),
       // ...addGridlines({ gridLines }),
       {
         name: "Range",

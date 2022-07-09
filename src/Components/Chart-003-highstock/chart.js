@@ -47,7 +47,7 @@ function Chart003(props = {}) {
       .add();
   }, []);
 
-  const { priceLow, priceHigh } = props;
+  const { priceLow, priceHigh, candleData = [] } = props;
 
   const options2 = props.options || {};
 
@@ -56,8 +56,7 @@ function Chart003(props = {}) {
   });
 
   const combinedOptions = {
-    ...getOptions({ data: props.data || [], priceLow, priceHigh }),
-    // ...getOptions({ data: props.data || [], gridLines: props.gridLines }),
+    ...getOptions({ candleData, priceLow, priceHigh }),
     ...options2,
   };
 

@@ -161,7 +161,7 @@ function Dashboard() {
             <div className={css.form}>{renderForm()}</div>
             {/* <Chart003 data={candleData} className={css.chart} /> */}
             <Chart003
-              data={candleData}
+              candleData={candleData}
               priceLow={priceLow}
               priceHigh={priceHigh}
               className={css.chart}
