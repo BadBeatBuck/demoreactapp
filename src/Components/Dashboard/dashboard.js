@@ -33,7 +33,7 @@ function Dashboard() {
 
     setPriceLow(roundedMin);
     setPriceHigh(roundedMax);
-    setCryptoFeed(cryptoFeed);
+    // setCryptoFeed(cryptoFeed);
     setCandleData(candleData);
     console.log({ candleData });
   };
