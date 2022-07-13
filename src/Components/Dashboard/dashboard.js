@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ccxt from "ccxt";
+
 import { Button, Form } from "react-bootstrap";
+import { Workbook } from "@fortune-sheet/react";
+import "@fortune-sheet/react/dist/index.css";
+
 import { DataStore } from "@aws-amplify/datastore";
 import { Bot } from "../../models";
 
@@ -173,7 +177,8 @@ function Dashboard() {
         </div>
       </div>
       <div className={css.tableRow}>
-        <Table003 data={tableData} />
+        {/* <Table003 data={tableData} /> */}
+        <Workbook data={[{ name: "Sheet1" }]} />
       </div>
     </div>
   );

@@ -2,8 +2,20 @@
     display: flex;
     direction: column;
     flex-direction: column;
-    border: 1px solid green;
+    border: 4px solid green;
     margin-top: 2%;
+
+    height: 100vh;
+
+    .tableRow {
+        flex-direction: column;
+        display: flex;
+        border: 4px solid purple;
+
+        flex: 1;
+        height: 100%;
+        border: 4px solid violet;
+    }
 
     .container {
         display: flex;
@@ -39,12 +51,6 @@
             margin: 5px;
             padding: 5px;
             background-color: blue;
-        }
-
-        .tableRow {
-            flex-direction: column;
-            display: flex;
-            border: 4px solid purple;
         }
 
         :global {
