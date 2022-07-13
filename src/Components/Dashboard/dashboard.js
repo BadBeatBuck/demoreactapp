@@ -222,11 +222,8 @@ function Dashboard() {
 
   const settings = {
     data: testData,
-    // data: [{ name: "Sheet1", celldata: [{ r: 0, c: 0, v: "999" }] }], // sheet data
     onChange: onChangeFortuneTable,
-    // onChange: (data) => {}, // onChange event
     lang: "zh", // set language
-    // More other settings...
   };
   return (
     <div className={css.main}>
@@ -254,7 +251,7 @@ function Dashboard() {
       <div className={css.tableRow}>
         {/* <Table003 data={tableData} /> */}
         {/* <Workbook data={[{ name: "Sheet1" }]} /> */}
-        <Workbook {...settings} />
+        {/* <Workbook {...settings} /> */}
       </div>
     </div>
   );

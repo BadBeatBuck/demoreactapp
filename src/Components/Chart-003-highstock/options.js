@@ -4,7 +4,8 @@ const getOptions = ({ candleData, gridLines, columnBars }) => {
   const candleData2 = [];
   candleData.forEach((item) => {
     const { open, close } = Constants.ohlcvDefs;
-    if (item[open] > item[close]) {
+    if (true) {
+      // if (item[open] > item[close]) {
       const newItem = [...item];
       newItem.color = "black";
       newItem.lineColor = "black";
@@ -134,9 +135,6 @@ const getOptions = ({ candleData, gridLines, columnBars }) => {
       // redCandles,
       ...gridLines,
       ...columnBars,
-      // asdf,
-      // asdf,
-      // asdf,
     ],
     responsive: {
       rules: [
