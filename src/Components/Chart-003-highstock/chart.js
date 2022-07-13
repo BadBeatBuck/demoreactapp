@@ -36,17 +36,19 @@ const addColumnChart = ({ candleData }) => {
 
   candleData.forEach((item, index) => {
     if (index % 10 === 0 && candleData[index + 10]) {
-      const color = index % 20 === 0 ? "red" : "green";
+      const { colors, min, max } = Constants.vertBars;
+
+      const color = index % 20 === 0 ? colors.outer : colors.inner;
 
       const point1 = candleData[index];
       const point2 = candleData[index + 10];
 
-      const areaMin = 20_000;
-      const areaMax = 22_500;
+      const areaMin = Constants.mainChart.min;
+      const areaMax = Constants.mainChart.max;
 
       const data = [
-        [point1[Constants.ohlvDefs.time], areaMin, areaMax],
-        [point2[Constants.ohlvDefs.time], areaMin, areaMax],
+        [point1[Constants.ohlcvDefs.time], areaMin, areaMax],
+        [point2[Constants.ohlcvDefs.time], areaMin, areaMax],
       ];
       const newBar = { ...bar, data, color };
       columnBars.push(newBar);
@@ -72,7 +74,7 @@ const createGridLines = ({ candleData, priceLow, priceHigh }) => {
     const data = [];
     for (let i = 0; i < numPoints; i++) {
       if (candleData?.[i]) {
-        const newData = [candleData[i][Constants.ohlvDefs.time], value];
+        const newData = [candleData[i][Constants.ohlcvDefs.time], value];
         data.push(newData);
       }
     }

@@ -28,7 +28,7 @@ function Dashboard() {
     const { candleData } = await fetchCrypto();
     const cryptoFeed = candleData
       .slice(-numPoints)
-      .map((x) => x[Constants.ohlvDefs.close]); // closing price
+      .map((x) => x[Constants.ohlcvDefs.close]); // closing price
     console.log({ cryptoFeed, candleData });
 
     const dataMin = Math.min(...cryptoFeed);
