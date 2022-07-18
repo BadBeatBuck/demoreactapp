@@ -1,69 +1,39 @@
 import Constants from "../../Constants";
 
-const getOptions = ({ candleData, gridLines, columnBars }) => {
-  const candleData2 = [];
-  candleData.forEach((item) => {
-    const { open, close } = Constants.ohlcvDefs;
-    if (true) {
-      // if (item[open] > item[close]) {
-      const newItem = [...item];
-      newItem.color = "black";
-      newItem.lineColor = "black";
-      newItem.marker = { color: "black", lineColor: "black" };
+const getOptions = ({ candleData, gridLines, columnBars, candleChart }) => {
+  // const candleData2 = [];
+  // candleData.forEach((item) => {
+  //   const { open, close } = Constants.ohlcvDefs;
+  //   if (true) {
+  //     // if (item[open] > item[close]) {
+  //     const newItem = [...item];
+  //     newItem.color = "black";
+  //     newItem.lineColor = "black";
+  //     newItem.marker = { color: "black", lineColor: "black" };
 
-      candleData2.push(newItem);
-    }
-  });
-  console.log({ candleData2 });
+  //     candleData2.push(newItem);
+  //   }
+  // });
+  // console.log({ candleData2 });
 
-  const greenCandles = {
-    // color: "green",
-    // lineColor: "red",
-    // fillColor: "yellow",
-    type: "candlestick",
-    enableMouseTracking: false,
-    showInNavigator: true,
-    id: "-stock-price1",
-    name: " Stock Price",
-    data: candleData2,
-    dataGrouping: {
-      forced: true,
-      units: [
-        ["minute", [1, 5, 15]],
-        ["hour", [1]],
-      ],
-    },
-  };
-
-  const candleData3 = [];
-  candleData.forEach((item) => {
-    const { open, close } = Constants.ohlcvDefs;
-    if (item[open] <= item[close]) {
-      const newItem = [...item];
-
-      candleData3.push(newItem);
-    }
-  });
-  console.log({ candleData3 });
-
-  const redCandles = {
-    color: "red",
-    fillColor: "yellow",
-    type: "candlestick",
-    // type: "hollowcandlestick",
-    enableMouseTracking: false,
-    showInNavigator: true,
-    id: "-stock-price2",
-    name: " Stock Price",
-    data: candleData3,
-    dataGrouping: {
-      forced: true,
-      units: [
-        ["minute", [1, 5, 15]],
-        ["hour", [1]],
-      ],
-    },
-  };
+  // const greenCandles = {
+  //   // color: "green",
+  //   // lineColor: "red",
+  //   // fillColor: "yellow",
+  //   type: "candlestick",
+  //   enableMouseTracking: false,
+  //   showInNavigator: true,
+  //   id: "-stock-price1",
+  //   name: " Stock Price",
+  //   data: candleData2,
+  //   dataGrouping: {
+  //     forced: true,
+  //     units: [
+  //       ["minute", [1, 5, 15]],
+  //       ["hour", [1]],
+  //     ],
+  //   },
+  // };
 
   const options = {
     // plotOptions: {
@@ -131,7 +101,8 @@ const getOptions = ({ candleData, gridLines, columnBars }) => {
     ],
 
     series: [
-      greenCandles,
+      candleChart,
+      // greenCandles,
       // redCandles,
       ...gridLines,
       ...columnBars,

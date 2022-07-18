@@ -95,6 +95,44 @@ const createGridLines = ({ candleData, priceLow, priceHigh }) => {
   return { gridLines };
 };
 
+const addCandleChart = ({ candleData, priceLow, priceHigh }) => {
+  const candleData2 = [];
+  candleData.forEach((item) => {
+    const { open, close } = Constants.ohlcvDefs;
+    if (true) {
+      // if (item[open] > item[close]) {
+      const newItem = [...item];
+      newItem.color = "black";
+      newItem.lineColor = "black";
+      newItem.marker = { color: "black", lineColor: "black" };
+
+      candleData2.push(newItem);
+    }
+  });
+  console.log({ candleData2 });
+
+  const greenCandles = {
+    // color: "green",
+    // lineColor: "red",
+    // fillColor: "yellow",
+    type: "candlestick",
+    enableMouseTracking: false,
+    showInNavigator: true,
+    id: "-stock-price1",
+    name: " Stock Price",
+    data: candleData2,
+    dataGrouping: {
+      forced: true,
+      units: [
+        ["minute", [1, 5, 15]],
+        ["hour", [1]],
+      ],
+    },
+  };
+
+  return greenCandles;
+};
+
 const addGridlines = ({ candleData, priceLow, priceHigh }) => {
   const { gridLines } = createGridLines({ candleData, priceLow, priceHigh });
   console.log({ gridLines });
@@ -161,11 +199,12 @@ function Chart003(props = {}) {
     [props.className]: !!props.className,
   });
 
+  const candleChart = addCandleChart({ candleData, priceLow, priceHigh });
   const gridLines = addGridlines({ candleData, priceLow, priceHigh });
   const columnBars = addColumnChart({ candleData });
 
   const combinedOptions = {
-    ...getOptions({ candleData, gridLines, columnBars }),
+    ...getOptions({ candleData, gridLines, columnBars, candleChart }),
     ...options2,
   };
 

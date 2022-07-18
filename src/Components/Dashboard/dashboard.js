@@ -150,12 +150,7 @@ function Dashboard() {
     { name: "Rose", age: 36, address: "some where", key: "2" },
   ];
 
-  // const gridLines = gridLines;
-
-  // console.log({ gridLines });
-
   const onChangeFortuneTable = (data) => {
-    // console.log("data", data.data);
     console.log({ data });
   };
 
@@ -225,6 +220,7 @@ function Dashboard() {
     onChange: onChangeFortuneTable,
     lang: "zh", // set language
   };
+
   return (
     <div className={css.main}>
       <div className={css.container}>
