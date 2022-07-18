@@ -1,6 +1,6 @@
 import Constants from "../../Constants";
 
-const getOptions = ({ serieses }) => {
+const getOptions = ({ serieses, chartOptions = {} }) => {
   const options = {
     // plotOptions: {
     //   column: {
@@ -46,8 +46,10 @@ const getOptions = ({ serieses }) => {
     },
     yAxis: [
       {
-        min: Constants.mainChart.min,
-        max: Constants.mainChart.max,
+        min: chartOptions.minY,
+        max: chartOptions.maxY,
+        // min: Constants.mainChart.min,
+        // max: Constants.mainChart.max,
         labels: {
           align: "left",
         },
@@ -71,7 +73,7 @@ const getOptions = ({ serieses }) => {
       rules: [
         {
           condition: {
-            maxWidth: 800,
+            // maxWidth: 800,
           },
           chartOptions: {
             rangeSelector: {

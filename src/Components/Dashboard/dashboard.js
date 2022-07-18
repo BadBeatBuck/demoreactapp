@@ -136,15 +136,6 @@ function Dashboard() {
     return form;
   };
 
-  const options = {
-    yAxis: {
-      min: priceLow * 0.98,
-      max: priceHigh * 1.02,
-      startOnTick: false,
-      endOnTick: false,
-    },
-  };
-
   const tableData = [
     { name: "Jack", age: 28, address: "some where", key: "1" },
     { name: "Rose", age: 36, address: "some where", key: "2" },

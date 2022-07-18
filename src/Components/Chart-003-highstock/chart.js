@@ -29,7 +29,7 @@ const addColumnChart = ({ candleData }) => {
     name: "Range",
     enableMouseTracking: false,
     type: "arearange",
-    lineWidth: 1,
+    lineWidth: 0,
     fillOpacity: 0.1,
     zIndex: 0,
   };
@@ -164,6 +164,10 @@ const addGridlines = ({ candleData, priceLow, priceHigh }) => {
   return serieses;
 };
 
+const getChartMaxMin = ({ candleData, priceLow, priceHigh }) => {
+  //
+};
+
 function Chart003(props = {}) {
   Indicators(HighStock);
   DragPanes(HighStock);
@@ -198,6 +202,9 @@ function Chart003(props = {}) {
   const className = cx(css.main, {
     [props.className]: !!props.className,
   });
+
+  // const { minY, maxY } = getChartMaxMin({ candleData });
+  const chartOptions = { minY: 10_000, maxY: 30_000 };
 
   const candleChart = addCandleChart({ candleData, priceLow, priceHigh });
   const gridLines = addGridlines({ candleData, priceLow, priceHigh });
