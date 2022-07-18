@@ -203,8 +203,10 @@ function Chart003(props = {}) {
   const gridLines = addGridlines({ candleData, priceLow, priceHigh });
   const columnBars = addColumnChart({ candleData });
 
+  const serieses = [candleChart, ...gridLines, ...columnBars];
+
   const combinedOptions = {
-    ...getOptions({ candleData, gridLines, columnBars, candleChart }),
+    ...getOptions({ serieses }),
     ...options2,
   };
 

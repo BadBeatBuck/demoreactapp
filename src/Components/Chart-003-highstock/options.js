@@ -1,40 +1,6 @@
 import Constants from "../../Constants";
 
-const getOptions = ({ candleData, gridLines, columnBars, candleChart }) => {
-  // const candleData2 = [];
-  // candleData.forEach((item) => {
-  //   const { open, close } = Constants.ohlcvDefs;
-  //   if (true) {
-  //     // if (item[open] > item[close]) {
-  //     const newItem = [...item];
-  //     newItem.color = "black";
-  //     newItem.lineColor = "black";
-  //     newItem.marker = { color: "black", lineColor: "black" };
-
-  //     candleData2.push(newItem);
-  //   }
-  // });
-  // console.log({ candleData2 });
-
-  // const greenCandles = {
-  //   // color: "green",
-  //   // lineColor: "red",
-  //   // fillColor: "yellow",
-  //   type: "candlestick",
-  //   enableMouseTracking: false,
-  //   showInNavigator: true,
-  //   id: "-stock-price1",
-  //   name: " Stock Price",
-  //   data: candleData2,
-  //   dataGrouping: {
-  //     forced: true,
-  //     units: [
-  //       ["minute", [1, 5, 15]],
-  //       ["hour", [1]],
-  //     ],
-  //   },
-  // };
-
+const getOptions = ({ serieses }) => {
   const options = {
     // plotOptions: {
     //   column: {
@@ -100,13 +66,7 @@ const getOptions = ({ candleData, gridLines, columnBars, candleChart }) => {
       },
     ],
 
-    series: [
-      candleChart,
-      // greenCandles,
-      // redCandles,
-      ...gridLines,
-      ...columnBars,
-    ],
+    series: serieses,
     responsive: {
       rules: [
         {
