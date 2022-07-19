@@ -244,8 +244,8 @@ function Dashboard() {
 
   return (
     <div className={css.main}>
-      <Chart005 colors={test.colors} />
       <AdvancedRealTimeChart {...testOptions} />
+      <Chart005 colors={test.colors} />
       {/* <Chart004 colors={test.colors} /> */}
     </div>
   );
