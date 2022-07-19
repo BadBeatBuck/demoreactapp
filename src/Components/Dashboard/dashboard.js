@@ -12,6 +12,8 @@ import Table003 from "../table-003-mui-rctable/table";
 import Chart003 from "../Chart-003-highstock/chart";
 import Constants from "../../Constants";
 
+import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
+
 import css from "./dashboard.module.scss";
 
 const numPoints = 500;
@@ -211,11 +213,15 @@ function Dashboard() {
     onChange: onChangeFortuneTable,
     lang: "zh", // set language
   };
-
   return (
     <div className={css.main}>
-      <div className={css.container}>
-        <div className={css.chartRows}>
+      <AdvancedRealTimeChart theme="dark" autosize />
+    </div>
+  );
+  return (
+    <div className={css.container}>
+      <div className={css.chartRows}>
+        <div className={css.chartRow}>
           {/* <div className={css.chartRow}>
             <div className={css.form}>{renderForm()}</div>
             <Chart003 data={candleData} className={css.chart} />
