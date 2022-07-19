@@ -244,11 +244,16 @@ function Dashboard() {
 
   return (
     <div className={css.main}>
+      <Chart003
+        candleData={candleData}
+        configuratorData={{ priceLow, priceHigh }}
+        priceLow={priceLow}
+        priceHigh={priceHigh}
+        className={css.chart}
+      />
       <Chart007 colors={test.colors} />
       <Chart005 colors={test.colors} />
-      {/* <Chart006 options={testOptions} /> */}
-      {/* <AdvancedRealTimeChart {...testOptions} /> */}
-      {/* <Chart004 colors={test.colors} /> */}
+      <Chart006 options={testOptions} />
     </div>
   );
   return (
@@ -269,7 +274,6 @@ function Dashboard() {
               priceLow={priceLow}
               priceHigh={priceHigh}
               className={css.chart}
-              // gridLines={gridLines || []}
             />
             {/* <Chart003 data={candleData} className={css.chart} /> */}
           </div>
