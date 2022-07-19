@@ -1,0 +1,12 @@
+@import "https://code.highcharts.com/css/stocktools/gui.css";
+@import "https://code.highcharts.com/css/annotations/popup.css";
+
+/* fix button click issue */
+.highcharts-stocktools-toolbar li {
+    width: 80% !important;
+}
+
+.main {
+    // This is required for responsiveness
+    flex: 1;
+}

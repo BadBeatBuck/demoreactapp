@@ -15,6 +15,7 @@ import Constants from "../../Constants";
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 
 import css from "./dashboard.module.scss";
+import { Chart004 } from "../Chart-004-lwcharts/chart";
 
 const numPoints = 500;
 
@@ -217,7 +218,7 @@ function Dashboard() {
   const testOptions = {
     autosize: true,
     symbol: "NASDAQ:AAPL",
-    interval: "D",
+    interval: "1",
     timezone: "Etc/UTC",
     // theme: "light",
     theme: "dark",
@@ -229,10 +230,21 @@ function Dashboard() {
     container_id: "tradingview_b461c",
   };
 
+  const test = {
+    // data,
+    colors: {
+      backgroundColor: "white",
+      lineColor: "#2962FF",
+      textColor: "black",
+      areaTopColor: "#2962FF",
+      areaBottomColor: "rgba(41, 98, 255, 0.28)",
+    },
+  };
+
   return (
     <div className={css.main}>
       <AdvancedRealTimeChart {...testOptions} />
-      {/* <AdvancedRealTimeChart theme="dark" autosize /> */}
+      <Chart004 colors={test.colors} />
     </div>
   );
   return (
