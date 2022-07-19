@@ -219,11 +219,8 @@ function Dashboard() {
 
   const testOptions = {
     autosize: true,
-    symbol: "BTCUSDT",
-    // symbol: "NASDAQ:AAPL",
+    symbol: "BINANCE:BTCUSDT",
     interval: "1",
-    timezone: "Etc/UTC",
-    // theme: "light",
     theme: "dark",
     style: "1",
     locale: "en",
