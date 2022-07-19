@@ -16,6 +16,7 @@ import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 
 import css from "./dashboard.module.scss";
 import { Chart004 } from "../Chart-004-lwcharts/chart";
+import { Chart005 } from "../Chart-005-lwcharts/chart";
 
 const numPoints = 500;
 
@@ -243,8 +244,9 @@ function Dashboard() {
 
   return (
     <div className={css.main}>
+      <Chart005 colors={test.colors} />
       <AdvancedRealTimeChart {...testOptions} />
-      <Chart004 colors={test.colors} />
+      {/* <Chart004 colors={test.colors} /> */}
     </div>
   );
   return (
