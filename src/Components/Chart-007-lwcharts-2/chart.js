@@ -1,6 +1,11 @@
 // https://tradingview.github.io/lightweight-charts/tutorials/react/simple
 
-import { createChart, ColorType, LineStyle } from "lightweight-charts";
+import {
+  createChart,
+  ColorType,
+  LineStyle,
+  CrosshairMode,
+} from "lightweight-charts";
 // import LightweightCharts from "lightweight-charts";
 import React, { useEffect, useRef } from "react";
 
@@ -23,11 +28,7 @@ export const ChartComponent = (props) => {
     };
 
     const chart = createChart(chartContainerRef.current, {
-      layout: {
-        background: { type: ColorType.Solid, color: backgroundColor },
-        textColor,
-      },
-      width: chartContainerRef.current.clientWidth,
+      width: 600,
       height: 300,
       rightPriceScale: {
         visible: true,
@@ -49,9 +50,9 @@ export const ChartComponent = (props) => {
           color: "#F0F3FA",
         },
       },
-      // crosshair: {
-      //   mode: LightweightCharts.CrosshairMode.Normal,
-      // },
+      crosshair: {
+        mode: CrosshairMode.Normal,
+      },
       timeScale: {
         borderColor: "rgba(197, 203, 206, 1)",
       },
@@ -59,6 +60,76 @@ export const ChartComponent = (props) => {
         vertTouchDrag: false,
       },
     });
+
+    var series = chart.addLineSeries({
+      color: "rgb(0, 120, 255)",
+      lineWidth: 2,
+      crosshairMarkerVisible: false,
+      lastValueVisible: false,
+      priceLineVisible: false,
+    });
+    var data = [
+      {
+        time: {
+          year: 2018,
+          month: 1,
+          day: 1,
+        },
+        value: 27.58405298746434,
+      },
+      {
+        time: {
+          year: 2018,
+          month: 1,
+          day: 2,
+        },
+        value: 31.74088841431117,
+      },
+    ];
+    series.setData(data);
+
+    var minimumPrice = data[0].value;
+    var maximumPrice = minimumPrice;
+    for (var i = 1; i < data.length; i++) {
+      var price = data[i].value;
+      if (price > maximumPrice) {
+        maximumPrice = price;
+      }
+      if (price < minimumPrice) {
+        minimumPrice = price;
+      }
+    }
+    var avgPrice = (maximumPrice + minimumPrice) / 2;
+
+    var lineWidth = 2;
+    var minPriceLine = {
+      price: minimumPrice,
+      color: "#be1238",
+      lineWidth: lineWidth,
+      lineStyle: LineStyle.Solid,
+      axisLabelVisible: true,
+      title: "minimum price",
+    };
+    var avgPriceLine = {
+      price: avgPrice,
+      color: "#be1238",
+      lineWidth: lineWidth,
+      lineStyle: LineStyle.Solid,
+      axisLabelVisible: true,
+      title: "average price",
+    };
+    var maxPriceLine = {
+      price: maximumPrice,
+      color: "#be1238",
+      lineWidth: lineWidth,
+      lineStyle: LineStyle.Solid,
+      axisLabelVisible: true,
+      title: "maximum price",
+    };
+
+    series.createPriceLine(minPriceLine);
+    series.createPriceLine(avgPriceLine);
+    series.createPriceLine(maxPriceLine);
 
     const candlestickSeries = chart.addCandlestickSeries({
       priceScaleId: "left",
@@ -773,64 +844,7 @@ export const ChartComponent = (props) => {
       },
     ]);
 
-    var data2 = [
-      { time: { year: 2018, month: 1, day: 1 }, value: 27.58405298746434 },
-      { time: { year: 2018, month: 1, day: 2 }, value: 31.74088841431117 },
-      { time: { year: 2018, month: 1, day: 3 }, value: 35.892978753808926 },
-      { time: { year: 2018, month: 1, day: 4 }, value: 39.63642029045179 },
-    ];
-
-    var minimumPrice = 80;
-    // var minimumPrice = data2[0].value;
-    var maximumPrice = minimumPrice;
-    for (var i = 1; i < data2.length; i++) {
-      var price = data2[i].value;
-      if (price > maximumPrice) {
-        maximumPrice = price;
-      }
-      if (price < minimumPrice) {
-        minimumPrice = price;
-      }
-    }
-    var avgPrice = (maximumPrice + minimumPrice) / 2;
-
-    var lineWidth = 2;
-    var minPriceLine = {
-      price: minimumPrice,
-      color: "#be1238",
-      lineWidth: lineWidth,
-      lineStyle: LineStyle.Solid,
-      axisLabelVisible: true,
-      title: "minimum price",
-    };
-    var avgPriceLine = {
-      price: avgPrice,
-      color: "#be1238",
-      lineWidth: lineWidth,
-      lineStyle: LineStyle.Solid,
-      axisLabelVisible: true,
-      title: "average price",
-    };
-    var maxPriceLine = {
-      price: maximumPrice,
-      color: "#be1238",
-      lineWidth: lineWidth,
-      lineStyle: LineStyle.Solid,
-      axisLabelVisible: true,
-      title: "maximum price",
-    };
-
-    var series = chart.addLineSeries({
-      color: "rgb(0, 120, 255)",
-      lineWidth: 2,
-      crosshairMarkerVisible: false,
-      lastValueVisible: false,
-      priceLineVisible: false,
-    });
-
-    series.createPriceLine(minPriceLine);
-    series.createPriceLine(avgPriceLine);
-    series.createPriceLine(maxPriceLine);
+    chart.timeScale().fitContent();
 
     window.addEventListener("resize", handleResize);
 
@@ -864,6 +878,6 @@ const initialData = [
   { time: "2018-12-31", value: 22.67 },
 ];
 
-export function Chart005(props) {
+export function Chart007(props) {
   return <ChartComponent {...props} data={initialData} />;
 }

@@ -18,6 +18,7 @@ import css from "./dashboard.module.scss";
 import { Chart004 } from "../Chart-004-lwcharts/chart";
 import { Chart005 } from "../Chart-005-lwcharts/chart";
 import Chart006 from "../Chart-006-react-tv-widgets/chart";
+import { Chart007 } from "../Chart-007-lwcharts-2/chart";
 
 const numPoints = 500;
 
@@ -243,9 +244,10 @@ function Dashboard() {
 
   return (
     <div className={css.main}>
-      <Chart006 options={testOptions} />
-      {/* <AdvancedRealTimeChart {...testOptions} /> */}
+      <Chart007 colors={test.colors} />
       <Chart005 colors={test.colors} />
+      {/* <Chart006 options={testOptions} /> */}
+      {/* <AdvancedRealTimeChart {...testOptions} /> */}
       {/* <Chart004 colors={test.colors} /> */}
     </div>
   );
