@@ -17,6 +17,7 @@ import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import css from "./dashboard.module.scss";
 import { Chart004 } from "../Chart-004-lwcharts/chart";
 import { Chart005 } from "../Chart-005-lwcharts/chart";
+import Chart006 from "../Chart-006-react-tv-widgets/chart";
 
 const numPoints = 500;
 
@@ -218,7 +219,8 @@ function Dashboard() {
 
   const testOptions = {
     autosize: true,
-    symbol: "NASDAQ:AAPL",
+    symbol: "BTCUSDT",
+    // symbol: "NASDAQ:AAPL",
     interval: "1",
     timezone: "Etc/UTC",
     // theme: "light",
@@ -244,7 +246,8 @@ function Dashboard() {
 
   return (
     <div className={css.main}>
-      <AdvancedRealTimeChart {...testOptions} />
+      <Chart006 options={testOptions} />
+      {/* <AdvancedRealTimeChart {...testOptions} /> */}
       <Chart005 colors={test.colors} />
       {/* <Chart004 colors={test.colors} /> */}
     </div>
