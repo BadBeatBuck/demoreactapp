@@ -213,9 +213,26 @@ function Dashboard() {
     onChange: onChangeFortuneTable,
     lang: "zh", // set language
   };
+
+  const testOptions = {
+    autosize: true,
+    symbol: "NASDAQ:AAPL",
+    interval: "D",
+    timezone: "Etc/UTC",
+    // theme: "light",
+    theme: "dark",
+    style: "1",
+    locale: "en",
+    toolbar_bg: "#f1f3f6",
+    enable_publishing: false,
+    allow_symbol_change: true,
+    container_id: "tradingview_b461c",
+  };
+
   return (
     <div className={css.main}>
-      <AdvancedRealTimeChart theme="dark" autosize />
+      <AdvancedRealTimeChart {...testOptions} />
+      {/* <AdvancedRealTimeChart theme="dark" autosize /> */}
     </div>
   );
   return (
