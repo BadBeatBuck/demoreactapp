@@ -1,6 +1,7 @@
 import Constants from "../../Constants";
 
 const getOptions = ({ serieses, chartOptions = {} }) => {
+  console.log({ chartOptions });
   const options = {
     // plotOptions: {
     //   column: {
@@ -46,8 +47,8 @@ const getOptions = ({ serieses, chartOptions = {} }) => {
     },
     yAxis: [
       {
-        min: chartOptions.minY,
-        max: chartOptions.maxY,
+        min: chartOptions.chartMin,
+        max: chartOptions.chartMax,
         // min: Constants.mainChart.min,
         // max: Constants.mainChart.max,
         labels: {

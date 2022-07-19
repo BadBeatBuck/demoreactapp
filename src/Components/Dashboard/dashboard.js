@@ -226,6 +226,7 @@ function Dashboard() {
             {/* <Chart003 data={candleData} className={css.chart} /> */}
             <Chart003
               candleData={candleData}
+              configuratorData={{ priceLow, priceHigh }}
               priceLow={priceLow}
               priceHigh={priceHigh}
               className={css.chart}

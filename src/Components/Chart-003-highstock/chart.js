@@ -58,11 +58,11 @@ const addColumnChart = ({ candleData }) => {
   return columnBars;
 };
 
-const createGridLines = ({ candleData, priceLow, priceHigh }) => {
+const createGridLines = ({ candleData, configuratorData }) => {
   const numSlices = 10;
   const gridLines = [];
-  const priceLow2 = parseInt(priceLow);
-  const priceHigh2 = parseInt(priceHigh);
+  const priceLow2 = parseInt(configuratorData.priceLow);
+  const priceHigh2 = parseInt(configuratorData.priceHigh);
   const numSlices2 = parseInt(numSlices);
 
   const stepSize = (priceHigh2 - priceLow2) / numSlices2;
@@ -95,7 +95,7 @@ const createGridLines = ({ candleData, priceLow, priceHigh }) => {
   return { gridLines };
 };
 
-const addCandleChart = ({ candleData, priceLow, priceHigh }) => {
+const addCandleChart = ({ candleData }) => {
   const candleData2 = [];
   candleData.forEach((item) => {
     const { open, close } = Constants.ohlcvDefs;
@@ -109,7 +109,6 @@ const addCandleChart = ({ candleData, priceLow, priceHigh }) => {
       candleData2.push(newItem);
     }
   });
-  console.log({ candleData2 });
 
   const greenCandles = {
     // color: "green",
@@ -133,8 +132,8 @@ const addCandleChart = ({ candleData, priceLow, priceHigh }) => {
   return greenCandles;
 };
 
-const addGridlines = ({ candleData, priceLow, priceHigh }) => {
-  const { gridLines } = createGridLines({ candleData, priceLow, priceHigh });
+const addGridlines = ({ candleData, configuratorData }) => {
+  const { gridLines } = createGridLines({ candleData, configuratorData });
   console.log({ gridLines });
   const serieses = gridLines || [];
 
@@ -164,7 +163,17 @@ const addGridlines = ({ candleData, priceLow, priceHigh }) => {
   return serieses;
 };
 
-const getChartMaxMin = ({ candleData, priceLow, priceHigh }) => {
+const getChartMaxMin = ({ candleData, configuratorData }) => {
+  const chartPaddingPct = 0.05;
+  const highData = candleData.map((item) => item[Constants.ohlcvDefs.high]);
+  const lowData = candleData.map((item) => item[Constants.ohlcvDefs.low]);
+
+  const chartMax =
+    Math.max(...highData, configuratorData.priceHigh) * (1 + chartPaddingPct);
+  const chartMin =
+    Math.min(...lowData, configuratorData.priceLow) * (1 - chartPaddingPct);
+  console.log({ chartMax, chartMin });
+  return { chartMax, chartMin };
   //
 };
 
@@ -195,7 +204,7 @@ function Chart003(props = {}) {
     //   .add();
   }, []);
 
-  const { priceLow, priceHigh, candleData = [] } = props;
+  const { priceLow, priceHigh, configuratorData, candleData = [] } = props;
 
   const options2 = props.options || {};
 
@@ -203,17 +212,21 @@ function Chart003(props = {}) {
     [props.className]: !!props.className,
   });
 
-  // const { minY, maxY } = getChartMaxMin({ candleData });
-  const chartOptions = { minY: 10_000, maxY: 30_000 };
+  const { chartMax, chartMin } = getChartMaxMin({
+    candleData,
+    configuratorData,
+  });
+  const chartOptions = { chartMax, chartMin };
+  // const chartOptions = { minY: 10_000, maxY: 30_000 };
 
   const candleChart = addCandleChart({ candleData, priceLow, priceHigh });
-  const gridLines = addGridlines({ candleData, priceLow, priceHigh });
+  const gridLines = addGridlines({ candleData, configuratorData });
   const columnBars = addColumnChart({ candleData });
 
   const serieses = [candleChart, ...gridLines, ...columnBars];
 
   const combinedOptions = {
-    ...getOptions({ serieses }),
+    ...getOptions({ serieses, chartOptions }),
     ...options2,
   };
 
