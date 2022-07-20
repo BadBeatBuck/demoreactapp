@@ -244,7 +244,7 @@ function Dashboard() {
 
   return (
     <div className={css.main}>
-      <Chart005 colors={test.colors} candleData={candleData} />
+      {/* <Chart005 colors={test.colors} candleData={candleData} /> */}
       <Chart007 colors={test.colors} candleData={candleData} />
       {/* <Chart003
         candleData={candleData}
