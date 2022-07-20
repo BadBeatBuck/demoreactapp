@@ -251,9 +251,9 @@ function Dashboard() {
         priceHigh={priceHigh}
         className={css.chart}
       />
-      <Chart007 colors={test.colors} />
-      <Chart005 colors={test.colors} />
-      <Chart006 options={testOptions} />
+      <Chart007 colors={test.colors} candleData={candleData} />
+      {/* <Chart005 colors={test.colors} /> */}
+      {/* <Chart006 options={testOptions} /> */}
     </div>
   );
   return (

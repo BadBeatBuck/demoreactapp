@@ -94,6 +94,34 @@ const getOptions = ({ serieses, chartOptions = {} }) => {
         ],
       },
     },
+
+    annotations: [
+      {
+        labels: [
+          {
+            point: {
+              x: 1658196900000,
+              y: 22_000,
+              xAxis: 0,
+              yAxis: 0,
+            },
+          },
+          {
+            point: {
+              x: 0,
+              y: 22_000,
+            },
+          },
+          {
+            point: {
+              x: 5,
+              y: 22_500,
+              xAxis: 0,
+            },
+          },
+        ],
+      },
+    ],
   };
   return options;
 };
