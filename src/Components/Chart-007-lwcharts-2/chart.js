@@ -1,5 +1,6 @@
 // https://tradingview.github.io/lightweight-charts/tutorials/react/simple
 import React, { useEffect, useRef } from "react";
+import css from "./chart.module.scss";
 
 import {
   createChart,
@@ -28,6 +29,9 @@ export const ChartComponent = (props) => {
     };
 
     const chart = createChart(chartContainerRef.current, {
+      // width: "auto",
+      width: chartContainerRef.current.clientWidth,
+      // width: chartContainerRef.current.clientWidth || 600,
       // width: 600,
       height: 300,
       rightPriceScale: {
@@ -193,7 +197,7 @@ export const ChartComponent = (props) => {
     areaBottomColor,
   ]);
 
-  return <div ref={chartContainerRef} />;
+  return <div className={css.main} ref={chartContainerRef} />;
 };
 
 const initialData = [
