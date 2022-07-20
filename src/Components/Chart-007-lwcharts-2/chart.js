@@ -27,7 +27,7 @@ export const ChartComponent = (props) => {
     };
 
     const chart = createChart(chartContainerRef.current, {
-      width: 600,
+      // width: 600,
       height: 300,
       rightPriceScale: {
         visible: true,
