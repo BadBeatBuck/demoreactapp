@@ -11,6 +11,7 @@ import {
 import Constants from "../../Constants";
 
 export const ChartComponent = (props) => {
+  console.log({ props });
   const {
     data,
     colors: {
@@ -171,7 +172,12 @@ export const ChartComponent = (props) => {
       wickDownColor: "#838ca1",
       wickUpColor: "#838ca1",
     });
-    candlestickSeries.setData(candleData);
+
+    const test = transformData({ data: props.candleData });
+
+    candlestickSeries.setData(test);
+    // candlestickSeries.setData(props.candleData);
+    // candlestickSeries.setData(candleData3);
 
     // candlestickSeries.update({
     //   time: "2019-01-01",
@@ -189,14 +195,7 @@ export const ChartComponent = (props) => {
 
       chart.remove();
     };
-  }, [
-    data,
-    backgroundColor,
-    lineColor,
-    textColor,
-    areaTopColor,
-    areaBottomColor,
-  ]);
+  }, [props.candleData]);
 
   return <div className={css.main} ref={chartContainerRef} />;
 };
@@ -928,7 +927,7 @@ const candleDataRaw = [
   },
 ];
 
-const candleData = candleDataTest.map((item) => {
+const candleData3 = candleDataTest.map((item) => {
   const defs = Constants.ohlcvDefs;
   const { open, close, high, low, time } = defs;
 
@@ -944,6 +943,26 @@ const candleData = candleDataTest.map((item) => {
   };
   return newItem;
 });
+
+const transformData = ({ data }) => {
+  const output = data.map((item) => {
+    const defs = Constants.ohlcvDefs;
+    const { open, close, high, low, time } = defs;
+
+    var d = new Date(item[time]);
+    const time2 = Math.floor(d.getTime() / 1000);
+
+    const newItem = {
+      close: item[close],
+      high: item[high],
+      low: item[low],
+      open: item[open],
+      time: time2,
+    };
+    return newItem;
+  });
+  return output;
+};
 
 export function Chart007(props) {
   return <ChartComponent {...props} data={initialData} />;
