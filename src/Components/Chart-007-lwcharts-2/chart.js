@@ -31,9 +31,10 @@ export const ChartComponent = (props) => {
     const chart = createChart(chartContainerRef.current, {
       // width: "auto",
       width: chartContainerRef.current.clientWidth,
+      height: chartContainerRef.current.clientHeight,
       // width: chartContainerRef.current.clientWidth || 600,
       // width: 600,
-      height: 300,
+      // height: 300,
       rightPriceScale: {
         visible: true,
         borderColor: "rgba(197, 203, 206, 1)",
