@@ -7,6 +7,7 @@ import {
   LineStyle,
   CrosshairMode,
 } from "lightweight-charts";
+import Constants from "../../Constants";
 
 export const ChartComponent = (props) => {
   const {
@@ -135,13 +136,13 @@ export const ChartComponent = (props) => {
     });
     candlestickSeries.setData(candleData);
 
-    candlestickSeries.update({
-      time: "2019-01-01",
-      open: 112,
-      high: 112,
-      low: 100,
-      close: 101,
-    });
+    // candlestickSeries.update({
+    //   time: "2019-01-01",
+    //   open: 112,
+    //   high: 112,
+    //   low: 100,
+    //   close: 101,
+    // });
     chart.timeScale().fitContent();
 
     window.addEventListener("resize", handleResize);
@@ -176,7 +177,11 @@ const initialData = [
   { time: "2018-12-31", value: 22.67 },
 ];
 
-const candleData = [
+const candleDataTest = [
+  [1658196600000, 22028.99, 22052.18, 21962.22, 21981.32, 814.20177],
+];
+
+const candleDataRaw = [
   {
     close: 108.9974612905403,
     high: 121.20998259466148,
@@ -885,6 +890,31 @@ const candleData = [
     time: { year: 2018, month: 12, day: 31 },
   },
 ];
+
+const candleData = candleDataTest.map((item) => {
+  const defs = Constants.ohlcvDefs;
+
+  const { open, close, high, low, time, value } = defs;
+  console.log({ time });
+  console.log({ item });
+  console.log("item", item[0]);
+
+  // const newTime =
+
+  var d = new Date(item[0]);
+  const time2 = Math.floor(d.getTime() / 1000);
+
+  const newItem = {
+    close: item[close],
+    high: item[high],
+    low: item[low],
+    open: item[open],
+    time: time2,
+    // time: { year: 2018, month: 9, day: 22 },
+  };
+  return newItem;
+});
+
 export function Chart007(props) {
   return <ChartComponent {...props} data={initialData} />;
 }
