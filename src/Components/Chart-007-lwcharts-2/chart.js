@@ -893,15 +893,9 @@ const candleDataRaw = [
 
 const candleData = candleDataTest.map((item) => {
   const defs = Constants.ohlcvDefs;
+  const { open, close, high, low, time } = defs;
 
-  const { open, close, high, low, time, value } = defs;
-  console.log({ time });
-  console.log({ item });
-  console.log("item", item[0]);
-
-  // const newTime =
-
-  var d = new Date(item[0]);
+  var d = new Date(item[time]);
   const time2 = Math.floor(d.getTime() / 1000);
 
   const newItem = {
@@ -910,7 +904,6 @@ const candleData = candleDataTest.map((item) => {
     low: item[low],
     open: item[open],
     time: time2,
-    // time: { year: 2018, month: 9, day: 22 },
   };
   return newItem;
 });
