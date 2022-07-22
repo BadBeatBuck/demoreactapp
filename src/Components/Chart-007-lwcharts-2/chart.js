@@ -17,72 +17,7 @@ export const ChartComponent = (props) => {
   } = props;
   const chartContainerRef = useRef();
 
-  const createChart2 = ({}) => {
-    const chart = createChart(chartContainerRef.current, {
-      // width: "auto",
-      width: chartContainerRef.current.clientWidth,
-      height: chartContainerRef.current.clientHeight,
-      // width: chartContainerRef.current.clientWidth || 600,
-      // width: 600,
-      // height: 300,
-      rightPriceScale: {
-        visible: true,
-        borderColor: "rgba(197, 203, 206, 1)",
-      },
-      leftPriceScale: {
-        visible: true,
-        borderColor: "rgba(197, 203, 206, 1)",
-      },
-      layout: {
-        // backgroundColor: "#ffffff",
-        backgroundColor: "#253248",
-        textColor: "rgba(33, 56, 77, 1)",
-      },
-      grid: {
-        horzLines: {
-          color: "#F0F3FA",
-        },
-        vertLines: {
-          color: "#F0F3FA",
-        },
-      },
-      crosshair: {
-        mode: CrosshairMode.Normal,
-      },
-      timeScale: {
-        borderColor: "rgba(197, 203, 206, 1)",
-      },
-      handleScroll: {
-        vertTouchDrag: false,
-      },
-
-      //
-      //
-      //
-      //
-      layout: {
-        backgroundColor: "#253248",
-        textColor: "rgba(255, 255, 255, 0.9)",
-      },
-      grid: {
-        vertLines: {
-          color: "#334158",
-        },
-        horzLines: {
-          color: "#334158",
-        },
-      },
-      crosshair: {
-        mode: CrosshairMode.Normal,
-      },
-      priceScale: {
-        borderColor: "#485c7b",
-      },
-      timeScale: {
-        borderColor: "#485c7b",
-      },
-    });
-
+  const addLines = ({ chart }) => {
     var series = chart.addLineSeries({
       color: "rgb(0, 120, 255)",
       lineWidth: 1,
@@ -152,6 +87,75 @@ export const ChartComponent = (props) => {
     series.createPriceLine(minPriceLine);
     series.createPriceLine(avgPriceLine);
     series.createPriceLine(maxPriceLine);
+  };
+
+  const createChart2 = ({}) => {
+    const chart = createChart(chartContainerRef.current, {
+      // width: "auto",
+      width: chartContainerRef.current.clientWidth,
+      height: chartContainerRef.current.clientHeight,
+      // width: chartContainerRef.current.clientWidth || 600,
+      // width: 600,
+      // height: 300,
+      rightPriceScale: {
+        visible: true,
+        borderColor: "rgba(197, 203, 206, 1)",
+      },
+      leftPriceScale: {
+        visible: true,
+        borderColor: "rgba(197, 203, 206, 1)",
+      },
+      layout: {
+        // backgroundColor: "#ffffff",
+        backgroundColor: "#253248",
+        textColor: "rgba(33, 56, 77, 1)",
+      },
+      grid: {
+        horzLines: {
+          color: "#F0F3FA",
+        },
+        vertLines: {
+          color: "#F0F3FA",
+        },
+      },
+      crosshair: {
+        mode: CrosshairMode.Normal,
+      },
+      timeScale: {
+        borderColor: "rgba(197, 203, 206, 1)",
+      },
+      handleScroll: {
+        vertTouchDrag: false,
+      },
+
+      //
+      //
+      //
+      //
+      layout: {
+        backgroundColor: "#253248",
+        textColor: "rgba(255, 255, 255, 0.9)",
+      },
+      grid: {
+        vertLines: {
+          color: "#334158",
+        },
+        horzLines: {
+          color: "#334158",
+        },
+      },
+      crosshair: {
+        mode: CrosshairMode.Normal,
+      },
+      priceScale: {
+        borderColor: "#485c7b",
+      },
+      timeScale: {
+        borderColor: "#485c7b",
+      },
+    });
+
+    addLines({ chart });
 
     const candlestickSeries = chart.addCandlestickSeries({
       priceScaleId: "left",
@@ -181,7 +185,6 @@ export const ChartComponent = (props) => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-
       chart.remove();
     };
   }, [props.candleData]);
