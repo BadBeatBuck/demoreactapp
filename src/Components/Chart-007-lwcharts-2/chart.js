@@ -18,8 +18,7 @@ export const ChartComponent = (props) => {
 
   const addCandles = ({ chart }) => {
     const candlestickSeries = chart.addCandlestickSeries({
-      priceScaleId: "right",
-      // priceScaleId: "left",
+      priceScaleId: "left",
       upColor: "#4bffb5",
       downColor: "#ff4976",
       borderDownColor: "#ff4976",
@@ -35,7 +34,6 @@ export const ChartComponent = (props) => {
   const addLines = ({ chart, configuratorData, candleData }) => {
     var series = chart.addLineSeries({
       priceScaleId: "left",
-      // priceScaleId: "right",
       color: "rgb(0, 120, 255)",
       lineWidth: 1,
       crosshairMarkerVisible: false,
@@ -50,17 +48,15 @@ export const ChartComponent = (props) => {
           month: 1,
           day: 1,
         },
-        value: 32,
-        // value: 22_500,
+        value: 27.58405298746434,
       },
       {
         time: {
-          year: 2023,
+          year: 2022,
           month: 1,
           day: 2,
         },
-        value: 32,
-        // value: 22_500,
+        value: 31.74088841431117,
       },
     ];
     series.setData(data);
@@ -75,23 +71,19 @@ export const ChartComponent = (props) => {
     for (let i = 0; i < numSlices2 + 1; i++) {
       const value = priceLow2 + i * stepSize;
       const minimumPrice = value;
-      console.log({ minimumPrice });
 
-      if (value > 0) {
-        var lineWidth = 1;
-        var priceLine = {
-          priceScaleId: "left",
-          price: 32.5,
-          // price: minimumPrice,
-          title: minimumPrice,
-          color: "green",
-          lineWidth,
-          lineStyle: LineStyle.Dotted,
-          axisLabelVisible: true,
-        };
+      var lineWidth = 1;
+      var priceLine = {
+        price: 30,
+        // price: minimumPrice,
+        title: minimumPrice,
+        color: "green",
+        lineWidth,
+        lineStyle: LineStyle.Dotted,
+        axisLabelVisible: true,
+      };
 
-        series.createPriceLine(priceLine);
-      }
+      series.createPriceLine(priceLine);
     }
   };
 
