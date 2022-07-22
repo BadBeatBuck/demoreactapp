@@ -11,7 +11,6 @@ import {
 import Constants from "../../Constants";
 
 export const ChartComponent = (props) => {
-  console.log({ props });
   const {
     colors: {},
   } = props;
@@ -86,7 +85,7 @@ export const ChartComponent = (props) => {
     series.createPriceLine(minPriceLine);
   };
 
-  const createChart2 = ({}) => {
+  const createChart2 = ({ candleData }) => {
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
@@ -136,7 +135,7 @@ export const ChartComponent = (props) => {
       chart.applyOptions({ width: chartContainerRef.current.clientWidth });
     };
 
-    const chart = createChart2({});
+    const chart = createChart2({ candleData: props.candleData });
     window.addEventListener("resize", handleResize);
 
     return () => {
