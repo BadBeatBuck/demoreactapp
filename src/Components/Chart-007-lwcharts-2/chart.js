@@ -33,6 +33,8 @@ export const ChartComponent = (props) => {
   };
 
   const addLines = ({ chart, configuratorData, candleData }) => {
+    console.log({ configuratorData });
+
     var series = chart.addLineSeries({
       priceScaleId: "right",
       // priceScaleId: "left",
@@ -70,29 +72,32 @@ export const ChartComponent = (props) => {
 
     const stepSize = (priceHigh2 - priceLow2) / numSlices2;
 
-    for (let i = 0; i < 1 + 1; i++) {
+    for (let i = 0; i < 0 + 1; i++) {
       // for (let i = 0; i < numSlices2 + 1; i++) {
       // const value = 22_300;
       const value = priceLow2 + i * stepSize;
       // const minimumPrice = value;
       console.log({ value });
 
-      const price = 23_300;
+      const price = value;
       // const price = 22_300;
 
-      var lineWidth = 1;
-      var priceLine = {
-        priceScaleId: "right",
-        price,
-        // price: parseInt(value),
-        title: value,
-        color: "green",
-        lineWidth,
-        lineStyle: LineStyle.Dotted,
-        axisLabelVisible: true,
-      };
+      if (price > 0) {
+        console.log("price", price);
 
-      series.createPriceLine(priceLine);
+        var lineWidth = 1;
+        var priceLine = {
+          priceScaleId: "right",
+          price,
+          title: value,
+          color: "green",
+          lineWidth,
+          lineStyle: LineStyle.Dotted,
+          axisLabelVisible: true,
+        };
+
+        series.createPriceLine(priceLine);
+      }
     }
   };
 
