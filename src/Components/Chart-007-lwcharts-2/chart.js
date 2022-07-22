@@ -28,9 +28,8 @@ export const ChartComponent = (props) => {
       wickUpColor: "#838ca1",
     });
 
-    const test = transformData({ data: props.candleData });
-
-    candlestickSeries.setData(test);
+    const cleanedData = transformData({ data: props.candleData });
+    candlestickSeries.setData(cleanedData);
   };
 
   const addLines = ({ chart }) => {
@@ -102,11 +101,6 @@ export const ChartComponent = (props) => {
       handleScroll: {
         vertTouchDrag: false,
       },
-
-      //
-      //
-      //
-      //
       layout: {
         backgroundColor: "#253248",
         textColor: "rgba(255, 255, 255, 0.9)",
@@ -130,11 +124,10 @@ export const ChartComponent = (props) => {
       },
     });
 
-    addLines({ chart });
     addCandles({ chart });
+    addLines({ chart });
 
     chart.timeScale().fitContent();
-
     return chart;
   };
 
