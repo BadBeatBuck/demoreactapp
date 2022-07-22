@@ -83,6 +83,14 @@ export const ChartComponent = (props) => {
       // },
     });
 
+    chart.priceScale("left").applyOptions({
+      alignLabels: false,
+      // scaleMargins: {
+      //   top: 0.8,
+      //   bottom: 0,
+      // },
+    });
+
     return chart;
   };
 
