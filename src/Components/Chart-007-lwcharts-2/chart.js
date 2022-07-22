@@ -33,7 +33,7 @@ export const ChartComponent = (props) => {
 
   const addLines = ({ chart, configuratorData, candleData }) => {
     var series = chart.addLineSeries({
-      priceScaleId: "left",
+      priceScaleId: "right",
       color: "rgb(0, 120, 255)",
       lineWidth: 1,
       crosshairMarkerVisible: false,
