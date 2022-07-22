@@ -16,6 +16,21 @@ export const ChartComponent = (props) => {
   } = props;
   const chartContainerRef = useRef();
 
+  useEffect(() => {
+    const handleResize = () => {
+      chart.applyOptions({ width: chartContainerRef.current.clientWidth });
+    };
+
+    const { configuratorData = {}, candleData } = props;
+    const chart = createChart2({ candleData, configuratorData });
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      chart.remove();
+    };
+  }, [props.candleData]);
+
   const addCandles = ({ chart }) => {
     const candlestickSeries = chart.addCandlestickSeries({
       priceScaleId: "right",
@@ -140,21 +155,6 @@ export const ChartComponent = (props) => {
     chart.timeScale().fitContent();
     return chart;
   };
-
-  useEffect(() => {
-    const handleResize = () => {
-      chart.applyOptions({ width: chartContainerRef.current.clientWidth });
-    };
-
-    const { configuratorData = {}, candleData } = props;
-    const chart = createChart2({ candleData, configuratorData });
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      chart.remove();
-    };
-  }, [props.candleData]);
 
   return <div className={css.main} ref={chartContainerRef} />;
 };
