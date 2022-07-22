@@ -126,7 +126,7 @@ export const ChartComponent = (props) => {
     var data = [
       {
         time: {
-          year: 2022,
+          year: 2020,
           month: 1,
           day: 1,
         },
@@ -134,7 +134,7 @@ export const ChartComponent = (props) => {
       },
       {
         time: {
-          year: 2022,
+          year: 2023,
           month: 1,
           day: 2,
         },
@@ -163,9 +163,9 @@ export const ChartComponent = (props) => {
           color: "green",
           lineWidth,
           lineStyle: LineStyle.Dotted,
-          // axisLabelVisible: false,
           axisLabelVisible: true,
           lineVisible: true,
+          // axisLabelVisible: false,
           // lineVisible: false,
         };
 
