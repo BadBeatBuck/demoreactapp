@@ -15,6 +15,7 @@ export const ChartComponent = (props) => {
     colors: {},
   } = props;
   const chartContainerRef = useRef();
+  let chart = null;
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,14 +23,60 @@ export const ChartComponent = (props) => {
     };
 
     const { configuratorData = {}, candleData } = props;
-    const chart = createChart2({ candleData, configuratorData });
+
+    chart = createChart2({});
+    console.log({ chart });
+    addCandles({ chart });
+    addLines({ chart, configuratorData, candleData });
+    chart.timeScale().fitContent();
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
       chart.remove();
     };
-  }, [props.candleData]);
+  }, [props.candleData, props.configuratorData]);
+
+  const createChart2 = ({}) => {
+    const chart = createChart(chartContainerRef.current, {
+      width: chartContainerRef.current.clientWidth,
+      height: chartContainerRef.current.clientHeight,
+      rightPriceScale: {
+        visible: true,
+        borderColor: "rgba(197, 203, 206, 1)",
+      },
+      leftPriceScale: {
+        visible: true,
+        borderColor: "rgba(197, 203, 206, 1)",
+      },
+      handleScroll: {
+        vertTouchDrag: false,
+      },
+      layout: {
+        backgroundColor: "#253248",
+        textColor: "rgba(255, 255, 255, 0.9)",
+      },
+      grid: {
+        vertLines: {
+          color: "#334158",
+        },
+        horzLines: {
+          color: "#334158",
+        },
+      },
+      crosshair: {
+        mode: CrosshairMode.Normal,
+      },
+      priceScale: {
+        borderColor: "#485c7b",
+      },
+      timeScale: {
+        borderColor: "#485c7b",
+      },
+    });
+
+    return chart;
+  };
 
   const addCandles = ({ chart }) => {
     const candlestickSeries = chart.addCandlestickSeries({
@@ -109,51 +156,6 @@ export const ChartComponent = (props) => {
         series.createPriceLine(priceLine);
       }
     }
-  };
-
-  const createChart2 = ({ configuratorData, candleData }) => {
-    const chart = createChart(chartContainerRef.current, {
-      width: chartContainerRef.current.clientWidth,
-      height: chartContainerRef.current.clientHeight,
-      rightPriceScale: {
-        visible: true,
-        borderColor: "rgba(197, 203, 206, 1)",
-      },
-      leftPriceScale: {
-        visible: true,
-        borderColor: "rgba(197, 203, 206, 1)",
-      },
-      handleScroll: {
-        vertTouchDrag: false,
-      },
-      layout: {
-        backgroundColor: "#253248",
-        textColor: "rgba(255, 255, 255, 0.9)",
-      },
-      grid: {
-        vertLines: {
-          color: "#334158",
-        },
-        horzLines: {
-          color: "#334158",
-        },
-      },
-      crosshair: {
-        mode: CrosshairMode.Normal,
-      },
-      priceScale: {
-        borderColor: "#485c7b",
-      },
-      timeScale: {
-        borderColor: "#485c7b",
-      },
-    });
-
-    addCandles({ chart });
-    addLines({ chart, configuratorData, candleData });
-
-    chart.timeScale().fitContent();
-    return chart;
   };
 
   return <div className={css.main} ref={chartContainerRef} />;
