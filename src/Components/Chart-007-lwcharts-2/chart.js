@@ -75,6 +75,14 @@ export const ChartComponent = (props) => {
       },
     });
 
+    chart.priceScale("right").applyOptions({
+      alignLabels: false,
+      // scaleMargins: {
+      //   top: 0.8,
+      //   bottom: 0,
+      // },
+    });
+
     return chart;
   };
 
