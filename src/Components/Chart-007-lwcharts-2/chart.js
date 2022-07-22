@@ -17,6 +17,22 @@ export const ChartComponent = (props) => {
   } = props;
   const chartContainerRef = useRef();
 
+  const addCandles = ({ chart }) => {
+    const candlestickSeries = chart.addCandlestickSeries({
+      priceScaleId: "left",
+      upColor: "#4bffb5",
+      downColor: "#ff4976",
+      borderDownColor: "#ff4976",
+      borderUpColor: "#4bffb5",
+      wickDownColor: "#838ca1",
+      wickUpColor: "#838ca1",
+    });
+
+    const test = transformData({ data: props.candleData });
+
+    candlestickSeries.setData(test);
+  };
+
   const addLines = ({ chart }) => {
     var series = chart.addLineSeries({
       color: "rgb(0, 120, 255)",
@@ -25,6 +41,7 @@ export const ChartComponent = (props) => {
       lastValueVisible: false,
       priceLineVisible: false,
     });
+
     var data = [
       {
         time: {
@@ -56,7 +73,6 @@ export const ChartComponent = (props) => {
         minimumPrice = price;
       }
     }
-    var avgPrice = (maximumPrice + minimumPrice) / 2;
 
     var lineWidth = 1;
     var minPriceLine = {
@@ -67,26 +83,8 @@ export const ChartComponent = (props) => {
       axisLabelVisible: true,
       title: "minimum price",
     };
-    var avgPriceLine = {
-      price: avgPrice,
-      color: "#be1238",
-      lineWidth: lineWidth,
-      lineStyle: LineStyle.Solid,
-      axisLabelVisible: true,
-      title: "average price",
-    };
-    var maxPriceLine = {
-      price: maximumPrice,
-      color: "#be1238",
-      lineWidth: lineWidth,
-      lineStyle: LineStyle.Solid,
-      axisLabelVisible: true,
-      title: "maximum price",
-    };
 
     series.createPriceLine(minPriceLine);
-    series.createPriceLine(avgPriceLine);
-    series.createPriceLine(maxPriceLine);
   };
 
   const createChart2 = ({}) => {
@@ -156,20 +154,8 @@ export const ChartComponent = (props) => {
     });
 
     addLines({ chart });
+    addCandles({ chart });
 
-    const candlestickSeries = chart.addCandlestickSeries({
-      priceScaleId: "left",
-      upColor: "#4bffb5",
-      downColor: "#ff4976",
-      borderDownColor: "#ff4976",
-      borderUpColor: "#4bffb5",
-      wickDownColor: "#838ca1",
-      wickUpColor: "#838ca1",
-    });
-
-    const test = transformData({ data: props.candleData });
-
-    candlestickSeries.setData(test);
     chart.timeScale().fitContent();
 
     return chart;
