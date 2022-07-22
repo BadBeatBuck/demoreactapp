@@ -164,8 +164,8 @@ const transformData = ({ data }) => {
     const defs = Constants.ohlcvDefs;
     const { open, close, high, low, time } = defs;
 
-    var d = new Date(item[time]);
-    const time2 = Math.floor(d.getTime() / 1000);
+    var date = new Date(item[time]);
+    const time2 = Math.floor(date.getTime() / 1000);
 
     const newItem = {
       close: item[close],
