@@ -70,17 +70,19 @@ export const ChartComponent = (props) => {
 
     const stepSize = (priceHigh2 - priceLow2) / numSlices2;
 
-    for (let i = 0; i < numSlices2 + 1; i++) {
+    for (let i = 0; i < 1 + 1; i++) {
+      // for (let i = 0; i < numSlices2 + 1; i++) {
+      // const value = 22_300;
       const value = priceLow2 + i * stepSize;
-      const minimumPrice = value;
+      // const minimumPrice = value;
+      console.log({ value });
 
       var lineWidth = 1;
       var priceLine = {
         priceScaleId: "right",
-        price: 22_500,
-        // price: 30,
-        // price: minimumPrice,
-        title: minimumPrice,
+        price: 23_500,
+        // price: parseInt(value),
+        title: value,
         color: "green",
         lineWidth,
         lineStyle: LineStyle.Dotted,
