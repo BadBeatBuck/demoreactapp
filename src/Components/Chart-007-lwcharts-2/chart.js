@@ -17,11 +17,7 @@ export const ChartComponent = (props) => {
   } = props;
   const chartContainerRef = useRef();
 
-  useEffect(() => {
-    const handleResize = () => {
-      chart.applyOptions({ width: chartContainerRef.current.clientWidth });
-    };
-
+  const createChart2 = ({}) => {
     const chart = createChart(chartContainerRef.current, {
       // width: "auto",
       width: chartContainerRef.current.clientWidth,
@@ -172,6 +168,15 @@ export const ChartComponent = (props) => {
     candlestickSeries.setData(test);
     chart.timeScale().fitContent();
 
+    return chart;
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      chart.applyOptions({ width: chartContainerRef.current.clientWidth });
+    };
+
+    const chart = createChart2({});
     window.addEventListener("resize", handleResize);
 
     return () => {
