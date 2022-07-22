@@ -259,13 +259,14 @@ function Dashboard() {
   return (
     <div className={css.main}>
       <div className={css.chartRows}>
-        <Chart007 colors={test.colors} candleData={candleData} />
+        <Chart007
+          colors={test.colors}
+          candleData={candleData}
+          configuratorData={{ priceLow, priceHigh }}
+        />
         {/* <Chart005 colors={test.colors} candleData={candleData} /> */}
-        {/* <div className={css.chartRow}> */}
         {/* <div className={css.chartRow}>
             <div className={css.form}>{renderForm()}</div>
-            <Chart003 data={candleData} className={css.chart} />
-            <Chart003 data={candleData} className={css.chart} />
           </div> */}
         <div className={css.chartRow}>
           <div className={css.form}>{renderForm()}</div>

@@ -31,7 +31,44 @@ export const ChartComponent = (props) => {
     candlestickSeries.setData(cleanedData);
   };
 
-  const addLines = ({ chart }) => {
+  const createGridLines = ({ candleData, configuratorData }) => {
+    const numSlices = 10;
+    const gridLines = [];
+    const priceLow2 = parseInt(configuratorData.priceLow);
+    const priceHigh2 = parseInt(configuratorData.priceHigh);
+    const numSlices2 = parseInt(numSlices);
+
+    const stepSize = (priceHigh2 - priceLow2) / numSlices2;
+
+    for (let i = 0; i < numSlices2 + 1; i++) {
+      const value = priceLow2 + i * stepSize;
+      const numPoints = candleData.length;
+
+      const data = [];
+      for (let i = 0; i < numPoints; i++) {
+        if (candleData?.[i]) {
+          const newData = [candleData[i][Constants.ohlcvDefs.time], value];
+          data.push(newData);
+        }
+      }
+
+      const dummyData = [...Array(numPoints).keys()];
+      dummyData.fill(value, 0, numPoints);
+      const singleSeries = {
+        data: data,
+        dataGrouping: { enabled: false },
+        tooltip: { valueDecimals: 2 },
+        type: "line",
+        name: " Volume",
+        enableMouseTracking: false,
+      };
+      gridLines.push(singleSeries);
+    }
+
+    return { gridLines };
+  };
+
+  const addLines = ({ chart, configuratorData, candleData }) => {
     var series = chart.addLineSeries({
       color: "rgb(0, 120, 255)",
       lineWidth: 1,
@@ -43,7 +80,7 @@ export const ChartComponent = (props) => {
     var data = [
       {
         time: {
-          year: 2018,
+          year: 2022,
           month: 1,
           day: 1,
         },
@@ -51,7 +88,7 @@ export const ChartComponent = (props) => {
       },
       {
         time: {
-          year: 2018,
+          year: 2022,
           month: 1,
           day: 2,
         },
@@ -60,32 +97,23 @@ export const ChartComponent = (props) => {
     ];
     series.setData(data);
 
-    var minimumPrice = data[0].value;
-    var maximumPrice = minimumPrice;
-    for (var i = 1; i < data.length; i++) {
-      var price = data[i].value;
-      if (price > maximumPrice) {
-        maximumPrice = price;
-      }
-      if (price < minimumPrice) {
-        minimumPrice = price;
-      }
-    }
+    const minimumPrice = 32;
 
     var lineWidth = 1;
-    var minPriceLine = {
+    var priceLine = {
       price: minimumPrice,
       color: "#be1238",
       lineWidth: lineWidth,
-      lineStyle: LineStyle.Solid,
+      lineStyle: LineStyle.Dotted,
+      // axisLabelVisible: false,
       axisLabelVisible: true,
-      title: "minimum price",
+      title: minimumPrice,
     };
 
-    series.createPriceLine(minPriceLine);
+    series.createPriceLine(priceLine);
   };
 
-  const createChart2 = ({ candleData }) => {
+  const createChart2 = ({ configuratorData, candleData }) => {
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
@@ -124,7 +152,7 @@ export const ChartComponent = (props) => {
     });
 
     addCandles({ chart });
-    addLines({ chart });
+    addLines({ chart, configuratorData, candleData });
 
     chart.timeScale().fitContent();
     return chart;
@@ -135,7 +163,9 @@ export const ChartComponent = (props) => {
       chart.applyOptions({ width: chartContainerRef.current.clientWidth });
     };
 
-    const chart = createChart2({ candleData: props.candleData });
+    const { configuratorData, candleData } = props;
+
+    const chart = createChart2({ candleData, configuratorData });
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -146,8 +176,6 @@ export const ChartComponent = (props) => {
 
   return <div className={css.main} ref={chartContainerRef} />;
 };
-
-const initialData = [];
 
 const transformData = ({ data }) => {
   const output = data.map((item) => {
@@ -171,5 +199,4 @@ const transformData = ({ data }) => {
 
 export function Chart007(props) {
   return <ChartComponent {...props} />;
-  // return <ChartComponent {...props} data={initialData} />;
 }
