@@ -78,13 +78,16 @@ export const ChartComponent = (props) => {
       if (price > 0) {
         var lineWidth = 1;
         var priceLine = {
-          priceScaleId: "right",
+          priceScaleId: "left",
+          // priceScaleId: "right",
           price,
-          title: price,
+          // title: price,
           color: "green",
           lineWidth,
           lineStyle: LineStyle.Dotted,
-          axisLabelVisible: true,
+          // axisLabelVisible: false,
+          // lineVisible: false,
+          // axisLabelVisible: true,
         };
 
         series.createPriceLine(priceLine);
