@@ -31,45 +31,9 @@ export const ChartComponent = (props) => {
     candlestickSeries.setData(cleanedData);
   };
 
-  const createGridLines = ({ candleData, configuratorData }) => {
-    const numSlices = 10;
-    const gridLines = [];
-    const priceLow2 = parseInt(configuratorData.priceLow);
-    const priceHigh2 = parseInt(configuratorData.priceHigh);
-    const numSlices2 = parseInt(numSlices);
-
-    const stepSize = (priceHigh2 - priceLow2) / numSlices2;
-
-    for (let i = 0; i < numSlices2 + 1; i++) {
-      const value = priceLow2 + i * stepSize;
-      const numPoints = candleData.length;
-
-      const data = [];
-      for (let i = 0; i < numPoints; i++) {
-        if (candleData?.[i]) {
-          const newData = [candleData[i][Constants.ohlcvDefs.time], value];
-          data.push(newData);
-        }
-      }
-
-      const dummyData = [...Array(numPoints).keys()];
-      dummyData.fill(value, 0, numPoints);
-      const singleSeries = {
-        data: data,
-        dataGrouping: { enabled: false },
-        tooltip: { valueDecimals: 2 },
-        type: "line",
-        name: " Volume",
-        enableMouseTracking: false,
-      };
-      gridLines.push(singleSeries);
-    }
-
-    return { gridLines };
-  };
-
   const addLines = ({ chart, configuratorData, candleData }) => {
     var series = chart.addLineSeries({
+      priceScaleId: "right",
       color: "rgb(0, 120, 255)",
       lineWidth: 1,
       crosshairMarkerVisible: false,
@@ -97,20 +61,33 @@ export const ChartComponent = (props) => {
     ];
     series.setData(data);
 
-    const minimumPrice = 32;
+    const numSlices = 10;
+    const priceLow2 = parseInt(configuratorData.priceLow);
+    const priceHigh2 = parseInt(configuratorData.priceHigh);
+    const numSlices2 = parseInt(numSlices);
 
-    var lineWidth = 1;
-    var priceLine = {
-      price: minimumPrice,
-      color: "#be1238",
-      lineWidth: lineWidth,
-      lineStyle: LineStyle.Dotted,
-      // axisLabelVisible: false,
-      axisLabelVisible: true,
-      title: minimumPrice,
-    };
+    const stepSize = (priceHigh2 - priceLow2) / numSlices2;
 
-    series.createPriceLine(priceLine);
+    for (let i = 0; i < numSlices2 + 1; i++) {
+      const value = priceLow2 + i * stepSize;
+      const minimumPrice = value;
+      console.log({ minimumPrice });
+
+      if (value) {
+        var lineWidth = 1;
+        var priceLine = {
+          // price: 30,
+          price: minimumPrice,
+          title: minimumPrice,
+          color: "green",
+          lineWidth,
+          lineStyle: LineStyle.Dotted,
+          axisLabelVisible: true,
+        };
+
+        series.createPriceLine(priceLine);
+      }
+    }
   };
 
   const createChart2 = ({ configuratorData, candleData }) => {
@@ -163,8 +140,7 @@ export const ChartComponent = (props) => {
       chart.applyOptions({ width: chartContainerRef.current.clientWidth });
     };
 
-    const { configuratorData, candleData } = props;
-
+    const { configuratorData = {}, candleData } = props;
     const chart = createChart2({ candleData, configuratorData });
     window.addEventListener("resize", handleResize);
 
