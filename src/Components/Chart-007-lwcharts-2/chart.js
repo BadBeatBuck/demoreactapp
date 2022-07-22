@@ -89,37 +89,14 @@ export const ChartComponent = (props) => {
 
   const createChart2 = ({}) => {
     const chart = createChart(chartContainerRef.current, {
-      // width: "auto",
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
-      // width: chartContainerRef.current.clientWidth || 600,
-      // width: 600,
-      // height: 300,
       rightPriceScale: {
         visible: true,
         borderColor: "rgba(197, 203, 206, 1)",
       },
       leftPriceScale: {
         visible: true,
-        borderColor: "rgba(197, 203, 206, 1)",
-      },
-      layout: {
-        // backgroundColor: "#ffffff",
-        backgroundColor: "#253248",
-        textColor: "rgba(33, 56, 77, 1)",
-      },
-      grid: {
-        horzLines: {
-          color: "#F0F3FA",
-        },
-        vertLines: {
-          color: "#F0F3FA",
-        },
-      },
-      crosshair: {
-        mode: CrosshairMode.Normal,
-      },
-      timeScale: {
         borderColor: "rgba(197, 203, 206, 1)",
       },
       handleScroll: {
