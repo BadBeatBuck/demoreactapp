@@ -59,9 +59,11 @@ export const ChartComponent = (props) => {
       grid: {
         vertLines: {
           color: "#334158",
+          visible: false,
         },
         horzLines: {
           color: "#334158",
+          visible: false,
         },
       },
       crosshair: {
@@ -116,7 +118,9 @@ export const ChartComponent = (props) => {
     var series = chart.addLineSeries({
       priceScaleId: "right",
       // priceScaleId: "left",
-      color: "rgb(0, 120, 255)",
+      color: "black",
+      // visible: false,
+      // color: "rgb(0, 120, 255)",
       lineWidth: 1,
       crosshairMarkerVisible: false,
       lastValueVisible: false,
@@ -134,7 +138,7 @@ export const ChartComponent = (props) => {
       },
       {
         time: {
-          year: 2023,
+          year: 2020,
           month: 1,
           day: 2,
         },
@@ -152,25 +156,32 @@ export const ChartComponent = (props) => {
 
     for (let i = 0; i < numSlices2 + 1; i++) {
       const price = priceLow2 + i * stepSize;
-
-      if (price > 0) {
-        var lineWidth = 1;
-        var priceLine = {
-          // priceScaleId: "left",
-          priceScaleId: "right",
-          price,
-          // title: price,
-          color: "green",
-          lineWidth,
-          lineStyle: LineStyle.Dotted,
-          axisLabelVisible: true,
-          lineVisible: true,
-          // axisLabelVisible: false,
-          // lineVisible: false,
-        };
-
-        series.createPriceLine(priceLine);
+      let color;
+      let lineStyle;
+      if (i === 0 || i === numSlices2) {
+        lineStyle = LineStyle.Solid;
+        color = "#d81ba8";
+      } else {
+        lineStyle = LineStyle.Dotted;
+        color = "green";
       }
+
+      var lineWidth = 1;
+      var priceLine = {
+        // priceScaleId: "left",
+        priceScaleId: "right",
+        price,
+        // title: price,
+        color,
+        lineWidth,
+        lineStyle,
+        axisLabelVisible: true,
+        lineVisible: true,
+        // axisLabelVisible: false,
+        // lineVisible: false,
+      };
+
+      series.createPriceLine(priceLine);
     }
   };
 
