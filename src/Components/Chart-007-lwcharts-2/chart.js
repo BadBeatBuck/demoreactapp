@@ -77,10 +77,13 @@ export const ChartComponent = (props) => {
       // const minimumPrice = value;
       console.log({ value });
 
+      const price = 23_300;
+      // const price = 22_300;
+
       var lineWidth = 1;
       var priceLine = {
         priceScaleId: "right",
-        price: 23_500,
+        price,
         // price: parseInt(value),
         title: value,
         color: "green",
