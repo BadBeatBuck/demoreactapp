@@ -18,7 +18,8 @@ export const ChartComponent = (props) => {
 
   const addCandles = ({ chart }) => {
     const candlestickSeries = chart.addCandlestickSeries({
-      priceScaleId: "left",
+      priceScaleId: "right",
+      // priceScaleId: "left",
       upColor: "#4bffb5",
       downColor: "#ff4976",
       borderDownColor: "#ff4976",
@@ -34,6 +35,7 @@ export const ChartComponent = (props) => {
   const addLines = ({ chart, configuratorData, candleData }) => {
     var series = chart.addLineSeries({
       priceScaleId: "right",
+      // priceScaleId: "left",
       color: "rgb(0, 120, 255)",
       lineWidth: 1,
       crosshairMarkerVisible: false,
@@ -48,7 +50,7 @@ export const ChartComponent = (props) => {
           month: 1,
           day: 1,
         },
-        value: 27.58405298746434,
+        value: 22_500,
       },
       {
         time: {
@@ -56,7 +58,7 @@ export const ChartComponent = (props) => {
           month: 1,
           day: 2,
         },
-        value: 31.74088841431117,
+        value: 22_500,
       },
     ];
     series.setData(data);
@@ -74,7 +76,9 @@ export const ChartComponent = (props) => {
 
       var lineWidth = 1;
       var priceLine = {
-        price: 30,
+        priceScaleId: "right",
+        price: 22_500,
+        // price: 30,
         // price: minimumPrice,
         title: minimumPrice,
         color: "green",
