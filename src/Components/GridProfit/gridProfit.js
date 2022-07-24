@@ -8,30 +8,36 @@ import Constants from "../../Constants";
 
 import css from "./gridProfit.module.scss";
 
-function GridProfit() {
+const calcTotalProfit = ({ priceLow, priceHigh, numSlices }) => {
+  return 999;
+};
+
+function GridProfit(props) {
+  console.log({ props });
+
+  const { priceLow, priceHigh, numSlices } = props;
+
   const params = {
     priceLow: 100,
     priceHigh: 200,
     numSlices: 12,
   };
 
-  const [priceLow, setPriceLow] = useState(params.priceLow);
-  const [priceHigh, setPriceHigh] = useState(params.priceHigh);
-  const [numSlices, setNumSlices] = useState(params.numSlices);
-  const [candleData, setCandleData] = useState([]);
+  // const [priceLow, setPriceLow] = useState(params.priceLow);
+  // const [priceHigh, setPriceHigh] = useState(params.priceHigh);
 
   useEffect(() => {
     // fetchData();
   }, []);
 
-  const totalProfit = 999;
+  const totalProfit = calcTotalProfit({ priceLow, priceHigh, numSlices });
 
   return (
     <div className={css.main}>
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label>High Price</Form.Label>
-          <Form.Text value={totalProfit} type="number" step="100" />
+          <Form.Label>Total Profit</Form.Label>
+          <Form.Control value={totalProfit} type="number" step="100" />
         </Form.Group>
       </Form>
     </div>

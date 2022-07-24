@@ -11,9 +11,7 @@ import {
 import Constants from "../../Constants";
 
 export const ChartComponent = (props) => {
-  const {
-    // colors: {},
-  } = props;
+  const {} = props;
   const chartContainerRef = useRef();
   let chart = null;
 
