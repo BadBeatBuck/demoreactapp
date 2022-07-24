@@ -250,7 +250,7 @@ function Dashboard() {
           <Chart007
             colors={test.colors}
             candleData={candleData}
-            configuratorData={{ priceLow, priceHigh }}
+            configuratorData={{ priceLow, priceHigh, numSlices }}
           />
           {/* <Chart003 data={candleData} className={css.chart} /> */}
           {/* <Chart003

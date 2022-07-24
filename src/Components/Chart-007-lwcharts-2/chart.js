@@ -147,7 +147,8 @@ export const ChartComponent = (props) => {
     ];
     series.setData(data);
 
-    const numSlices = 10;
+    const numSlices = configuratorData.numSlices;
+    // const numSlices = 10;
     const priceLow2 = parseInt(configuratorData.priceLow);
     const priceHigh2 = parseInt(configuratorData.priceHigh);
     const numSlices2 = parseInt(numSlices);
