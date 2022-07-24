@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 
 import { Button, Form } from "react-bootstrap";
-import { DataStore } from "@aws-amplify/datastore";
-import { Bot } from "../../models";
+import last from "lodash.last";
 
 import Constants from "../../Constants";
 
 import css from "./gridProfit.module.scss";
 
-const calcTotalProfit = ({ priceLow, priceHigh, numSlices }) => {
+const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
+  const priceStart = candleData[0]?.[Constants.ohlcvDefs.high];
+  const priceEnd = last(candleData)?.[Constants.ohlcvDefs.high];
+  console.log({ priceStart, priceEnd });
+
   return 999;
 };
 
 function GridProfit(props) {
   console.log({ props });
 
-  const { priceLow, priceHigh, numSlices } = props;
+  const { priceLow, priceHigh, numSlices, candleData } = props;
 
   const params = {
     priceLow: 100,
@@ -30,7 +33,12 @@ function GridProfit(props) {
     // fetchData();
   }, []);
 
-  const totalProfit = calcTotalProfit({ priceLow, priceHigh, numSlices });
+  const totalProfit = calcTotalProfit({
+    priceLow,
+    priceHigh,
+    numSlices,
+    candleData,
+  });
 
   return (
     <div className={css.main}>

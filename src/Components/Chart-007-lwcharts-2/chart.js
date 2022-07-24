@@ -1,5 +1,6 @@
 // https://tradingview.github.io/lightweight-charts/tutorials/react/simple
 import React, { useEffect, useRef } from "react";
+import last from "lodash.last";
 import css from "./chart.module.scss";
 
 import {
@@ -23,7 +24,7 @@ export const ChartComponent = (props) => {
     const { configuratorData = {}, candleData } = props;
 
     chart = createChart2({});
-    console.log({ chart });
+    // console.log({ chart });
     addCandles({ chart });
     addLines({ chart, configuratorData, candleData });
     chart.timeScale().fitContent();
@@ -111,7 +112,7 @@ export const ChartComponent = (props) => {
   };
 
   const addLines = ({ chart, configuratorData, candleData }) => {
-    console.log({ configuratorData });
+    // console.log({ configuratorData });
 
     var series = chart.addLineSeries({
       priceScaleId: "right",
@@ -146,12 +147,13 @@ export const ChartComponent = (props) => {
     series.setData(data);
 
     const numSlices = configuratorData.numSlices;
-    // const numSlices = 10;
     const priceLow2 = parseInt(configuratorData.priceLow);
     const priceHigh2 = parseInt(configuratorData.priceHigh);
     const numSlices2 = parseInt(numSlices);
 
     const stepSize = (priceHigh2 - priceLow2) / numSlices2;
+
+    const priceEnd = last(candleData)?.[Constants.ohlcvDefs.high];
 
     for (let i = 0; i < numSlices2 + 1; i++) {
       const price = priceLow2 + i * stepSize;
@@ -162,7 +164,11 @@ export const ChartComponent = (props) => {
         color = "#d81ba8";
       } else {
         lineStyle = LineStyle.Dotted;
-        color = "green";
+        if (price > priceEnd) {
+          color = "green";
+        } else {
+          color = "red";
+        }
       }
 
       var lineWidth = 1;

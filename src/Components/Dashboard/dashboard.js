@@ -238,7 +238,10 @@ function Dashboard() {
           <div className={css.form}>
             {renderForm()}
 
-            <GridProfit configuratorData={configuratorData} />
+            <GridProfit
+              configuratorData={configuratorData}
+              candleData={candleData}
+            />
           </div>
           <Chart007
             // colors={test.colors}
