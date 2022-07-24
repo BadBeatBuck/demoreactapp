@@ -8,17 +8,15 @@ import "@fortune-sheet/react/dist/index.css";
 import { DataStore } from "@aws-amplify/datastore";
 import { Bot } from "../../models";
 
+import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 import Table003 from "../table-003-mui-rctable/table";
 import Chart003 from "../Chart-003-highstock/chart";
+import { Chart007 } from "../Chart-007-lwcharts-2/chart";
+
+import GridProfit from "../GridProfit/gridProfit";
 import Constants from "../../Constants";
 
-import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
-
 import css from "./dashboard.module.scss";
-import { Chart004 } from "../Chart-004-lwcharts/chart";
-import { Chart005 } from "../Chart-005-lwcharts/chart";
-import Chart006 from "../Chart-006-react-tv-widgets/chart";
-import { Chart007 } from "../Chart-007-lwcharts-2/chart";
 
 const numPoints = 500;
 
@@ -58,8 +56,6 @@ function Dashboard() {
   const fetchCrypto = async () => {
     // const candleInterval = "1m";
     const candleInterval = "5m";
-    // const candleInterval = "15m";
-    // const candleInterval = "1d";
     const tokenPair = "BTC/USDT";
 
     const ohlcv = await new ccxt.binance().fetchOHLCV(
@@ -115,14 +111,6 @@ function Dashboard() {
             value={priceLow}
             type="number"
             step="100"
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Num Slices</Form.Label>
-          <Form.Control
-            onChange={onNumSlices}
-            value={numSlices}
-            type="number"
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -246,7 +234,11 @@ function Dashboard() {
     <div className={css.main}>
       <div className={css.chartRows}>
         <div className={css.chartRow}>
-          <div className={css.form}>{renderForm()}</div>
+          <div className={css.form}>
+            {renderForm()}
+
+            <GridProfit />
+          </div>
           <Chart007
             colors={test.colors}
             candleData={candleData}
