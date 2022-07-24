@@ -6,6 +6,7 @@
 
     .form {
         display: flex;
+        flex-direction: column;
         border: 1px solid red;
         background: #d3d3fa;
         // padding: 10px;
