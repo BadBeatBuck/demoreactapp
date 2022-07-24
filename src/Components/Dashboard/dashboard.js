@@ -220,7 +220,6 @@ function Dashboard() {
   };
 
   const test = {
-    // data,
     colors: {
       backgroundColor: "white",
       lineColor: "#2962FF",
@@ -229,6 +228,8 @@ function Dashboard() {
       areaBottomColor: "rgba(41, 98, 255, 0.28)",
     },
   };
+
+  const configuratorData = { priceLow, priceHigh, numSlices };
 
   return (
     <div className={css.main}>
@@ -240,9 +241,9 @@ function Dashboard() {
             <GridProfit />
           </div>
           <Chart007
-            colors={test.colors}
+            // colors={test.colors}
             candleData={candleData}
-            configuratorData={{ priceLow, priceHigh, numSlices }}
+            configuratorData={configuratorData}
           />
           {/* <Chart003
               candleData={candleData}
