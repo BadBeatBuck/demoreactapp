@@ -7,10 +7,40 @@ import Constants from "../../Constants";
 
 import css from "./gridProfit.module.scss";
 
+const getSliceLevels = ({ priceLow, priceHigh, numSlices, candleData }) => {
+  const output = [];
+  const stepSize = (priceHigh - priceLow) / numSlices;
+  for (let i = 0; i < parseInt(numSlices) + 1; i++) {
+    const price = priceLow + i * stepSize;
+    output.push(price);
+  }
+
+  console.log({ output });
+  return output;
+};
+
 const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
   const priceStart = candleData[0]?.[Constants.ohlcvDefs.high];
   const priceEnd = last(candleData)?.[Constants.ohlcvDefs.high];
-  console.log({ priceStart, priceEnd });
+
+  const levels = getSliceLevels({
+    priceLow,
+    priceHigh,
+    numSlices,
+    candleData,
+  });
+
+  // const levels = [22000, 22500, 23000, 23500];
+  const nextBuyIndex = 1;
+  const nextSellIndex = 2;
+
+  const nextBuyPrice = levels[nextBuyIndex];
+  const nextSellPrice = levels[nextSellIndex];
+
+  const avgPrices = candleData.map((item) => {
+    return (item[Constants.ohlcvDefs.high] + item[Constants.ohlcvDefs.low]) / 2;
+  });
+  console.log({ priceStart, priceEnd, levels });
 
   return 999;
 };
@@ -18,7 +48,8 @@ const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
 function GridProfit(props) {
   console.log({ props });
 
-  const { priceLow, priceHigh, numSlices, candleData } = props;
+  const { configuratorData, candleData } = props;
+  const { priceLow, priceHigh, numSlices } = configuratorData;
 
   const params = {
     priceLow: 100,

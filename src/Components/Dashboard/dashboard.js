@@ -22,9 +22,9 @@ const numPoints = 500;
 
 function Dashboard() {
   const params = {
-    priceLow: 100,
-    priceHigh: 200,
-    numSlices: 12,
+    priceLow: 23_000,
+    priceHigh: 24_000,
+    numSlices: 10,
   };
 
   const [priceLow, setPriceLow] = useState(params.priceLow);
@@ -37,15 +37,17 @@ function Dashboard() {
     const cryptoFeed = candleData
       .slice(-numPoints)
       .map((x) => x[Constants.ohlcvDefs.close]); // closing price
-    console.log({ cryptoFeed, candleData });
+    // console.log({ cryptoFeed, candleData });
 
     const dataMin = Math.min(...cryptoFeed);
     const dataMax = Math.max(...cryptoFeed);
     const roundedMin = Math.round(dataMin / 100) * 100;
     const roundedMax = Math.round(dataMax / 100) * 100;
 
-    setPriceLow(roundedMin);
-    setPriceHigh(roundedMax);
+    setPriceLow(22000);
+    setPriceHigh(23000);
+    // setPriceLow(roundedMin);
+    // setPriceHigh(roundedMax);
     setCandleData(candleData);
   };
 
