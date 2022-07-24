@@ -252,7 +252,6 @@ function Dashboard() {
             candleData={candleData}
             configuratorData={{ priceLow, priceHigh, numSlices }}
           />
-          {/* <Chart003 data={candleData} className={css.chart} /> */}
           {/* <Chart003
               candleData={candleData}
               configuratorData={{ priceLow, priceHigh }}
@@ -260,12 +259,9 @@ function Dashboard() {
               priceHigh={priceHigh}
               className={css.chart}
             /> */}
-          {/* <Chart003 data={candleData} className={css.chart} /> */}
-          {/* </div> */}
         </div>
       </div>
       {/* <div className={css.tableRow}> */}
-      {/* <Table003 data={tableData} /> */}
       {/* <Workbook data={[{ name: "Sheet1" }]} /> */}
       {/* <Workbook {...settings} /> */}
       {/* </div> */}
