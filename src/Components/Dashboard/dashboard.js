@@ -45,7 +45,7 @@ function Dashboard() {
     const roundedMax = Math.round(dataMax / 100) * 100;
 
     setPriceLow(22000);
-    setPriceHigh(23000);
+    setPriceHigh(24000);
     // setPriceLow(roundedMin);
     // setPriceHigh(roundedMax);
     setCandleData(candleData);

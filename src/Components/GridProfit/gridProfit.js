@@ -7,7 +7,7 @@ import Constants from "../../Constants";
 
 import css from "./gridProfit.module.scss";
 
-const getSliceLevels = ({ priceLow, priceHigh, numSlices, candleData }) => {
+const getSliceLevels = ({ priceLow, priceHigh, numSlices }) => {
   const output = [];
   const stepSize = (priceHigh - priceLow) / numSlices;
   for (let i = 0; i < parseInt(numSlices) + 1; i++) {
@@ -16,6 +16,18 @@ const getSliceLevels = ({ priceLow, priceHigh, numSlices, candleData }) => {
   }
 
   console.log({ output });
+  return output;
+};
+
+const findStartIndex = ({ levels, priceStart }) => {
+  let output = 0;
+  levels.forEach((level, index) => {
+    console.log({ priceStart, level });
+    if (priceStart > level) {
+      output = index;
+    }
+  });
+
   return output;
 };
 
@@ -30,6 +42,8 @@ const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
     candleData,
   });
 
+  const startIndex = findStartIndex({ levels, priceStart });
+
   // const levels = [22000, 22500, 23000, 23500];
   const nextBuyIndex = 1;
   const nextSellIndex = 2;
@@ -40,7 +54,7 @@ const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
   const avgPrices = candleData.map((item) => {
     return (item[Constants.ohlcvDefs.high] + item[Constants.ohlcvDefs.low]) / 2;
   });
-  console.log({ priceStart, priceEnd, levels });
+  console.log({ priceStart, levels, startIndex });
 
   return 999;
 };
