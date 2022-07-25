@@ -20,20 +20,33 @@ const getSliceLevels = ({ priceLow, priceHigh, numSlices }) => {
 };
 
 const findStartIndex = ({ levels, priceStart }) => {
-  let output = 0;
+  let startIndex = 0;
   levels.forEach((level, index) => {
-    console.log({ priceStart, level });
+    console.log({ priceStart, level, index });
     if (priceStart > level) {
-      output = index;
+      startIndex = index;
     }
   });
 
-  return output;
+  return startIndex;
+};
+
+const getNextBuySellPrices = ({ currentLevelIndex, buy = true, levels }) => {
+  let nextSellIndex;
+  let nextBuyIndex;
+
+  nextSellIndex = currentLevelIndex + 1;
+  nextBuyIndex = currentLevelIndex - 1;
+
+  const nextBuyPrice = levels[nextBuyIndex];
+  const nextSellPrice = levels[nextSellIndex];
+
+  return { nextBuyPrice, nextSellPrice };
 };
 
 const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
   const priceStart = candleData[0]?.[Constants.ohlcvDefs.high];
-  const priceEnd = last(candleData)?.[Constants.ohlcvDefs.high];
+  // const priceEnd = last(candleData)?.[Constants.ohlcvDefs.high];
 
   const levels = getSliceLevels({
     priceLow,
@@ -42,19 +55,35 @@ const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
     candleData,
   });
 
-  const startIndex = findStartIndex({ levels, priceStart });
+  let currentLevelIndex = findStartIndex({ levels, priceStart });
 
-  // const levels = [22000, 22500, 23000, 23500];
-  const nextBuyIndex = 1;
-  const nextSellIndex = 2;
+  const buyEvents = [];
+  const sellEvents = [];
 
-  const nextBuyPrice = levels[nextBuyIndex];
-  const nextSellPrice = levels[nextSellIndex];
+  candleData.forEach((item) => {
+    const highWick = item[Constants.ohlcvDefs.high];
+    const lowWick = item[Constants.ohlcvDefs.low];
 
-  const avgPrices = candleData.map((item) => {
-    return (item[Constants.ohlcvDefs.high] + item[Constants.ohlcvDefs.low]) / 2;
+    const avgPrice =
+      (item[Constants.ohlcvDefs.high] + item[Constants.ohlcvDefs.low]) / 2;
+
+    const { nextBuyPrice, nextSellPrice } = getNextBuySellPrices({
+      currentLevelIndex,
+      levels,
+    });
+    console.log({ nextBuyPrice, nextSellPrice });
+
+    if (highWick > nextSellPrice) {
+      currentLevelIndex += 1;
+      sellEvents.push(item);
+    }
+
+    if (lowWick <= nextBuyPrice) {
+      currentLevelIndex -= 1;
+      buyEvents.push(item);
+    }
   });
-  console.log({ priceStart, levels, startIndex });
+  console.log({ sellEvents });
 
   return 999;
 };
