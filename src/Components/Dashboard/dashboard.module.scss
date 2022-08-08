@@ -1,6 +1,6 @@
 .main {
     display: flex;
-    // margin: auto;
+    flex: 1;
     border: 5px solid blue;
     flex-direction: column;
 
@@ -17,8 +17,8 @@
         flex-direction: column;
         border: 5px solid purple;
         background-color: rgb(130, 152, 166);
-        // flex: 1;
-        height: 50%;
+        flex: 1;
+        // height: 50%;
 
         .chartRow {
             display: flex;
@@ -53,7 +53,7 @@
             // border: 1px solid purple;
             flex-direction: column;
             display: flex;
-            margin-top: 100%;
+            // margin-top: 100%;
             margin-right: 20px;
 
             .mb-3 {
