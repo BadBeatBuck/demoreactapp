@@ -6,6 +6,7 @@ import last from "lodash.last";
 import Constants from "../../Constants";
 
 import css from "./gridProfit.module.scss";
+import Table005 from "../Table-005-fortune-sheet/table-005";
 
 const getSliceLevels = ({ priceLow, priceHigh, numSlices }) => {
   const output = [];
@@ -15,14 +16,14 @@ const getSliceLevels = ({ priceLow, priceHigh, numSlices }) => {
     output.push(price);
   }
 
-  console.log({ output });
+  // console.log({ output });
   return output;
 };
 
 const findStartIndex = ({ levels, priceStart }) => {
   let startIndex = 0;
   levels.forEach((level, index) => {
-    console.log({ priceStart, level, index });
+    // console.log({ priceStart, level, index });
     if (priceStart > level) {
       startIndex = index;
     }
@@ -94,13 +95,13 @@ const calcTotalProfit = ({ configuratorData, candleData }) => {
       currentLevelIndex += 1;
       totalSpentOnTokens -= spentPerSlice;
       sellEvents.push(item);
-      console.log({
-        buyPrice,
-        nextSellPrice,
-        priceDeltaPct,
-        gainPerSlicePct,
-        profitUsd,
-      });
+      // console.log({
+      //   buyPrice,
+      //   nextSellPrice,
+      //   priceDeltaPct,
+      //   gainPerSlicePct,
+      //   profitUsd,
+      // });
     }
 
     if (lowWick <= nextBuyPrice) {
@@ -115,7 +116,7 @@ const calcTotalProfit = ({ configuratorData, candleData }) => {
 };
 
 function GridProfit(props) {
-  console.log({ props });
+  // console.log({ props });
 
   const { configuratorData, candleData } = props;
   // const { priceLow, priceHigh, numSlices } = configuratorData;
@@ -137,6 +138,8 @@ function GridProfit(props) {
     configuratorData,
     candleData,
   });
+
+  return <Table005 />;
 
   return (
     <div className={css.main}>
