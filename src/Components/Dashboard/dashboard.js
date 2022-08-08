@@ -43,7 +43,7 @@ function Dashboard() {
     const roundedMin = Math.round(dataMin / 100) * 100;
     const roundedMax = Math.round(dataMax / 100) * 100;
 
-    setPriceLow(21_000);
+    setPriceLow(22_000);
     setPriceHigh(24_000);
     // setPriceLow(roundedMin);
     // setPriceHigh(roundedMax);
@@ -258,10 +258,10 @@ function Dashboard() {
             /> */}
         </div>
       </div>
-      {/* <div className={css.tableRow}> */}
-      {/* <Workbook data={[{ name: "Sheet1" }]} /> */}
-      {/* <Workbook {...settings} /> */}
-      {/* </div> */}
+      <div className={css.tableRow}>
+        {/* <Workbook data={[{ name: "Sheet1" }]} /> */}
+        <Workbook {...settings} />
+      </div>
     </div>
   );
 }

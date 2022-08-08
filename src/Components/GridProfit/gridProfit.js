@@ -44,9 +44,11 @@ const getNextBuySellPrices = ({ currentLevelIndex, buy = true, levels }) => {
   return { nextBuyPrice, nextSellPrice };
 };
 
-const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
+const calcTotalProfit = ({ configuratorData, candleData }) => {
   const priceStart = candleData[0]?.[Constants.ohlcvDefs.high];
   // const priceEnd = last(candleData)?.[Constants.ohlcvDefs.high];
+
+  const { priceLow, priceHigh, numSlices, stakeUsd = 1000 } = configuratorData;
 
   const levels = getSliceLevels({
     priceLow,
@@ -57,6 +59,15 @@ const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
 
   let currentLevelIndex = findStartIndex({ levels, priceStart });
 
+  const txFeePct = 0.08 / 10;
+  const deltaPerSliceUsd = (priceHigh - priceLow) / numSlices;
+  const spentPerSlice = stakeUsd / numSlices;
+  const incomePerSlice = spentPerSlice * 1;
+  const profitPerSlice = stakeUsd / numSlices;
+  let totalProfit = 0;
+  let totalTokens = 0;
+  let totalSpentOnTokens = 0;
+
   const buyEvents = [];
   const sellEvents = [];
 
@@ -64,35 +75,50 @@ const calcTotalProfit = ({ priceLow, priceHigh, numSlices, candleData }) => {
     const highWick = item[Constants.ohlcvDefs.high];
     const lowWick = item[Constants.ohlcvDefs.low];
 
-    const avgPrice =
-      (item[Constants.ohlcvDefs.high] + item[Constants.ohlcvDefs.low]) / 2;
-
     const { nextBuyPrice, nextSellPrice } = getNextBuySellPrices({
       currentLevelIndex,
       levels,
     });
-    console.log({ nextBuyPrice, nextSellPrice });
+    // console.log({ nextBuyPrice, nextSellPrice });
 
     if (highWick > nextSellPrice) {
+      const buyPrice = nextSellPrice - deltaPerSliceUsd;
+      const priceDeltaPct = ((nextSellPrice - buyPrice) / nextSellPrice) * 100;
+
+      const tokensBought = buyPrice * spentPerSlice * (1 - txFeePct);
+      const incomeReceived = (tokensBought / nextBuyPrice) * (1 - txFeePct);
+      const profitUsd = incomeReceived - spentPerSlice;
+      const gainPerSlicePct = (nextSellPrice / buyPrice - 1) * 100;
+
+      totalProfit += profitPerSlice;
       currentLevelIndex += 1;
+      totalSpentOnTokens -= spentPerSlice;
       sellEvents.push(item);
+      console.log({
+        buyPrice,
+        nextSellPrice,
+        priceDeltaPct,
+        gainPerSlicePct,
+        profitUsd,
+      });
     }
 
     if (lowWick <= nextBuyPrice) {
+      totalSpentOnTokens += spentPerSlice;
       currentLevelIndex -= 1;
       buyEvents.push(item);
     }
   });
-  console.log({ sellEvents });
+  console.log({ sellEvents, buyEvents, totalSpentOnTokens, deltaPerSliceUsd });
 
-  return 999;
+  return { spentPerSlice, totalProfit };
 };
 
 function GridProfit(props) {
   console.log({ props });
 
   const { configuratorData, candleData } = props;
-  const { priceLow, priceHigh, numSlices } = configuratorData;
+  // const { priceLow, priceHigh, numSlices } = configuratorData;
 
   const params = {
     priceLow: 100,
@@ -107,16 +133,18 @@ function GridProfit(props) {
     // fetchData();
   }, []);
 
-  const totalProfit = calcTotalProfit({
-    priceLow,
-    priceHigh,
-    numSlices,
+  const { spentPerSlice, totalProfit } = calcTotalProfit({
+    configuratorData,
     candleData,
   });
 
   return (
     <div className={css.main}>
       <Form>
+        <Form.Group className="mb-3">
+          <Form.Label>Cost Per Slice (USD)</Form.Label>
+          <Form.Control value={spentPerSlice} type="number" step="100" />
+        </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Total Profit</Form.Label>
           <Form.Control value={totalProfit} type="number" step="100" />
