@@ -138,11 +138,12 @@ function Dashboard() {
 
   const onChangeFortuneTable = (data) => {
     console.log({ data });
+    console.log(data[0]?.celldata?.[0]?.v?.v);
   };
 
-  const testData = [
+  const workSheets = [
     {
-      name: "Cell", //Worksheet name
+      name: "results", //Worksheet name
       color: "", //Worksheet color
       id: 0, //Worksheet id
       status: 1, //Worksheet active status
@@ -190,44 +191,12 @@ function Dashboard() {
       celldata: [],
       config: {},
     },
-    {
-      name: "Sheet3",
-      color: "",
-      id: "2",
-      status: 0,
-      order: 2,
-      celldata: [],
-      config: {},
-    },
   ];
 
   const settings = {
-    data: testData,
+    data: workSheets,
     onChange: onChangeFortuneTable,
     lang: "zh", // set language
-  };
-
-  const testOptions = {
-    autosize: true,
-    symbol: "BINANCE:BTCUSDT",
-    interval: "1",
-    theme: "dark",
-    style: "1",
-    locale: "en",
-    toolbar_bg: "#f1f3f6",
-    enable_publishing: false,
-    allow_symbol_change: true,
-    container_id: "tradingview_b461c",
-  };
-
-  const test = {
-    colors: {
-      backgroundColor: "white",
-      lineColor: "#2962FF",
-      textColor: "black",
-      areaTopColor: "#2962FF",
-      areaBottomColor: "rgba(41, 98, 255, 0.28)",
-    },
   };
 
   const configuratorData = { priceLow, priceHigh, numSlices };
@@ -245,7 +214,6 @@ function Dashboard() {
             />
           </div>
           <Chart007
-            // colors={test.colors}
             candleData={candleData}
             configuratorData={configuratorData}
           />
@@ -259,7 +227,6 @@ function Dashboard() {
         </div>
       </div>
       <div className={css.tableRow}>
-        {/* <Workbook data={[{ name: "Sheet1" }]} /> */}
         <Workbook {...settings} />
       </div>
     </div>
