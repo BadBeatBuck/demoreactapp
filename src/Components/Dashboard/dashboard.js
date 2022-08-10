@@ -7,8 +7,8 @@ import { DataStore } from "@aws-amplify/datastore";
 import { Bot } from "../../models";
 
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
-import Table003 from "../table-003-mui-rctable/table";
-import Chart003 from "../Chart-003-highstock/chart";
+// import Table003 from "../table-003-mui-rctable/table";
+// import Chart003 from "../Chart-003-highstock/chart";
 import { Chart007 } from "../Chart-007-lwcharts-2/chart";
 
 import GridProfit from "../GridProfit/gridProfit";
