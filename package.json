@@ -5,6 +5,7 @@
   "dependencies": {
     "@aws-amplify/core": "^4.5.8",
     "@aws-amplify/datastore": "^3.12.1",
+    "@cloudscape-design/components": "^3.0.19",
     "@fortune-sheet/react": "^0.5.7",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
