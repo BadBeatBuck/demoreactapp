@@ -4,10 +4,13 @@
 import React, { useEffect, useState } from "react";
 import ccxt from "ccxt";
 
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+// import { Button, Form } from "react-bootstrap";
 
 import { DataStore } from "@aws-amplify/datastore";
 import { Bot } from "../../models";
+
+import Button from "@cloudscape-design/components/button";
 
 import { AdvancedRealTimeChart } from "react-ts-tradingview-widgets";
 // import Table003 from "../table-003-mui-rctable/table";
@@ -142,6 +145,7 @@ function Dashboard() {
 
   return (
     <div className={css.main}>
+      <Button>Hello!</Button>
       <div className={css.chartRows}>
         <div className={css.chartRow}>
           <div className={css.form}>{renderForm()}</div>
