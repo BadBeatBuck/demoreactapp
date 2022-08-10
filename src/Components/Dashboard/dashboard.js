@@ -1,3 +1,6 @@
+// "@cloudscape-design/components": "^3.0.19",
+//     "@cloudscape-design/global-styles": "^1.0.1",
+
 import React, { useEffect, useState } from "react";
 import ccxt from "ccxt";
 
@@ -15,7 +18,7 @@ import GridProfit from "../GridProfit/gridProfit";
 import Constants from "../../Constants";
 
 import css from "./dashboard.module.scss";
-import Table005 from "../Table-005-fortune-sheet/table-005";
+// import Table005 from "../Table-005-fortune-sheet/table-005";
 
 const numPoints = 500;
 
